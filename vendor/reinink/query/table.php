@@ -66,6 +66,8 @@ abstract class Table
 
 		$sql = sprintf('INSERT INTO %s (%s) VALUES (%s)', $class::$db_table, implode(', ', array_keys($values)), ':' . implode(', :', array_keys($values)));
 
+		DB::query($sql, $values);
+
 		$this->id = DB::connection()->lastInsertId();
 	}
 

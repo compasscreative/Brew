@@ -7,6 +7,7 @@ use \PDO;
 
 class DB
 {
+	public static $callback;
 	private static $instance;
 	private $queries;
 
@@ -61,6 +62,11 @@ class DB
 
 	private static function execute($sql, $bindings = array())
 	{
+		if (is_callable(self::$callback))
+		{
+			$sql = call_user_func_array(self::$callback, array($sql));
+		}
+
 		$statement = self::$instance->prepare($sql);
 
 		$start = microtime(true);

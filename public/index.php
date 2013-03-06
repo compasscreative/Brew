@@ -72,7 +72,6 @@
 	| Database connection
 	|--------------------------------------------------------------------------
 	*/
-
 		// Connect to SQLite database
 		DB::sqlite(STORAGE_PATH . 'database.sqlite');
 
@@ -85,7 +84,8 @@
 	| Setup bundle path shortcuts
 	|--------------------------------------------------------------------------
 	*/
-		View::$path_override = function($path)
+		// Views
+		View::$callback = function($path)
 		{
 			// Set default bundle
 			if (strpos($path, '::') === false)
@@ -98,6 +98,33 @@
 
 			// Set file path
 			return BASE_PATH . 'bundles/' . implode('/', array_slice($parts, 0, -1)) . '/views/' . end($parts) . '.php';
+		};
+
+		// SQL
+		DB::$callback = function($sql)
+		{
+			// Was an SQL file requested?
+			if (strpos($sql, ' ') === false)
+			{
+				// Use SQL as path
+				$path = $sql;
+
+				// Set default bundle
+				if (strpos($path, '::') === false)
+				{
+					$path = 'app::' . $path;
+				}
+
+				// Break path into parts
+				$parts = explode('::', $path);
+
+				// Return SQL from file
+				return file_get_contents(BASE_PATH . 'bundles/' . implode('/', array_slice($parts, 0, -1)) . '/sql/' . end($parts) . '.sql');
+			}
+			else
+			{
+				return $sql;
+			}
 		};
 
 

@@ -6,14 +6,14 @@ use \Exception;
 
 class View
 {
-	public static $path_override;
+	public static $callback;
 	private $view;
 
 	public function __construct($path)
 	{
-		if (is_callable(self::$path_override))
+		if (is_callable(self::$callback))
 		{
-			$path = call_user_func_array(self::$path_override, array($path));
+			$path = call_user_func_array(self::$callback, array($path));
 		}
 
 		if (!is_file($path))
@@ -26,9 +26,9 @@ class View
 
 	private function insert($path)
 	{
-		if (is_callable(self::$path_override))
+		if (is_callable(self::$callback))
 		{
-			$path = call_user_func_array(self::$path_override, array($path));
+			$path = call_user_func_array(self::$callback, array($path));
 		}
 
 		if (!is_file($path))

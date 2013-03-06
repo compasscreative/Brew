@@ -13,21 +13,13 @@
 		// Galleries
 		if (!in_array('galleries', Config::get('db_tables')))
 		{
-			DB::query('CREATE TABLE galleries (
-						id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-						title TEXT,
-						description TEXT,
-						priority INTEGER )');
+			DB::query('galleries::table.galleries');
 		}
 
 		// Gallery Photos
 		if (!in_array('gallery_photos', Config::get('db_tables')))
 		{
-			DB::query('CREATE TABLE gallery_photos (
-						id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-						gallery_id INTEGER,
-						caption TEXT,
-						display_order INTEGER )');
+			DB::query('galleries::table.gallery_photos');
 		}
 
 
