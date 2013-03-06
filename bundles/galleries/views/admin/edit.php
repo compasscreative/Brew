@@ -1,5 +1,4 @@
 <?php
-$this->id = 'admin_galleries_edit_page';
 $this->title = 'Editing Gallery';
 $this->insert('admin::partials/header');
 ?>
@@ -9,7 +8,7 @@ $this->insert('admin::partials/header');
 		<div class="title">Editing Gallery</div>
 	</div>
 	<div class="body">
-		<form autocomplete="off">
+		<form autocomplete="off" id="galleries_gallery_edit">
 			<input type="hidden" name="id" value="<?=htmlspecialchars($this->gallery->id)?>">
 			<ul>
 				<li>
@@ -61,7 +60,7 @@ $this->insert('admin::partials/header');
 								foreach ($this->photos as $photo)
 								{
 									echo '<li>';
-									echo '<img class="thumb" src="/photo-galleries/photo/xsmall/' . $photo->id . '" width="75" height="75">';
+									echo '<img class="thumb" src="/galleries/photo/xsmall/' . $photo->id . '" width="75" height="75">';
 									echo '<div class="tools">';
 									echo '<textarea name="photos[' . $photo->id . ']">' . $photo->caption . '</textarea>';
 									echo '<button type="button" data-id="' . $photo->id . '" class="delete_photo">Delete</button>';

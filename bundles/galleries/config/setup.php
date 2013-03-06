@@ -25,6 +25,25 @@
 
 	/*
 	|--------------------------------------------------------------------------
+	| Setup storage folders
+	|--------------------------------------------------------------------------
+	*/
+
+		// Bundle folder
+		if (!is_dir(STORAGE_PATH . 'galleries/'))
+		{
+			mkdir(STORAGE_PATH . 'galleries/');
+		}
+
+		// Photos folder
+		if (!is_dir(STORAGE_PATH . 'galleries/photos/'))
+		{
+			mkdir(STORAGE_PATH . 'galleries/photos/');
+		}
+
+
+	/*
+	|--------------------------------------------------------------------------
 	| Setup admin
 	|--------------------------------------------------------------------------
 	*/

@@ -1,5 +1,4 @@
 <?php
-$this->id = 'admin_galleries_add_page';
 $this->title = 'Add Gallery';
 $this->insert('admin::partials/header');
 ?>
@@ -9,7 +8,7 @@ $this->insert('admin::partials/header');
 		<div class="title">Add Gallery</div>
 	</div>
 	<div class="body">
-		<form autocomplete="off">
+		<form autocomplete="off" id="galleries_gallery_add">
 			<ul>
 				<li>
 					<div class="label">

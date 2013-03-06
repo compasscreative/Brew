@@ -196,7 +196,7 @@
 			$project_photo->insert();
 
 			// Set project photo folder path
-			$folder = STORAGE_PATH . 'project_photos/' . $project_photo->id . '/';
+			$folder = STORAGE_PATH . 'projects/photos/' . $project_photo->id . '/';
 
 			// Create new folder
 			mkdir($folder);

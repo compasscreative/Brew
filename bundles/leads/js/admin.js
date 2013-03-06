@@ -1,35 +1,34 @@
-app.admin_leads_edit_page = (function()
+/*
+|--------------------------------------------------------------------------
+| Edit
+|--------------------------------------------------------------------------
+*/
+$(function()
 {
-	var self = {};
-	var page;
+	var form = $('form#leads_lead_edit');
 
-	self.init = function()
+	if (form.length)
 	{
-		// Cache selectors
-		page = $('#admin_leads_edit_page');
-
-		// Bind events
-		page.find('button.delete_lead').bind('click', self.delete_lead);
-	};
-
-	self.delete_lead = function()
-	{
-		if (confirm('Are you sure you want to delete this lead?'))
+		/*
+		| --------------------
+		| Delete lead
+		| --------------------
+		*/
+		form.find('button.delete_lead').bind('click', function()
 		{
-			$.ajax(
+			if (confirm('Are you sure you want to delete this lead?'))
 			{
-				url: '/admin/leads/delete',
-				data: page.find('form').serialize(),
-				success: function()
+				$.ajax(
 				{
-					location.href = '/admin/leads';
-				}
-			});
-		}
-	};
-
-	return {
-		init: self.init
-	};
-
-}());
+					type: 'post',
+					url: '/admin/leads/delete',
+					data: form.serialize(),
+					success: function()
+					{
+						location.href = '/admin/leads';
+					}
+				});
+			}
+		});
+	}
+});

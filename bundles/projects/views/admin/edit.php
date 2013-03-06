@@ -9,7 +9,7 @@ $this->insert('admin::partials/header');
 		<div class="title">Editing Project</div>
 	</div>
 	<div class="body">
-		<form autocomplete="off">
+		<form autocomplete="off" id="projects_project_edit">
 			<input type="hidden" name="id" value="<?=$this->project->id?>">
 			<ul>
 				<li>
@@ -85,7 +85,7 @@ $this->insert('admin::partials/header');
 										if ($photo->section === $section)
 										{
 											echo '<li>';
-											echo '<img class="thumb" src="/featured-projects/photo/xsmall/' . $photo->id . '" width="75" height="75">';
+											echo '<img class="thumb" src="/projects/photo/xsmall/' . $photo->id . '" width="75" height="75">';
 											echo '<div class="tools">';
 											echo '<textarea name="photos[][photo][' . $photo->id . ']">' . $photo->caption . '</textarea>';
 											echo '<button type="button" data-id="' . $photo->id . '" class="delete_photo">Delete</button>';

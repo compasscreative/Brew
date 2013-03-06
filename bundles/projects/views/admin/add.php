@@ -1,15 +1,15 @@
 <?php
 $this->id = 'admin_projects_add_page';
-$this->title = 'Add Listing';
+$this->title = 'Add Project';
 $this->insert('admin::partials/header');
 ?>
 
 <div class="panel">
 	<div class="header">
-		<div class="title">Add Listing</div>
+		<div class="title">Add Project</div>
 	</div>
 	<div class="body">
-		<form autocomplete="off">
+		<form autocomplete="off" id="projects_project_add">
 			<ul>
 				<li>
 					<div class="label">

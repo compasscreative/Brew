@@ -1,7 +1,4 @@
 <?php
-use Brew\Bundle\Leads\Lead;
-
-$this->id = 'admin_leads_page';
 $this->title = 'Leads';
 $this->insert('admin::partials/header');
 ?>

@@ -1,5 +1,4 @@
 <?php
-$this->id = 'admin_leads_edit_page';
 $this->title = 'Leads';
 $this->insert('admin::partials/header');
 ?>
@@ -9,7 +8,7 @@ $this->insert('admin::partials/header');
 		<div class="title">Lead from <?=$this->lead->name?></div>
 	</div>
 	<div class="body">
-		<form autocomplete="off">
+		<form autocomplete="off" id="leads_lead_edit">
 			<input type="hidden" name="id" value="<?=$this->lead->id?>">
 			<ul>
 				<li>

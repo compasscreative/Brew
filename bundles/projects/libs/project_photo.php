@@ -3,7 +3,6 @@
 	namespace Brew\Bundle\Projects;
 
 	use Reinink\Query\Table;
-	use Reinink\Utils\Config;
 
 	class Project_Photo extends Table
 	{
@@ -17,7 +16,7 @@
 		public function delete()
 		{
 			// Set image folder
-			$folder = STORAGE_PATH . 'project_photos/' . $this->id . '/';
+			$folder = STORAGE_PATH . 'projects/photos/' . $this->id . '/';
 
 			// Delete all images
 			if (is_file($folder . 'xlarge.jpg'))

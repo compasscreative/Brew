@@ -12,7 +12,7 @@
 	<title><?=$this->title?> | Admin</title>
 	<?=$this->buster->css('/css/admin.css')?>
 </head>
-<body id="<?=$this->id?>">
+<body>
 
 <div class="container">
 

@@ -60,7 +60,7 @@ abstract class Table
 		{
 			if ($property->isProtected() and !$property->isStatic() and isset($this->{$property->getName()}))
 			{
-				$values[$property->getName()] = empty($this->{$property->getName()}) ? NULL : $this->{$property->getName()};
+				$values[$property->getName()] = strlen($this->{$property->getName()}) === 0 ? NULL : $this->{$property->getName()};
 			}
 		}
 

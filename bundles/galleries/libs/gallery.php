@@ -9,6 +9,6 @@
 		protected static $db_table = 'galleries';
 		protected $id;
 		protected $title;
-		protected $introduction;
+		protected $description;
 		protected $priority;
 	}

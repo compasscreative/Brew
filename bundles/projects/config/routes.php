@@ -2,7 +2,31 @@
 
 	namespace Brew\Bundle\Projects;
 
+	use Reinink\Query\DB;
+	use Reinink\Reveal\Response;
 	use Reinink\Routy\Router;
+
+	// Public
+	Router::get('/projects/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', function($size, $id)
+	{
+		// Load project photo
+		if (!$photo = DB::row('SELECT id FROM project_photos WHERE id = ?', array($id)))
+		{
+			return false;
+		}
+
+		// Set image path
+		$path = STORAGE_PATH . 'projects/photos/' . $photo->id . '/' . $size . '.jpg';
+
+		// Make sure the file exists
+		if (!is_file($path))
+		{
+			return false;
+		}
+
+		// Output the image
+		return Response::jpg($path);
+	});
 
 	// Project pages
 	Router::get('/admin/projects',					'Brew\Bundle\Projects\Admin_Controller::display_projects');
