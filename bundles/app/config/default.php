@@ -1,46 +1,21 @@
 <?php
 
-	use Reinink\Query\DB;
+	namespace Brew\Bundle\App;
+
 	use Reinink\Utils\Config;
 
 	/*
 	|--------------------------------------------------------------------------
-	| Storage path
-	|--------------------------------------------------------------------------
-	|
-	| Path of local folder where application generated date will be stored.
-	| This can also be the location of any SQLite databases.
-	|
-	*/
-
-		Config::set('storage_path', BASE_PATH . 'storage/');
-
-
-	/*
-	|--------------------------------------------------------------------------
-	| Displaying errors
+	| Errors handling
 	|--------------------------------------------------------------------------
 	|
 	| Sets whether or not descriptive errors are displayed. By default this is
 	| set to false for production environments, but it can be overwritten for
-	| development environments in the environment specific configuration file.
+	| development environments.
 	|
 	*/
 
 		Config::set('display_errors', false);
-
-
-	/*
-	|--------------------------------------------------------------------------
-	| Logging errors
-	|--------------------------------------------------------------------------
-	|
-	| Sets whether or not errors should be logged. Set to false to disable
-	| error logging, otherwise set the path of a local error log folder.
-	|
-	*/
-
-		Config::set('error_log_path', Config::get('storage_path') . 'errors/');
 
 
 	/*
@@ -54,22 +29,6 @@
 	*/
 
 		date_default_timezone_set('America/Toronto');
-
-
-	/*
-	|--------------------------------------------------------------------------
-	| Database connection
-	|--------------------------------------------------------------------------
-	|
-	| Connect to a MySQL or SQLite database. It is recommended that you add
-	| this setting to your environement specific configuration file. Examples:
-	|
-	| DB::mysql('localhost', 'username', 'password', 'database');
-	| DB::sqlite(Config::get('storage_path') . 'database.sqlite');
-	|
-	*/
-
-		DB::sqlite(Config::get('storage_path') . 'database.sqlite');
 
 
 	/*

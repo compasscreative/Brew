@@ -17,7 +17,7 @@
 		{
 			return View::make('projects::admin/index', array
 			(
-				'projects' => DB::rows('SELECT id, title, date_completed, show_lo_award, (SELECT COUNT(*) FROM project_photos WHERE project_id = projects.id) AS photos FROM projects ORDER BY date_completed')
+				'projects' => DB::rows('SELECT id, title, completed_date, show_lo_award, (SELECT COUNT(*) FROM project_photos WHERE project_id = projects.id) AS photos FROM projects ORDER BY completed_date')
 			));
 		}
 
@@ -28,7 +28,7 @@
 
 		public function edit_project($id)
 		{
-			if ($project = DB::row('SELECT id, title, introduction, description, awards, show_lo_award, date_completed FROM projects WHERE id = ?', array($id)))
+			if ($project = DB::row('SELECT id, title, introduction, description, awards, show_lo_award, completed_date FROM projects WHERE id = ?', array($id)))
 			{
 				return View::make('projects::admin/edit', array
 				(
@@ -46,7 +46,7 @@
 				!isset($_POST['description']) or
 				!isset($_POST['awards']) or
 				!isset($_POST['show_lo_award']) or
-				!isset($_POST['date_completed']))
+				!isset($_POST['completed_date']))
 			{
 				throw new Exception('Missing paramaters.');
 			}
@@ -58,7 +58,7 @@
 			$project->description = trim($_POST['description']);
 			$project->awards = trim($_POST['awards']);
 			$project->show_lo_award = trim($_POST['show_lo_award']);
-			$project->date_completed = trim($_POST['date_completed']);
+			$project->completed_date = trim($_POST['completed_date']);
 			$project->insert();
 
 			// Return new id
@@ -77,7 +77,7 @@
 				!isset($_POST['description']) or
 				!isset($_POST['awards']) or
 				!isset($_POST['show_lo_award']) or
-				!isset($_POST['date_completed']))
+				!isset($_POST['completed_date']))
 			{
 				throw new Exception('Missing paramaters.');
 			}
@@ -95,7 +95,7 @@
 			$project->description = trim($_POST['description']);
 			$project->awards = trim($_POST['awards']);
 			$project->show_lo_award = trim($_POST['show_lo_award']);
-			$project->date_completed = trim($_POST['date_completed']);
+			$project->completed_date = trim($_POST['completed_date']);
 			$project->update();
 
 			// Update photo order and captions
@@ -196,7 +196,7 @@
 			$project_photo->insert();
 
 			// Set project photo folder path
-			$folder = Config::get('storage_path') . 'project_photos/' . $project_photo->id . '/';
+			$folder = STORAGE_PATH . 'project_photos/' . $project_photo->id . '/';
 
 			// Create new folder
 			mkdir($folder);

@@ -21,8 +21,8 @@
 			// Create a new lead
 			$lead = new Lead();
 
-			// Set date
-			$lead->date = date('Y-m-d H:i:s');
+			// Set submitted date
+			$lead->submitted_date = date('Y-m-d H:i:s');
 
 			// Set IP address
 			$lead->ip_address = $_SERVER['REMOTE_ADDR'];

@@ -26,7 +26,7 @@ $this->insert('admin::partials/header');
 					<?php foreach($this->projects as $project){ ?>
 						<tr>
 							<td><a href="/admin/projects/edit/<?=$project->id?>/"><?=$project->title?></a></td>
-							<td><?=date_create($project->date_completed)->format('M j, Y')?></td>
+							<td><?=date_create($project->completed_date)->format('M j, Y')?></td>
 							<td><?=$project->show_lo_award ? 'Yes' : 'No'?></td>
 							<td><?=$project->photos?></td>
 						</tr>

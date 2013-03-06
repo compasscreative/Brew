@@ -46,13 +46,13 @@ app.admin_projects_add_page = (function()
 		}
 
 		// Validate completed date
-		if ($.trim(fields.date_completed.val()).length === 0)
+		if ($.trim(fields.completed_date.val()).length === 0)
 		{
-			fields.date_completed.addClass('error').siblings('.error_message.required').show();
+			fields.completed_date.addClass('error').siblings('.error_message.required').show();
 		}
-		else if (/^(19|20)\d\d[-\/.](0[1-9]|1[012])[-\/.](0[1-9]|[12][0-9]|3[01])$/.test(fields.date_completed.val()) === false)
+		else if (/^(19|20)\d\d[-\/.](0[1-9]|1[012])[-\/.](0[1-9]|[12][0-9]|3[01])$/.test(fields.completed_date.val()) === false)
 		{
-			fields.date_completed.addClass('error').siblings('.error_message.invalid').show();
+			fields.completed_date.addClass('error').siblings('.error_message.invalid').show();
 		}
 
 		// Return validation results
@@ -82,7 +82,7 @@ app.admin_projects_add_page = (function()
 			fields =
 			{
 				title: form.find('[name=title]'),
-				date_completed: form.find('[name=date_completed]'),
+				completed_date: form.find('[name=completed_date]'),
 				introduction: form.find('[name=introduction]'),
 				description: form.find('[name=description]'),
 				awards: form.find('[name=awards]'),
@@ -93,7 +93,7 @@ app.admin_projects_add_page = (function()
 			form.bind('submit', submit);
 
 			// Setup date picker
-			fields.date_completed.datepicker(
+			fields.completed_date.datepicker(
 			{
 				dateFormat:'yy-mm-dd'
 			});
@@ -159,13 +159,13 @@ app.admin_projects_edit_page = (function()
 		}
 
 		// Validate completed date
-		if ($.trim(fields.date_completed.val()).length === 0)
+		if ($.trim(fields.completed_date.val()).length === 0)
 		{
-			fields.date_completed.addClass('error').siblings('.error_message.required').show();
+			fields.completed_date.addClass('error').siblings('.error_message.required').show();
 		}
-		else if (/^(19|20)\d\d[-\/.](0[1-9]|1[012])[-\/.](0[1-9]|[12][0-9]|3[01])$/.test(fields.date_completed.val()) === false)
+		else if (/^(19|20)\d\d[-\/.](0[1-9]|1[012])[-\/.](0[1-9]|[12][0-9]|3[01])$/.test(fields.completed_date.val()) === false)
 		{
-			fields.date_completed.addClass('error').siblings('.error_message.invalid').show();
+			fields.completed_date.addClass('error').siblings('.error_message.invalid').show();
 		}
 
 		// Return validation results
@@ -262,7 +262,7 @@ app.admin_projects_edit_page = (function()
 			{
 				id: form.find('[name=id]'),
 				title: form.find('[name=title]'),
-				date_completed: form.find('[name=date_completed]'),
+				completed_date: form.find('[name=completed_date]'),
 				introduction: form.find('[name=introduction]'),
 				description: form.find('[name=description]'),
 				awards: form.find('[name=awards]'),
@@ -275,7 +275,7 @@ app.admin_projects_edit_page = (function()
 			form.on('click', 'button.delete_photo', delete_photo);
 
 			// Setup date picker
-			fields.date_completed.datepicker(
+			fields.completed_date.datepicker(
 			{
 				dateFormat:'yy-mm-dd'
 			});

@@ -1,5 +1,7 @@
 <?php
 
+	namespace Brew\Bundle\Galleries;
+
 	use Reinink\Routy\Router;
 
 	// Gallery pages

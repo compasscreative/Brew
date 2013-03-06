@@ -6,16 +6,9 @@
 
 	class Gallery extends Table
 	{
-		public static $db_table = 'galleries';
-		public static $db_fields = array(
-			array('name' => 'id'),
-			array('name' => 'title'),
-			array('name' => 'description'),
-			array('name' => 'priority')
-		);
-
-		public $id;
-		public $title;
-		public $introduction;
-		public $priority;
+		protected static $db_table = 'galleries';
+		protected $id;
+		protected $title;
+		protected $introduction;
+		protected $priority;
 	}

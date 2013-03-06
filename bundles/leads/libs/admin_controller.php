@@ -14,13 +14,13 @@
 		{
 			return View::make('leads::admin/index', array
 			(
-				'leads' => DB::rows('SELECT id, name, email, phone, date FROM leads ORDER BY date DESC')
+				'leads' => DB::rows('SELECT id, name, email, phone, submitted_date FROM leads ORDER BY submitted_date DESC')
 			));
 		}
 
 		public function edit($id)
 		{
-			if ($lead = DB::row('SELECT id, date, ip_address, name, email, phone, address, interest, budget, message, referral, url FROM leads WHERE id = ?', array($id)))
+			if ($lead = DB::row('SELECT id, submitted_date, ip_address, name, email, phone, address, interest, budget, message, referral, url FROM leads WHERE id = ?', array($id)))
 			{
 				return View::make('leads::admin/edit', array
 				(

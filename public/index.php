@@ -1,9 +1,11 @@
 <?php
 
 	use Reinink\BooBoo\BooBoo;
+	use Reinink\Query\DB;
 	use Reinink\Reveal\Response;
 	use Reinink\Reveal\View;
 	use Reinink\Routy\Router;
+	use Reinink\Utils\Config;
 
 
 	/*
@@ -11,12 +13,14 @@
 	| Path definitions
 	|--------------------------------------------------------------------------
 	*/
+		// Set base bath
+		define('BASE_PATH', dirname(dirname(__FILE__)) . '/');
 
 		// Set public path
 		define('PUBLIC_PATH', dirname(__FILE__) . '/');
 
-		// Set base application bath
-		define('BASE_PATH', dirname(dirname(__FILE__)) . '/');
+		// Set storage path
+		define('STORAGE_PATH', dirname(dirname(__FILE__)) . '/storage/');
 
 
 	/*
@@ -65,6 +69,19 @@
 
 	/*
 	|--------------------------------------------------------------------------
+	| Database connection
+	|--------------------------------------------------------------------------
+	*/
+
+		// Connect to SQLite database
+		DB::sqlite(STORAGE_PATH . 'database.sqlite');
+
+		// Get list of existing tables
+		Config::set('db_tables', explode(',', DB::value('SELECT group_concat(name) FROM sqlite_master WHERE type = "table"')));
+
+
+	/*
+	|--------------------------------------------------------------------------
 	| Setup bundle path shortcuts
 	|--------------------------------------------------------------------------
 	*/
@@ -101,24 +118,17 @@
 			}
 		}
 
-		// Load each bundle
+		// Load bundle config files
 		foreach ($bundles as $bundle)
 		{
-			$folder = BASE_PATH . 'bundles/' . $bundle . '/';
+			$folder = BASE_PATH . 'bundles/' . $bundle . '/config/';
 
-			if (is_file($folder . 'config/default.php'))
+			foreach (array('setup', 'default', 'production', 'development', 'routes') as $file)
 			{
-				include $folder . 'config/default.php';
-			}
-
-			if (getenv('APPLICATION_ENV') and is_file($folder . 'config/' . getenv('APPLICATION_ENV') . '.php'))
-			{
-				include $folder . 'config/' . getenv('APPLICATION_ENV') . '.php';
-			}
-
-			if (is_file($folder . 'routes.php'))
-			{
-				include $folder . 'routes.php';
+				if (is_file($folder . $file . '.php'))
+				{
+					include $folder . $file . '.php';
+				}
 			}
 		}
 
@@ -129,4 +139,11 @@
 	|--------------------------------------------------------------------------
 	*/
 
-		Response::handle(Router::run());
+		if ($response = Router::run())
+		{
+			Response::handle($response);
+		}
+		else
+		{
+			Response::error_404(View::make('404')->render())->output();
+		}

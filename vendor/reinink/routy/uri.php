@@ -8,4 +8,23 @@ class URI
 	{
 		return preg_match('#^' . $uri . '$#', Request::uri());
 	}
+
+	public static function segment($index)
+	{
+		$segments = self::segments();
+
+		if (isset($segments[$index - 1]))
+		{
+			return $segments[$index - 1];
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	public static function segments()
+	{
+		return explode('/', trim(Request::uri(), '/'));
+	}
 }

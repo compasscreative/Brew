@@ -1,5 +1,7 @@
 <?php
 
+	namespace Brew\Bundle\Leads;
+
 	use Reinink\Routy\Router;
 
 	// Public

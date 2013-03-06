@@ -1,5 +1,7 @@
 <?php
 
+	namespace Brew\Bundle\App;
+
 	use Reinink\Reveal\View;
 	use Reinink\Routy\Router;
 

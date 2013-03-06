@@ -1,5 +1,7 @@
 <?php
 
+	namespace Brew\Bundle\Projects;
+
 	use Reinink\Routy\Router;
 
 	// Project pages

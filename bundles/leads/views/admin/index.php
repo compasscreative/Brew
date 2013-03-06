@@ -27,7 +27,7 @@ $this->insert('admin::partials/header');
 						<td><a href="/admin/leads/edit/<?=$lead->id?>/"><?=$lead->name?></a></td>
 						<td><?=$lead->email?></td>
 						<td><?=$lead->phone?></td>
-						<td><?=date_create($lead->date)->format('F j, Y \a\t g:i a')?></td>
+						<td><?=date_create($lead->submitted_date)->format('F j, Y \a\t g:i a')?></td>
 					</tr>
 				<?php } ?>
 			<?php } else { ?>

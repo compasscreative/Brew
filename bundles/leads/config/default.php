@@ -1,21 +1,8 @@
 <?php
 
-	use Brew\Bundle\Leads\Form;
+	namespace Brew\Bundle\Leads;
+
 	use Reinink\Utils\Config;
-
-	/*
-	|--------------------------------------------------------------------------
-	| Bundle setup
-	|--------------------------------------------------------------------------
-	*/
-
-		// Add admin menu item
-		Config::$values['admin::menu'][] = array
-		(
-			'name' => 'Leads',
-			'url' => '/admin/leads'
-		);
-
 
 	/*
 	|--------------------------------------------------------------------------

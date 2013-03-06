@@ -17,7 +17,7 @@ $this->insert('admin::partials/header');
 						<label>Date:</label>
 					</div>
 					<div class="field">
-						<div class="info"><?=date_create($this->lead->date)->format('F j, Y \a\t g:i a')?></div>
+						<div class="info"><?=date_create($this->lead->submitted_date)->format('F j, Y \a\t g:i a')?></div>
 					</div>
 				</li>
 				<?php if (strlen($this->lead->message)){ ?>

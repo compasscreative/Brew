@@ -25,7 +25,7 @@ $this->insert('admin::partials/header');
 						<label>Date Completed:</label>
 					</div>
 					<div class="field">
-						<input type="text" name="date_completed" value="<?=date('Y-m-d')?>" />
+						<input type="text" name="completed_date" value="<?=date('Y-m-d')?>" />
 						<div class="error_message required">Required field.</div>
 						<div class="error_message invalid">Not a valid date. Required format: YYYY-MM-DD</div>
 					</div>

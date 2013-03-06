@@ -3,9 +3,39 @@
 namespace Reinink\Query;
 
 use \Exception;
+use \ReflectionClass;
+use \ReflectionProperty;
 
 abstract class Table
 {
+	public function __get($property)
+	{
+		if (method_exists($this, 'get_' . $property))
+		{
+			return call_user_func(array($this, 'get_' . $property));
+		}
+
+		if (property_exists($this, $property))
+		{
+			return $this->$property;
+		}
+	}
+
+	public function __set($property, $value)
+	{
+		if (method_exists($this, 'set_' . $property))
+		{
+			return call_user_func_array(array($this, 'set_' . $property), array($value));
+		}
+
+		if (property_exists($this, $property))
+		{
+			$this->$property = $value;
+		}
+
+		return $this;
+	}
+
 	public static function select($id)
 	{
 		$class = get_called_class();
@@ -17,20 +47,24 @@ abstract class Table
 
 	public function insert()
 	{
+		if (isset($this->id))
+		{
+			throw new Exception('Primary key is already set.');
+		}
+
 		$class = get_called_class();
 
-		foreach ($class::$db_fields as $field)
+		$model = new ReflectionClass(get_called_class());
+
+		foreach ($model->getProperties() as $property)
 		{
-			if (isset($this->$field['name']))
+			if ($property->isProtected() and !$property->isStatic() and isset($this->{$property->getName()}))
 			{
-				$fields[] = $field['name'];
-				$values[$field['name']] = (isset($field['null']) and $field['null'] === true and $this->$field['name'] === '') ? NULL : $this->$field['name'];
+				$values[$property->getName()] = empty($this->{$property->getName()}) ? NULL : $this->{$property->getName()};
 			}
 		}
 
-		$sql = sprintf('INSERT INTO %s (%s) VALUES (%s)', $class::$db_table, implode(', ', $fields), ':' . implode(', :', $fields));
-
-		DB::query($sql, $values);
+		$sql = sprintf('INSERT INTO %s (%s) VALUES (%s)', $class::$db_table, implode(', ', array_keys($values)), ':' . implode(', :', array_keys($values)));
 
 		$this->id = DB::connection()->lastInsertId();
 	}
@@ -39,41 +73,46 @@ abstract class Table
 	{
 		if (!isset($this->id))
 		{
-			throw new Exception('Primary key (id) not set.');
+			throw new Exception('Primary key is not set.');
 		}
 
 		$class = get_called_class();
 
-		foreach ($class::$db_fields as $field)
-		{
-			if (isset($this->$field['name']))
-			{
-				if ($field['name'] !== 'id')
-				{
-					$fields[] = $field['name'] . ' = :' . $field['name'];
-				}
+		$model = new ReflectionClass(get_called_class());
 
-				if (isset($field['null']) and $field['null'] === true and $this->$field['name'] === '')
-				{
-					$values[$field['name']] = null;
-				}
-				else
-				{
-					$values[$field['name']] = $this->$field['name'];
-				}
+		foreach ($model->getProperties() as $property)
+		{
+			if ($property->isProtected() and !$property->isStatic() and $property->getName() !== 'id' and isset($this->{$property->getName()}))
+			{
+				$values[$property->getName()] = empty($this->{$property->getName()}) ? NULL : $this->{$property->getName()};
 			}
 		}
 
-		$sql = sprintf('UPDATE %s SET %s WHERE id = :id', $class::$db_table, implode(', ', $fields));
+		$sql = sprintf('UPDATE %s SET %s WHERE id = :id', $class::$db_table, call_user_func(function() use($values)
+		{
+			foreach ($values as $name => $value)
+			{
+				if (isset($sql))
+				{
+					$sql .= ', ' . $name . ' = :' . $name;
+				}
+				else
+				{
+					$sql = $name . ' = :' . $name;
+				}
+			}
 
-		DB::query($sql, $values);
+			return $sql;
+		}));
+
+		DB::query($sql, array_merge(array('id' => $this->id), $values));
 	}
 
 	public function delete()
 	{
 		if (!isset($this->id))
 		{
-			throw new Exception('Primary key (id) not set.');
+			throw new Exception('Primary key is not set.');
 		}
 
 		$class = get_called_class();

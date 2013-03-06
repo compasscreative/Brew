@@ -1,5 +1,7 @@
 <?php
 
+	namespace Brew\Bundle\Admin;
+
 	use Reinink\Routy\Router;
 
 	Router::get('/admin',			'Brew\Bundle\Admin\Public_Controller::index');

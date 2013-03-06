@@ -171,7 +171,7 @@
 			$gallery_photo->insert();
 
 			// Set gallery photo folder path
-			$folder = Config::get('storage_path') . 'gallery_photos/' . $gallery_photo->id . '/';
+			$folder = STORAGE_PATH . 'gallery_photos/' . $gallery_photo->id . '/';
 
 			// Create new folder
 			mkdir($folder);

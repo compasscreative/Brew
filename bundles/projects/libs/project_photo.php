@@ -7,25 +7,17 @@
 
 	class Project_Photo extends Table
 	{
-		public static $db_table = 'project_photos';
-		public static $db_fields = array(
-			array('name' => 'id'),
-			array('name' => 'project_id'),
-			array('name' => 'section'),
-			array('name' => 'caption'),
-			array('name' => 'display_order')
-		);
-
-		public $id;
-		public $project_id;
-		public $section;
-		public $caption;
-		public $display_order;
+		protected static $db_table = 'project_photos';
+		protected $id;
+		protected $project_id;
+		protected $section;
+		protected $caption;
+		protected $display_order;
 
 		public function delete()
 		{
 			// Set image folder
-			$folder = Config::get('storage_path') . 'project_photos/' . $this->id . '/';
+			$folder = STORAGE_PATH . 'project_photos/' . $this->id . '/';
 
 			// Delete all images
 			if (is_file($folder . 'xlarge.jpg'))

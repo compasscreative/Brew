@@ -7,24 +7,17 @@
 
 	class Gallery_Photo extends Table
 	{
-		public static $db_table = 'gallery_photos';
-		public static $db_fields = array(
-			array('name' => 'id'),
-			array('name' => 'gallery_id'),
-			array('name' => 'caption'),
-			array('name' => 'display_order')
-		);
-
-		public $id;
-		public $gallery_id;
-		public $section;
-		public $caption;
-		public $display_order;
+		protected static $db_table = 'gallery_photos';
+		protected $id;
+		protected $gallery_id;
+		protected $section;
+		protected $caption;
+		protected $display_order;
 
 		public function delete()
 		{
 			// Set image folder
-			$folder = Config::get('storage_path') . 'gallery_photos/' . $this->id . '/';
+			$folder = STORAGE_PATH . 'gallery_photos/' . $this->id . '/';
 
 			// Delete all images
 			if (is_file($folder . 'xlarge.jpg'))

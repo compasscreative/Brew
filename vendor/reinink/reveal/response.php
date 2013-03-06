@@ -56,7 +56,7 @@ class Response
 		}
 		else
 		{
-			self::error_404('Page not found.')->output();
+			throw new Exception('Unknown response type.');
 		}
 	}
 
