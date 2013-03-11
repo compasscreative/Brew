@@ -9,23 +9,10 @@
 	// Public
 	Router::get('/galleries/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', function($size, $id)
 	{
-		// Load gallery photo
-		if (!$photo = DB::row('SELECT id FROM gallery_photos WHERE id = ?', array($id)))
+		if ($photo = DB::row('SELECT id FROM gallery_photos WHERE id = ?', array($id)))
 		{
-			return false;
+			return Response::jpg(STORAGE_PATH . 'galleries/photos/' . $photo->id . '/' . $size . '.jpg');
 		}
-
-		// Set image path
-		$path = STORAGE_PATH . 'galleries/photos/' . $photo->id . '/' . $size . '.jpg';
-
-		// Make sure the file exists
-		if (!is_file($path))
-		{
-			return false;
-		}
-
-		// Output the image
-		return Response::jpg($path);
 	});
 
 	// Gallery pages

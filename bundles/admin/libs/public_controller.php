@@ -3,7 +3,7 @@
 namespace Brew\Bundle\Admin;
 
 use Brew\Bundle\App\Brew;
-use Reinink\Reveal\View;
+use Reinink\Reveal\Response;
 use Reinink\Utils\Config;
 
 class Public_Controller
@@ -24,7 +24,7 @@ class Public_Controller
 
 	public function login_form()
 	{
-		return View::make('admin::login');
+		return Response::view('admin::login');
 	}
 
 	public function process_login()
@@ -49,7 +49,7 @@ class Public_Controller
 			}
 		}
 
-		return View::make('admin::login');
+		return Response::view('admin::login');
 	}
 
 	public function process_logout()

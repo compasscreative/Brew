@@ -2,15 +2,15 @@
 
 	namespace Brew\Bundle\App;
 
-	use Reinink\Reveal\View;
 	use Reinink\Routy\Router;
+	use Reinink\Reveal\Response;
 
 	Router::get('/', function()
 	{
-		return View::make('home');
+		return Response::view('home');
 	});
 
 	Router::get('/contact', function()
 	{
-		return View::make('contact');
+		return Response::view('contact');
 	});

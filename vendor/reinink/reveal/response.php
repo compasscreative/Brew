@@ -1,100 +1,251 @@
 <?php
+/**
+ * PHP libraries that make HTTP responses more manageable.
+ *
+ * @package  Reveal
+ * @version  1.0
+ * @author   Jonathan Reinink <jonathan@reininks.com>
+ * @link     https://github.com/reinink/Reveal
+ */
 
 namespace Reinink\Reveal;
 
 class Response
 {
+	/**
+	 * The content to be sent.
+	 *
+	 * @var string
+	 */
 	public $content;
-	public $status;
+
+	/**
+	 * The HTTP code.
+	 *
+	 * @var string
+	 */
+	public $code;
+
+	/**
+	 * An array of HTTP headers.
+	 *
+	 * @var int
+	 */
 	public $headers;
 
-	public function __construct($content, $status = 200, $headers = array())
+	/**
+	 * Create a new Response instance.
+	 *
+	 * @param	string	$content
+	 * @param	array	$headers
+	 * @return	void
+	 */
+	public function __construct($content = null, $code = 200, $headers = array())
 	{
 		$this->content = $content;
-		$this->status = $status;
+		$this->code = $code;
 		$this->headers = $headers;
 	}
 
-	public function output()
+	/**
+	 * Send the headers and content of the response to the browser.
+	 *
+	 * @return	void
+	 */
+	public function send()
 	{
-		if ($this->status === 404)
+		foreach ($this->headers as $header)
 		{
-			header('HTTP/1.0 404 Not Found');
+			if (isset($header[1]))
+			{
+				header($header[0], true, $header[1]);
+			}
+			else
+			{
+				header($header[0]);
+			}
 		}
 
-		// Add headers
-		foreach ($this->headers as $name => $value)
+		if (!is_null($this->content))
 		{
-			header($name . ': ' . $value);
+			echo $this->content;
 		}
-
-		// Display content
-		echo $this->content;
 	}
 
-	public static function handle($response)
+	/**
+	 * Create a ViewResponse using an array of values.
+	 *
+	 * @param	string	$path
+	 * @param	array	$values
+	 * @return	ViewResponse
+	 */
+	public static function view($path, $values = array())
 	{
-		// Response object
-		if (is_object($response) and get_class($response) === 'Reinink\Reveal\Response')
+		$view = new ViewResponse($path);
+
+		foreach ($values as $name => $value)
 		{
-			$response->output();
+			$view->$name = $value;
 		}
-		// View object
-		else if (is_object($response) and get_class($response) === 'Reinink\Reveal\View')
+
+		return $view;
+	}
+
+	/**
+	 * Create a JSONResponse from an array.
+	 *
+	 * @param	array	$data
+	 * @return	JSONResponse
+	 */
+	public static function json($data)
+	{
+		return new JSONResponse($data);
+	}
+
+	/**
+	 * Create a FileResponse for a PDF file.
+	 *
+	 * @param	string	$path
+	 * @param	string	$filename
+	 * @param	bool	$download
+	 * @return	FileResponse
+	 */
+	public static function pdf($path, $filename = null, $download = false)
+	{
+		if (!is_file($path))
 		{
-			self::view($response)->output();
+			return new ErrorResponse('PDF Not Found.', 404);
 		}
-		// String
+
+		return new FileResponse($path, 'application/pdf', $filename, $download);
+	}
+
+	/**
+	 * Create a FileResponse for a JPG file.
+	 *
+	 * @param	string	$path
+	 * @param	string	$filename
+	 * @param	bool	$download
+	 * @return	FileResponse
+	 */
+	public static function jpg($path, $filename = null, $download = false)
+	{
+		if (!is_file($path))
+		{
+			return new ErrorResponse('Image Not Found.', 404);
+		}
+
+		return new FileResponse($path, 'image/jpeg', $filename, $download);
+	}
+
+	/**
+	 * Create a FileResponse for a PNG file.
+	 *
+	 * @param	string	$path
+	 * @param	string	$filename
+	 * @param	bool	$download
+	 * @return	FileResponse
+	 */
+	public static function png($path, $filename = null, $download = false)
+	{
+		if (!is_file($path))
+		{
+			return new ErrorResponse('Image Not Found.', 404);
+		}
+
+		return new FileResponse($path, 'image/png', $filename, $download);
+	}
+
+	/**
+	 * Create a RedirectResponse for a redirect.
+	 *
+	 * @param	string	$url
+	 * @return	RedirectResponse
+	 */
+	public static function redirect($url, $code = 301)
+	{
+		return new RedirectResponse($url, $code);
+	}
+
+	/**
+	 * Create a ErrorResponse for a bad request.
+	 *
+	 * @param	string	$content
+	 * @return	ErrorResponse
+	 */
+	public static function bad_request($message = 'Bad Request.')
+	{
+		return new ErrorResponse($message, 400);
+	}
+
+	/**
+	 * Create a ErrorResponse for a unauthorized request.
+	 *
+	 * @param	string	$message
+	 * @return	ErrorResponse
+	 */
+	public static function unauthorized($message = 'Unauthorized.')
+	{
+		return new ErrorResponse($message, 401);
+	}
+
+	/**
+	 * Create a ErrorResponse for a unauthorized request.
+	 *
+	 * @param	string	$message
+	 * @return	ErrorResponse
+	 */
+	public static function forbidden($message = 'Forbidden.')
+	{
+		return new ErrorResponse($message, 403);
+	}
+
+	/**
+	 * Create a ErrorResponse for a page not found.
+	 *
+	 * @param	string	$message
+	 * @return	ErrorResponse
+	 */
+	public static function not_found($message = 'Page Not Found.')
+	{
+		return new ErrorResponse($message, 404);
+	}
+
+	/**
+	 * Create a ErrorResponse for a server error.
+	 *
+	 * @param	string	$message
+	 * @return	ErrorResponse
+	 */
+	public static function server_error($message = 'Internal Server Error.')
+	{
+		return new ErrorResponse($message, 500);
+	}
+
+	/**
+	 * Get valid Response object from various responses.
+	 *
+	 * @param	mixed	$response
+	 * @param	object	$error
+	 * @return	void
+	 */
+	public static function get($response)
+	{
+		if (is_object($response) and $response instanceof Response)
+		{
+			return $response;
+		}
 		else if (is_string($response))
 		{
-			self::string($response)->output();
+			return new Response($response);
 		}
-		// Boolean
-		else if ($response === true)
+		else if (is_bool($response) and $response === true)
 		{
-			self::string('')->output();
+			return new Response();
 		}
 		else
 		{
-			throw new Exception('Unknown response type.');
+			return self::not_found();
 		}
-	}
-
-	public static function view(View $view, $status = 200, $headers = array())
-	{
-		return new static($view->render(), $status, $headers);
-	}
-
-	public static function string($string, $status = 200, $headers = array())
-	{
-		return new static($string, $status, $headers);
-	}
-
-	public static function json($data, $status = 200, $headers = array())
-	{
-		$headers['Content-Type'] = 'application/json; charset=utf-8';
-
-		return new static(json_encode($data), $status, $headers);
-	}
-
-	public static function pdf($path, $filename = 'document.pdf')
-	{
-		$headers['Content-Type'] = 'application/pdf';
-		$headers['Content-Disposition'] = 'inline; filename=' . $filename;
-
-		return new static(file_get_contents($path), 200, $headers);
-	}
-
-	public static function jpg($path, $filename = 'image.jpg')
-	{
-		$headers['Content-Type'] = 'image/jpeg';
-		$headers['Content-Disposition'] = 'inline; filename=' . $filename;
-
-		return new static(file_get_contents($path), 200, $headers);
-	}
-
-	public static function error_404($message = '')
-	{
-		return new static($message, 404, $headers = array());
 	}
 }

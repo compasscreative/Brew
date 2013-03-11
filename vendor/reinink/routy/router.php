@@ -1,4 +1,12 @@
 <?php
+/**
+ * PHP libraries that make routing more manageable.
+ *
+ * @package  Routy
+ * @version  1.0
+ * @author   Jonathan Reinink <jonathan@reininks.com>
+ * @link     https://github.com/reinink/Routy
+ */
 
 namespace Reinink\Routy;
 

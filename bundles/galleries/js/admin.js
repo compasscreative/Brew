@@ -201,7 +201,7 @@ $(function()
 						// Update list with new photo
 						html = '<img class="thumb" src="/galleries/photo/xsmall/' + response.id + '" width="75" height="75">';
 						html += '<div class="tools">';
-						html += '<textarea name="photos[][photo][' + response.id + ']"></textarea>';
+						html += '<textarea name="photos[' + response.id + ']"></textarea>';
 						html += '<button type="button" data-id="' + response.id + '" class="delete_photo">Delete</button>';
 						html += '</div>';
 

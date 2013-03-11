@@ -3,7 +3,6 @@
 	namespace Brew\Bundle\Leads;
 
 	use \Exception;
-	use Brew\Bundle\Leads\Lead;
 
 	class Process_Lead
 	{

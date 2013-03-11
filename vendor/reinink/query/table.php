@@ -58,7 +58,7 @@ abstract class Table
 
 		foreach ($model->getProperties() as $property)
 		{
-			if ($property->isProtected() and !$property->isStatic() and isset($this->{$property->getName()}))
+			if ($property->isProtected() and !$property->isStatic() and $property->getName() !== 'id')
 			{
 				$values[$property->getName()] = strlen($this->{$property->getName()}) === 0 ? NULL : $this->{$property->getName()};
 			}
@@ -84,9 +84,9 @@ abstract class Table
 
 		foreach ($model->getProperties() as $property)
 		{
-			if ($property->isProtected() and !$property->isStatic() and $property->getName() !== 'id' and isset($this->{$property->getName()}))
+			if ($property->isProtected() and !$property->isStatic() and $property->getName() !== 'id')
 			{
-				$values[$property->getName()] = empty($this->{$property->getName()}) ? NULL : $this->{$property->getName()};
+				$values[$property->getName()] = strlen($this->{$property->getName()}) === 0 ? NULL : $this->{$property->getName()};
 			}
 		}
 

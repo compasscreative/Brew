@@ -2,12 +2,10 @@
 
 	namespace Brew\Bundle\Projects;
 
-	use \Exception;
 	use Brew\Bundle\Admin\Secure_Controller;
 	use Reinink\Magick\Magick;
 	use Reinink\Query\DB;
 	use Reinink\Reveal\Response;
-	use Reinink\Reveal\View;
 	use Reinink\Up\ImageUpload;
 	use Reinink\Utils\Config;
 
@@ -15,7 +13,7 @@
 	{
 		public function display_projects()
 		{
-			return View::make('projects::admin/index', array
+			return Response::view('projects::admin/index', array
 			(
 				'projects' => DB::rows('SELECT id, title, completed_date, show_lo_award, (SELECT COUNT(*) FROM project_photos WHERE project_id = projects.id) AS photos FROM projects ORDER BY completed_date')
 			));
@@ -23,14 +21,14 @@
 
 		public function add_project()
 		{
-			return View::make('projects::admin/add');
+			return Response::view('projects::admin/add');
 		}
 
 		public function edit_project($id)
 		{
 			if ($project = DB::row('SELECT id, title, introduction, description, awards, show_lo_award, completed_date FROM projects WHERE id = ?', array($id)))
 			{
-				return View::make('projects::admin/edit', array
+				return Response::view('projects::admin/edit', array
 				(
 					'project' => $project,
 					'photos' => DB::rows('SELECT id, section, caption FROM project_photos WHERE project_id = ? ORDER BY display_order', array($project->id))
@@ -48,7 +46,7 @@
 				!isset($_POST['show_lo_award']) or
 				!isset($_POST['completed_date']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Create the project
@@ -62,10 +60,7 @@
 			$project->insert();
 
 			// Return new id
-			echo json_encode(array('id' => $project->id));
-
-			// Success
-			return true;
+			return Response::json(array('id' => $project->id));
 		}
 
 		public function update_project()
@@ -79,13 +74,13 @@
 				!isset($_POST['show_lo_award']) or
 				!isset($_POST['completed_date']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Load the project
 			if (!$project = Project::select($_POST['id']))
 			{
-				throw new Exception('Project not found.');
+				return Response::not_found();
 			}
 
 			// Update the project
@@ -116,19 +111,17 @@
 						$caption = $type['photo'][$id];
 
 						// Load the photo
-						if (!$photo = Project_Photo::select($id))
+						if ($photo = Project_Photo::select($id))
 						{
-							throw new Exception('Project photo not found.');
+							// Update object
+							$photo->caption = trim($caption);
+							$photo->section = $section;
+							$photo->display_order = $display_order;
+							$photo->update();
+
+							// Update display order
+							$display_order++;
 						}
-
-						// Update object
-						$photo->caption = trim($caption);
-						$photo->section = $section;
-						$photo->display_order = $display_order;
-						$photo->update();
-
-						// Update display order
-						$display_order++;
 					}
 				}
 			}
@@ -142,13 +135,13 @@
 			// Check for required paramaters
 			if (!isset($_POST['id']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Load the project
 			if (!$project = Project::select($_POST['id']))
 			{
-				throw new Exception('Project not found.');
+				return Response::not_found();
 			}
 
 			// Delete all project photos
@@ -166,13 +159,13 @@
 			// Check for project id
 			if (!isset($_POST['project_id']))
 			{
-				return false;
+				return Response::bad_request();
 			}
 
 			// Load project from database
 			if (!$project = Project::select($_POST['project_id']))
 			{
-				throw new Exception('Project does not exist.');
+				return Response::not_found();
 			}
 
 			// Create an image upload handler
@@ -268,13 +261,13 @@
 			// Check for required paramaters
 			if (!isset($_POST['id']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Load the photo
 			if (!$photo = Project_Photo::select($_POST['id']))
 			{
-				throw new Exception('Project photo not found.');
+				return Response::not_found();
 			}
 
 			// Delete the photo

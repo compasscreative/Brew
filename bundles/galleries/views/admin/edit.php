@@ -26,17 +26,17 @@ $this->insert('admin::partials/header');
 					</div>
 					<div class="field">
 						<select name="priority">
-							<option></option>
-							<option <?php if ($this->gallery->priority === '1') echo 'selected="selected"'; ?>>1</option>
-							<option <?php if ($this->gallery->priority === '2') echo 'selected="selected"'; ?>>2</option>
-							<option <?php if ($this->gallery->priority === '3') echo 'selected="selected"'; ?>>3</option>
-							<option <?php if ($this->gallery->priority === '4') echo 'selected="selected"'; ?>>4</option>
-							<option <?php if ($this->gallery->priority === '5') echo 'selected="selected"'; ?>>5</option>
-							<option <?php if ($this->gallery->priority === '6') echo 'selected="selected"'; ?>>6</option>
-							<option <?php if ($this->gallery->priority === '7') echo 'selected="selected"'; ?>>7</option>
-							<option <?php if ($this->gallery->priority === '8') echo 'selected="selected"'; ?>>8</option>
-							<option <?php if ($this->gallery->priority === '9') echo 'selected="selected"'; ?>>9</option>
-							<option <?php if ($this->gallery->priority === '10') echo 'selected="selected"'; ?>>10</option>
+							<option value="0"></option>
+							<option value="1" <?php if ($this->gallery->priority === '1') echo 'selected="selected"'; ?>>1</option>
+							<option value="2" <?php if ($this->gallery->priority === '2') echo 'selected="selected"'; ?>>2</option>
+							<option value="3" <?php if ($this->gallery->priority === '3') echo 'selected="selected"'; ?>>3</option>
+							<option value="4" <?php if ($this->gallery->priority === '4') echo 'selected="selected"'; ?>>4</option>
+							<option value="5" <?php if ($this->gallery->priority === '5') echo 'selected="selected"'; ?>>5</option>
+							<option value="6" <?php if ($this->gallery->priority === '6') echo 'selected="selected"'; ?>>6</option>
+							<option value="7" <?php if ($this->gallery->priority === '7') echo 'selected="selected"'; ?>>7</option>
+							<option value="8" <?php if ($this->gallery->priority === '8') echo 'selected="selected"'; ?>>8</option>
+							<option value="9" <?php if ($this->gallery->priority === '9') echo 'selected="selected"'; ?>>9</option>
+							<option value="10" <?php if ($this->gallery->priority === '10') echo 'selected="selected"'; ?>>10</option>
 						</select>
 					</div>
 					<div class="instructions">By default galleries are sorted by name. Priority allows you to tweak this order.</div>

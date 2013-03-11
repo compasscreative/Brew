@@ -2,8 +2,6 @@
 
 namespace Brew\Bundle\Leads;
 
-use Brew\Bundle\Leads\Email_Lead;
-use Brew\Bundle\Leads\Process_Lead;
 use Reinink\Utils\Config;
 
 class Public_Controller
@@ -30,11 +28,8 @@ class Public_Controller
 				$email->send();
 			}
 
+			// Success
 			return true;
-		}
-		else
-		{
-			return false;
 		}
 	}
 }

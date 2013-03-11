@@ -2,12 +2,10 @@
 
 	namespace Brew\Bundle\Galleries;
 
-	use \Exception;
 	use Brew\Bundle\Admin\Secure_Controller;
 	use Reinink\Magick\Magick;
 	use Reinink\Query\DB;
 	use Reinink\Reveal\Response;
-	use Reinink\Reveal\View;
 	use Reinink\Up\ImageUpload;
 	use Reinink\Utils\Config;
 
@@ -15,7 +13,7 @@
 	{
 		public function display_galleries()
 		{
-			return View::make('galleries::admin/index', array
+			return Response::view('galleries::admin/index', array
 			(
 				'galleries' => DB::rows('SELECT id, title, priority, (SELECT COUNT(*) FROM gallery_photos WHERE gallery_id = galleries.id) AS photos FROM galleries ORDER BY priority, title')
 			));
@@ -23,14 +21,14 @@
 
 		public function add_gallery()
 		{
-			return View::make('galleries::admin/add');
+			return Response::view('galleries::admin/add');
 		}
 
 		public function edit_gallery($id)
 		{
 			if ($gallery = DB::row('SELECT id, title, priority, description FROM galleries WHERE id = ?', array($id)))
 			{
-				return View::make('galleries::admin/edit', array
+				return Response::view('galleries::admin/edit', array
 				(
 					'gallery' => $gallery,
 					'photos' => DB::rows('SELECT id, caption FROM gallery_photos WHERE gallery_id = ? ORDER BY display_order', array($gallery->id))
@@ -45,7 +43,7 @@
 				!isset($_POST['description']) or
 				!isset($_POST['priority']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Create the gallery
@@ -56,10 +54,7 @@
 			$gallery->insert();
 
 			// Return new id
-			echo json_encode(array('id' => $gallery->id));
-
-			// Success
-			return true;
+			return Response::json(array('id' => $gallery->id));
 		}
 
 		public function update_gallery()
@@ -70,13 +65,13 @@
 				!isset($_POST['description']) or
 				!isset($_POST['priority']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Load the gallery
 			if (!$gallery = Gallery::select($_POST['id']))
 			{
-				throw new Exception('Gallery not found.');
+				return Response::not_found();
 			}
 
 			// Update the gallery
@@ -93,19 +88,16 @@
 
 				foreach ($_POST['photos'] as $id => $caption)
 				{
-					// Load the photo
-					if (!$photo = Gallery_Photo::select($id))
+					if ($photo = Gallery_Photo::select($id))
 					{
-						throw new Exception('Gallery photo not found.');
+						// Update object
+						$photo->caption = trim($caption);
+						$photo->display_order = $display_order;
+						$photo->update();
+
+						// Update display order
+						$display_order++;
 					}
-
-					// Update object
-					$photo->caption = trim($caption);
-					$photo->display_order = $display_order;
-					$photo->update();
-
-					// Update display order
-					$display_order++;
 				}
 			}
 
@@ -118,13 +110,13 @@
 			// Check for required paramaters
 			if (!isset($_POST['id']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Load the gallery
 			if (!$gallery = Gallery::select($_POST['id']))
 			{
-				throw new Exception('Gallery not found.');
+				return Response::not_found();
 			}
 
 			// Delete all gallery photos
@@ -142,13 +134,13 @@
 			// Check for gallery id
 			if (!isset($_POST['gallery_id']))
 			{
-				return false;
+				return Response::bad_request();
 			}
 
 			// Load gallery from database
 			if (!$gallery = Gallery::select($_POST['gallery_id']))
 			{
-				throw new Exception('Gallery does not exist.');
+				return Response::not_found();
 			}
 
 			// Create an image upload handler
@@ -243,13 +235,13 @@
 			// Check for required paramaters
 			if (!isset($_POST['id']))
 			{
-				throw new Exception('Missing paramaters.');
+				return Response::bad_request();
 			}
 
 			// Load the photo
 			if (!$photo = Gallery_Photo::select($_POST['id']))
 			{
-				throw new Exception('Gallery photo not found.');
+				return Response::not_found();
 			}
 
 			// Delete the photo

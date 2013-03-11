@@ -9,7 +9,6 @@
 		protected static $db_table = 'gallery_photos';
 		protected $id;
 		protected $gallery_id;
-		protected $section;
 		protected $caption;
 		protected $display_order;
 

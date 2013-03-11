@@ -2,8 +2,9 @@
 
 	use Reinink\BooBoo\BooBoo;
 	use Reinink\Query\DB;
+	use Reinink\Reveal\ErrorResponse;
 	use Reinink\Reveal\Response;
-	use Reinink\Reveal\View;
+	use Reinink\Reveal\ViewResponse;
 	use Reinink\Routy\Router;
 	use Reinink\Utils\Config;
 
@@ -85,7 +86,7 @@
 	|--------------------------------------------------------------------------
 	*/
 		// Views
-		View::$callback = function($path)
+		ViewResponse::$callback = function($path)
 		{
 			// Set default bundle
 			if (strpos($path, '::') === false)
@@ -166,11 +167,11 @@
 	|--------------------------------------------------------------------------
 	*/
 
-		if ($response = Router::run())
+		$response = Response::get(Router::run());
+
+		if ($response instanceof ErrorResponse)
 		{
-			Response::handle($response);
+			$response->content = Response::view('error', array('code' => $response->code, 'message' => $response->message))->render();
 		}
-		else
-		{
-			Response::error_404(View::make('404')->render())->output();
-		}
+
+		$response->send();
