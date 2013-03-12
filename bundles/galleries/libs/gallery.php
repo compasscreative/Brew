@@ -1,14 +1,12 @@
-<?php
+<?php namespace Brew\Bundle\Galleries;
 
-	namespace Brew\Bundle\Galleries;
+use Reinink\Query\Table;
 
-	use Reinink\Query\Table;
-
-	class Gallery extends Table
-	{
-		protected static $db_table = 'galleries';
-		protected $id;
-		protected $title;
-		protected $description;
-		protected $priority;
-	}
+class Gallery extends Table
+{
+	const DB_TABLE = 'galleries';
+	protected $id;
+	protected $title;
+	protected $description;
+	protected $priority;
+}

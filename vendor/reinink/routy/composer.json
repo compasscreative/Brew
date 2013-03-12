@@ -1,0 +1,10 @@
+{
+	"name": "reinink/routy",
+	"autoload":
+	{
+		"psr-0":
+		{
+			"Reinink\\Routy\\": "src"
+		}
+	}
+}

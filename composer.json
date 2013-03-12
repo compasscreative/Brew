@@ -1,0 +1,48 @@
+{
+	"require":
+	{
+		"michelf/php-markdown": "1.3.*@dev",
+		"reinink/booboo": "dev-master",
+		"reinink/buster": "dev-master",
+		"reinink/deets": "dev-master",
+		"reinink/magick": "dev-master",
+		"reinink/query": "dev-master",
+		"reinink/reveal": "dev-master",
+		"reinink/routy": "dev-master",
+		"reinink/up": "dev-master"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url":  "git@github.com:reinink/BooBoo.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:reinink/Buster.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:reinink/Deets.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:reinink/Magick.git"
+		},
+		{
+			"type": "vcs",
+			"url":  "git@github.com:reinink/Query.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:reinink/Reveal.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:reinink/Routy.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:reinink/Up.git"
+		}
+	]
+}

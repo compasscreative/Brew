@@ -1,10 +1,8 @@
-<?php
-
-namespace Brew\Bundle\Admin;
+<?php namespace Brew\Bundle\Admin;
 
 use Brew\Bundle\App\Brew;
+use Reinink\Deets\Config;
 use Reinink\Reveal\Response;
-use Reinink\Utils\Config;
 
 class Public_Controller
 {

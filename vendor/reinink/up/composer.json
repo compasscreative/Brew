@@ -1,0 +1,10 @@
+{
+	"name": "reinink/up",
+	"autoload":
+	{
+		"psr-0":
+		{
+			"Reinink\\Up\\": "src"
+		}
+	}
+}

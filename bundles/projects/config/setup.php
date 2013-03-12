@@ -1,56 +1,54 @@
-<?php
+<?php namespace Brew\Bundle\Projects;
 
-	namespace Brew\Bundle\Projects;
+use Reinink\Deets\Config;
+use Reinink\Query\DB;
 
-	use Reinink\Query\DB;
-	use Reinink\Utils\Config;
+/*
+|--------------------------------------------------------------------------
+| Create tables
+|--------------------------------------------------------------------------
+*/
+	// Projects
+	if (!in_array('projects', Config::get('db_tables')))
+	{
+		DB::query('projects::table.projects');
+	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Create tables
-	|--------------------------------------------------------------------------
-	*/
-		// Projects
-		if (!in_array('projects', Config::get('db_tables')))
-		{
-			DB::query('projects::table.projects');
-		}
-
-		// Project Photos
-		if (!in_array('project_photos', Config::get('db_tables')))
-		{
-			DB::query('projects::table.project_photos');
-		}
+	// Project Photos
+	if (!in_array('project_photos', Config::get('db_tables')))
+	{
+		DB::query('projects::table.project_photos');
+	}
 
 
-	/*
-	|--------------------------------------------------------------------------
-	| Setup storage folders
-	|--------------------------------------------------------------------------
-	*/
+/*
+|--------------------------------------------------------------------------
+| Setup storage folders
+|--------------------------------------------------------------------------
+*/
 
-		// Bundle folder
-		if (!is_dir(STORAGE_PATH . 'projects/'))
-		{
-			mkdir(STORAGE_PATH . 'projects/');
-		}
+	// Bundle folder
+	if (!is_dir(STORAGE_PATH . 'projects/'))
+	{
+		mkdir(STORAGE_PATH . 'projects/');
+	}
 
-		// Photos folder
-		if (!is_dir(STORAGE_PATH . 'projects/photos/'))
-		{
-			mkdir(STORAGE_PATH . 'projects/photos/');
-		}
+	// Photos folder
+	if (!is_dir(STORAGE_PATH . 'projects/photos/'))
+	{
+		mkdir(STORAGE_PATH . 'projects/photos/');
+	}
 
 
-	/*
-	|--------------------------------------------------------------------------
-	| Setup admin
-	|--------------------------------------------------------------------------
-	*/
+/*
+|--------------------------------------------------------------------------
+| Setup admin
+|--------------------------------------------------------------------------
+*/
 
-		// Add menu item
-		Config::$values['admin::menu'][] = array
-		(
-			'name' => 'Projects',
-			'url' => '/admin/projects'
-		);
+	// Add menu item
+	Config::$values['admin::menu'][] = array
+	(
+		'name' => 'Projects',
+		'url' => '/admin/projects'
+	);

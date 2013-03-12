@@ -1,6 +1,6 @@
-<?php
+<?php namespace Brew\Bundle\Admin;
 
-namespace Brew\Bundle\Admin;
+use Reinink\Reveal\Response;
 
 abstract class Secure_Controller
 {
@@ -14,8 +14,7 @@ abstract class Secure_Controller
 		// Make sure user is logged in
 		if (!isset($_SESSION['admin::logged_in']) or !$_SESSION['admin::logged_in'])
 		{
-			header('Location: /admin/login');
-			exit;
+			Response::redirect('/admin/login');
 		}
 	}
 }

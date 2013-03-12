@@ -1,6 +1,6 @@
 <?php
 use Reinink\Buster\Buster;
-use Reinink\Utils\Config;
+use Reinink\Deets\Config;
 ?>
 <!DOCTYPE html>
 <html lang="en">

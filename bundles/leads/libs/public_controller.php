@@ -1,8 +1,6 @@
-<?php
+<?php namespace Brew\Bundle\Leads;
 
-namespace Brew\Bundle\Leads;
-
-use Reinink\Utils\Config;
+use Reinink\Deets\Config;
 
 class Public_Controller
 {

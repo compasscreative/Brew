@@ -1,16 +1,17 @@
 <?php
-
-	use Reinink\Buster\Buster;
-	use Reinink\Utils\Config;
-
-	$this->buster = new Buster(PUBLIC_PATH);
+use Reinink\Buster\Buster;
+use Reinink\Deets\Config;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title><?=$this->title?> | Admin</title>
-	<?=$this->buster->css('/css/admin.css')?>
+	<?php
+
+		$this->buster = new Buster(PUBLIC_PATH);
+		echo $this->buster->css('/css/admin.css');
+	?>
 </head>
 <body>
 

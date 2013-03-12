@@ -1,28 +1,26 @@
-<?php
+<?php namespace Brew\Bundle\Admin;
 
-	namespace Brew\Bundle\Admin;
+use Reinink\Deets\Config;
 
-	use Reinink\Utils\Config;
+/*
+|--------------------------------------------------------------------------
+| Preferences
+|--------------------------------------------------------------------------
+*/
 
-	/*
-	|--------------------------------------------------------------------------
-	| Preferences
-	|--------------------------------------------------------------------------
-	*/
+	// Set default page
+	Config::set('admin::default_page', '/admin/leads');
 
-		// Set default page
-		Config::set('admin::default_page', '/admin/leads');
+	// Set the company name displayed in the control panel
+	Config::set('admin::company', 'Control Panel');
 
-		// Set the company name displayed in the control panel
-		Config::set('admin::company', 'Control Panel');
+/*
+|--------------------------------------------------------------------------
+| Users
+|--------------------------------------------------------------------------
+*/
 
-	/*
-	|--------------------------------------------------------------------------
-	| Users
-	|--------------------------------------------------------------------------
-	*/
-
-		Config::$values['admin::users'] = array
-		(
-			array('username' => 'admin', 'password' => 'password')
-		);
+	Config::$values['admin::users'] = array
+	(
+		array('username' => 'admin', 'password' => 'password')
+	);

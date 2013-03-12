@@ -1,12 +1,10 @@
-<?php
-
-namespace Brew\Bundle\Leads;
+<?php namespace Brew\Bundle\Leads;
 
 use Reinink\Query\Table;
 
 class Lead extends Table
 {
-	protected static $db_table = 'leads';
+	const DB_TABLE = 'leads';
 	protected $id;
 	protected $submitted_date;
 	protected $ip_address;

@@ -1,13 +1,11 @@
-<?php
+<?php namespace Brew\Bundle\Leads;
 
-	namespace Brew\Bundle\Leads;
+use Reinink\Routy\Router;
 
-	use Reinink\Routy\Router;
+// Public
+Router::post('/leads/submit',					'Brew\Bundle\Leads\Public_Controller::process');
 
-	// Public
-	Router::post('/leads/submit',					'Brew\Bundle\Leads\Public_Controller::process');
-
-	// Admin
-	Router::get('/admin/leads',						'Brew\Bundle\Leads\Admin_Controller::index');
-	Router::get('/admin/leads/edit/([0-9]+)',		'Brew\Bundle\Leads\Admin_Controller::edit');
-	Router::post('/admin/leads/delete',				'Brew\Bundle\Leads\Admin_Controller::delete');
+// Admin
+Router::get('/admin/leads',						'Brew\Bundle\Leads\Admin_Controller::index');
+Router::get('/admin/leads/edit/([0-9]+)',		'Brew\Bundle\Leads\Admin_Controller::edit');
+Router::post('/admin/leads/delete',				'Brew\Bundle\Leads\Admin_Controller::delete');

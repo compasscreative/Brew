@@ -1,4 +1,12 @@
 <?php
+/**
+ * An simple ORM for basic insert, update and delete operations.
+ *
+ * @package  Query
+ * @version  1.0
+ * @author   Jonathan Reinink <jonathan@reininks.com>
+ * @link     https://github.com/reinink/Query
+ */
 
 namespace Reinink\Query;
 
@@ -36,15 +44,6 @@ abstract class Table
 		return $this;
 	}
 
-	public static function select($id)
-	{
-		$class = get_called_class();
-
-		$sql = sprintf('SELECT * FROM %s WHERE id = :id', static::$db_table);
-
-		return DB::row($sql, array('id' => $id), $class);
-	}
-
 	public function insert()
 	{
 		if (isset($this->id))
@@ -64,7 +63,7 @@ abstract class Table
 			}
 		}
 
-		$sql = sprintf('INSERT INTO %s (%s) VALUES (%s)', $class::$db_table, implode(', ', array_keys($values)), ':' . implode(', :', array_keys($values)));
+		$sql = sprintf('INSERT INTO %s (%s) VALUES (%s)', $class::DB_TABLE, implode(', ', array_keys($values)), ':' . implode(', :', array_keys($values)));
 
 		DB::query($sql, $values);
 
@@ -90,7 +89,7 @@ abstract class Table
 			}
 		}
 
-		$sql = sprintf('UPDATE %s SET %s WHERE id = :id', $class::$db_table, call_user_func(function() use($values)
+		$sql = sprintf('UPDATE %s SET %s WHERE id = :id', $class::DB_TABLE, call_user_func(function() use($values)
 		{
 			foreach ($values as $name => $value)
 			{
@@ -119,8 +118,24 @@ abstract class Table
 
 		$class = get_called_class();
 
-		$sql = sprintf('DELETE FROM %s WHERE id = :id', $class::$db_table);
+		$sql = sprintf('DELETE FROM %s WHERE id = :id', $class::DB_TABLE);
 
 		DB::query($sql, array('id' => $this->id));
+	}
+
+	public static function select($fields = '*')
+	{
+		$class = get_called_class();
+
+		if (is_numeric($fields))
+		{
+			$sql = sprintf('SELECT * FROM %s WHERE id = :id', static::DB_TABLE);
+
+			return DB::row($sql, array('id' => $fields), $class);
+		}
+		else
+		{
+			return new Select(get_called_class(), $fields);
+		}
 	}
 }

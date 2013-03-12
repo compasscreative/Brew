@@ -1,0 +1,10 @@
+{
+	"name": "reinink/reveal",
+	"autoload":
+	{
+		"psr-0":
+		{
+			"Reinink\\Reveal\\": "src"
+		}
+	}
+}

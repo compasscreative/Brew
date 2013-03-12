@@ -1,0 +1,288 @@
+{
+    "hash": "c36046fd0e7b697425958670bc9d3c56",
+    "packages": [
+        {
+            "name": "michelf/php-markdown",
+            "version": "dev-lib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michelf/php-markdown.git",
+                "reference": "1.3-beta5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michelf/php-markdown/zipball/1.3-beta5",
+                "reference": "1.3-beta5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-lib": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Michelf": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Fortin",
+                    "email": "michel.fortin@michelf.ca",
+                    "homepage": "http://michelf.ca/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "http://daringfireball.net/"
+                }
+            ],
+            "description": "PHP Markdown",
+            "homepage": "http://michelf.ca/projects/php-markdown/",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2013-02-03 21:14:12"
+        },
+        {
+            "name": "reinink/booboo",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/BooBoo.git",
+                "reference": "da76c492da74472988ec4ad641a2c8d287ad30ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/BooBoo/zipball/da76c492da74472988ec4ad641a2c8d287ad30ab",
+                "reference": "da76c492da74472988ec4ad641a2c8d287ad30ab",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\BooBoo\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/BooBoo/tree/master",
+                "issues": "https://github.com/reinink/BooBoo/issues"
+            },
+            "time": "2013-03-12 17:58:43"
+        },
+        {
+            "name": "reinink/buster",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Buster.git",
+                "reference": "0eed98bfa8fb66197b742f93abbde0b3c5f7eaab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Buster/zipball/0eed98bfa8fb66197b742f93abbde0b3c5f7eaab",
+                "reference": "0eed98bfa8fb66197b742f93abbde0b3c5f7eaab",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Buster\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Buster/tree/master",
+                "issues": "https://github.com/reinink/Buster/issues"
+            },
+            "time": "2013-03-12 17:09:00"
+        },
+        {
+            "name": "reinink/deets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Deets.git",
+                "reference": "9f488e389d18a49fb77c505e16f830509648ebcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Deets/zipball/9f488e389d18a49fb77c505e16f830509648ebcb",
+                "reference": "9f488e389d18a49fb77c505e16f830509648ebcb",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Deets\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Deets/tree/master",
+                "issues": "https://github.com/reinink/Deets/issues"
+            },
+            "time": "2013-03-12 18:22:20"
+        },
+        {
+            "name": "reinink/magick",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Magick.git",
+                "reference": "a56dd59c82321a1ca321b617d603f4016e074d01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Magick/zipball/a56dd59c82321a1ca321b617d603f4016e074d01",
+                "reference": "a56dd59c82321a1ca321b617d603f4016e074d01",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Magick\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Magick/tree/master",
+                "issues": "https://github.com/reinink/Magick/issues"
+            },
+            "time": "2013-03-12 17:09:26"
+        },
+        {
+            "name": "reinink/query",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Query.git",
+                "reference": "bee59cef0ca30c3aeef13de9da393df3c8b76a0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Query/zipball/bee59cef0ca30c3aeef13de9da393df3c8b76a0e",
+                "reference": "bee59cef0ca30c3aeef13de9da393df3c8b76a0e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Query\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Query/tree/master",
+                "issues": "https://github.com/reinink/Query/issues"
+            },
+            "time": "2013-03-12 17:28:06"
+        },
+        {
+            "name": "reinink/reveal",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Reveal.git",
+                "reference": "74fc6cee9cb17e2fa043fe3ea539d8bf6b906d62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Reveal/zipball/74fc6cee9cb17e2fa043fe3ea539d8bf6b906d62",
+                "reference": "74fc6cee9cb17e2fa043fe3ea539d8bf6b906d62",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Reveal\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Reveal/tree/master",
+                "issues": "https://github.com/reinink/Reveal/issues"
+            },
+            "time": "2013-03-12 17:09:56"
+        },
+        {
+            "name": "reinink/routy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Routy.git",
+                "reference": "457a93b0ca3b472339bb872dbba581422a192d97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Routy/zipball/457a93b0ca3b472339bb872dbba581422a192d97",
+                "reference": "457a93b0ca3b472339bb872dbba581422a192d97",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Routy\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Routy/tree/master",
+                "issues": "https://github.com/reinink/Routy/issues"
+            },
+            "time": "2013-03-12 17:09:40"
+        },
+        {
+            "name": "reinink/up",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Up.git",
+                "reference": "7d5ecbc4911d1462c5519d73718744a94589e251"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Up/zipball/7d5ecbc4911d1462c5519d73718744a94589e251",
+                "reference": "7d5ecbc4911d1462c5519d73718744a94589e251",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Up\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Up/tree/master",
+                "issues": "https://github.com/reinink/Up/issues"
+            },
+            "time": "2013-03-12 17:09:13"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "michelf/php-markdown": 20,
+        "reinink/booboo": 20,
+        "reinink/buster": 20,
+        "reinink/deets": 20,
+        "reinink/magick": 20,
+        "reinink/query": 20,
+        "reinink/reveal": 20,
+        "reinink/routy": 20,
+        "reinink/up": 20
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}

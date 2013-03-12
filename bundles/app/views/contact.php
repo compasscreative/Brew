@@ -1,5 +1,5 @@
 <?php
-use Reinink\Utils\Config;
+use Reinink\Deets\Config;
 
 $this->title = 'Brew';
 $this->insert('partials/header');

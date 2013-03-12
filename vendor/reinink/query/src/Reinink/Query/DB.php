@@ -1,4 +1,12 @@
 <?php
+/**
+ * A database layer for developers who like writing SQL.
+ *
+ * @package  Query
+ * @version  1.0
+ * @author   Jonathan Reinink <jonathan@reininks.com>
+ * @link     https://github.com/reinink/Query
+ */
 
 namespace Reinink\Query;
 
@@ -34,16 +42,21 @@ class DB
 		return self::$instance;
 	}
 
+	public static function log()
+	{
+		return self::$instance->queries;
+	}
+
 	public static function query($sql, $bindings = array())
 	{
 		$statement = self::execute($sql, $bindings);
 	}
 
-	public static function value($sql, $bindings = array())
+	public static function rows($sql, $bindings = array(), $class = null)
 	{
 		$statement = self::execute($sql, $bindings);
 
-		return $statement->fetchColumn(0);
+		return $class ? $statement->fetchAll(PDO::FETCH_CLASS, $class) : $statement->fetchAll(PDO::FETCH_CLASS);
 	}
 
 	public static function row($sql, $bindings = array(), $class = null)
@@ -53,11 +66,11 @@ class DB
 		return $class ? $statement->fetchObject($class) : $statement->fetchObject();
 	}
 
-	public static function rows($sql, $bindings = array(), $class = null)
+	public static function field($sql, $bindings = array())
 	{
 		$statement = self::execute($sql, $bindings);
 
-		return $class ? $statement->fetchAll(PDO::FETCH_CLASS, $class) : $statement->fetchAll(PDO::FETCH_CLASS);
+		return $statement->fetchColumn(0);
 	}
 
 	private static function execute($sql, $bindings = array())
@@ -79,6 +92,7 @@ class DB
 		self::$instance->queries[] = array
 		(
 			'sql' => $sql,
+			'bindings' => $bindings,
 			'time' => ((microtime(true) - $start)*1000) . ' milliseconds'
 		);
 

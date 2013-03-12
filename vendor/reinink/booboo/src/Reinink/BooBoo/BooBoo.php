@@ -1,4 +1,12 @@
 <?php
+/**
+ * A PHP class that manages uncaught exceptions and errors.
+ *
+ * @package  BooBoo
+ * @version  1.0
+ * @author   Jonathan Reinink <jonathan@reininks.com>
+ * @link     https://github.com/reinink/BooBoo
+ */
 
 namespace Reinink\BooBoo;
 
@@ -19,7 +27,7 @@ class BooBoo
 
 		if ($trace)
 		{
-			echo '<pre>' . $e->getTraceAsString() . '</pre></html>';
+			echo '<pre>' . $e->getTraceAsString() . '</pre>';
 		}
 
 		echo '</body>';

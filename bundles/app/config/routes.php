@@ -1,16 +1,15 @@
-<?php
+<?php namespace Brew\Bundle\App;
 
-	namespace Brew\Bundle\App;
+use Reinink\Routy\Router;
+use Reinink\Reveal\Response;
+use Brew\Bundle\Leads\Lead;
 
-	use Reinink\Routy\Router;
-	use Reinink\Reveal\Response;
+Router::get('/', function()
+{
+	return Response::view('home');
+});
 
-	Router::get('/', function()
-	{
-		return Response::view('home');
-	});
-
-	Router::get('/contact', function()
-	{
-		return Response::view('contact');
-	});
+Router::get('/contact', function()
+{
+	return Response::view('contact');
+});
