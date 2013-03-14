@@ -40,7 +40,7 @@ class Admin_Controller extends Secure_Controller
 			!isset($_POST['description']) or
 			!isset($_POST['priority']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Create the gallery
@@ -62,13 +62,13 @@ class Admin_Controller extends Secure_Controller
 			!isset($_POST['description']) or
 			!isset($_POST['priority']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load the gallery
 		if (!$gallery = Gallery::select($_POST['id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Update the gallery
@@ -107,13 +107,13 @@ class Admin_Controller extends Secure_Controller
 		// Check for required paramaters
 		if (!isset($_POST['id']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load the gallery
 		if (!$gallery = Gallery::select($_POST['id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Delete all gallery photos
@@ -134,13 +134,13 @@ class Admin_Controller extends Secure_Controller
 		// Check for gallery id
 		if (!isset($_POST['gallery_id']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load gallery from database
 		if (!$gallery = Gallery::select($_POST['gallery_id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Create an image upload handler
@@ -235,13 +235,13 @@ class Admin_Controller extends Secure_Controller
 		// Check for required paramaters
 		if (!isset($_POST['id']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load the photo
 		if (!$photo = Gallery_Photo::select($_POST['id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Delete the photo

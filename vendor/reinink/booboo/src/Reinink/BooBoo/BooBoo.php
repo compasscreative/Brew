@@ -3,7 +3,7 @@
  * A PHP class that manages uncaught exceptions and errors.
  *
  * @package  BooBoo
- * @version  1.0
+ * @version  1.1.0
  * @author   Jonathan Reinink <jonathan@reininks.com>
  * @link     https://github.com/reinink/BooBoo
  */
@@ -11,42 +11,64 @@
 namespace Reinink\BooBoo;
 
 use \ErrorException;
+use Psr\Log\LoggerInterface;
 
 class BooBoo
 {
-	public static function exception($e, $trace = true)
+	private static $instance;
+	public $callback;
+	public $logger;
+
+	private function __construct(){}
+
+	public static function setup($callback = false, LoggerInterface $logger = null)
+	{
+		// Create instance
+		self::$instance = new BooBoo();
+		self::$instance->callback = $callback;
+		self::$instance->logger = $logger;
+
+		// Set handlers
+		set_exception_handler(array(self::$instance, 'exception'));
+		set_error_handler(array(self::$instance, 'native'));
+		register_shutdown_function(array(self::$instance, 'shutdown'));
+
+		// Report all errors
+		error_reporting(-1);
+	}
+
+	public function exception($exception)
 	{
 		ob_get_level() and ob_end_clean();
 
-		echo '<html>';
-		echo '<head><title>Error</title></head>';
-		echo '<body>';
-		echo '<h1>Error</h1>';
-		echo '<p>' . $e->getMessage() . '</p>';
-		echo '<p><strong>Line ' . $e->getLine() . '</strong> in ' . $e->getFile() . '</p>';
-
-		if ($trace)
+		if (!is_null($this->logger))
 		{
-			echo '<pre>' . $e->getTraceAsString() . '</pre>';
+			$this->logger->critical($exception->getMessage(), array
+			(
+				'Message' => $exception->getMessage(),
+				'File' => $exception->getFile(),
+				'Line' => $exception->getLine()
+			));
 		}
 
-		echo '</body>';
-		echo '</html>';
-		exit;
+		if (is_callable($this->callback))
+		{
+			call_user_func_array($this->callback, array($exception));
+		}
 	}
 
-	public static function native($code, $error, $file, $line)
+	public function native($code, $error, $file, $line)
 	{
-		static::exception(new ErrorException($error, $code, 0, $file, $line));
+		$this->exception(new ErrorException($error, $code, 0, $file, $line));
 	}
 
-	public static function shutdown()
+	public function shutdown()
 	{
 		if ($error = error_get_last())
 		{
 			extract($error, EXTR_SKIP);
 
-			static::exception(new ErrorException($message, $type, 0, $file, $line), false);
+			$this->exception(new ErrorException($message, $type, 0, $file, $line));
 		}
 	}
 }

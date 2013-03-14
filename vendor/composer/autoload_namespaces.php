@@ -14,5 +14,7 @@ return array(
     'Reinink\\Deets\\' => $vendorDir . '/reinink/deets/src',
     'Reinink\\Buster\\' => $vendorDir . '/reinink/buster/src',
     'Reinink\\BooBoo\\' => $vendorDir . '/reinink/booboo/src',
+    'Psr\\Log\\' => $vendorDir . '/psr/log/',
+    'Monolog' => $vendorDir . '/monolog/monolog/src/',
     'Michelf' => $vendorDir . '/michelf/php-markdown/',
 );

@@ -1,6 +1,7 @@
 {
 	"require":
 	{
+		"monolog/monolog": "dev-master",
 		"michelf/php-markdown": "1.3.*@dev",
 		"reinink/booboo": "dev-master",
 		"reinink/buster": "dev-master",

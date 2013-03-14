@@ -28,12 +28,12 @@ class Admin_Controller extends Secure_Controller
 	{
 		if (!isset($_POST['id']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		if (!$lead = Lead::select($_POST['id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		$lead->delete();

@@ -3,12 +3,14 @@
  * PHP libraries that make HTTP responses more manageable.
  *
  * @package  Reveal
- * @version  1.0
+ * @version  1.1.0
  * @author   Jonathan Reinink <jonathan@reininks.com>
  * @link     https://github.com/reinink/Reveal
  */
 
 namespace Reinink\Reveal;
+
+use \Exception;
 
 class Response
 {
@@ -54,6 +56,15 @@ class Response
 	 */
 	public function send()
 	{
+		if (function_exists('http_response_code'))
+		{
+			http_response_code($this->code);
+		}
+		else
+		{
+			header(' ', true, $this->code);
+		}
+
 		foreach ($this->headers as $header)
 		{
 			if (isset($header[1]))
@@ -114,7 +125,7 @@ class Response
 	{
 		if (!is_file($path))
 		{
-			return new ErrorResponse('PDF Not Found.', 404);
+			throw new Exception('PDF Not Found.', 404);
 		}
 
 		return new FileResponse($path, 'application/pdf', $filename, $download);
@@ -132,7 +143,7 @@ class Response
 	{
 		if (!is_file($path))
 		{
-			return new ErrorResponse('Image Not Found.', 404);
+			throw new Exception('Image Not Found.', 404);
 		}
 
 		return new FileResponse($path, 'image/jpeg', $filename, $download);
@@ -150,7 +161,7 @@ class Response
 	{
 		if (!is_file($path))
 		{
-			return new ErrorResponse('Image Not Found.', 404);
+			throw new Exception('Image Not Found.', 404);
 		}
 
 		return new FileResponse($path, 'image/png', $filename, $download);
@@ -168,65 +179,59 @@ class Response
 	}
 
 	/**
-	 * Create a ErrorResponse for a bad request.
+	 * Throw a ResponseException for a bad request.
 	 *
 	 * @param	string	$content
-	 * @return	ErrorResponse
 	 */
 	public static function bad_request($message = 'Bad Request.')
 	{
-		return new ErrorResponse($message, 400);
+		throw new ResponseException($message, 400);
 	}
 
 	/**
-	 * Create a ErrorResponse for a unauthorized request.
+	 * Throw a ResponseException for a unauthorized request.
 	 *
 	 * @param	string	$message
-	 * @return	ErrorResponse
 	 */
 	public static function unauthorized($message = 'Unauthorized.')
 	{
-		return new ErrorResponse($message, 401);
+		throw new ResponseException($message, 401);
 	}
 
 	/**
-	 * Create a ErrorResponse for a unauthorized request.
+	 * Throw a ResponseException for a unauthorized request.
 	 *
 	 * @param	string	$message
-	 * @return	ErrorResponse
 	 */
 	public static function forbidden($message = 'Forbidden.')
 	{
-		return new ErrorResponse($message, 403);
+		throw new ResponseException($message, 403);
 	}
 
 	/**
-	 * Create a ErrorResponse for a page not found.
+	 * Throw a ResponseException for a page not found.
 	 *
 	 * @param	string	$message
-	 * @return	ErrorResponse
 	 */
 	public static function not_found($message = 'Page Not Found.')
 	{
-		return new ErrorResponse($message, 404);
+		throw new ResponseException($message, 404);
 	}
 
 	/**
-	 * Create a ErrorResponse for a server error.
+	 * Throw a ResponseException for a server error.
 	 *
 	 * @param	string	$message
-	 * @return	ErrorResponse
 	 */
 	public static function server_error($message = 'Internal Server Error.')
 	{
-		return new ErrorResponse($message, 500);
+		throw new ResponseException($message, 500);
 	}
 
 	/**
 	 * Get valid Response object from various responses.
 	 *
 	 * @param	mixed	$response
-	 * @param	object	$error
 	 * @return	void
 	 */
 	public static function get($response)
@@ -245,7 +250,7 @@ class Response
 		}
 		else
 		{
-			return self::not_found();
+			self::not_found();
 		}
 	}
 }

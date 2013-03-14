@@ -43,7 +43,7 @@ class Admin_Controller extends Secure_Controller
 			!isset($_POST['show_lo_award']) or
 			!isset($_POST['completed_date']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Create the project
@@ -71,13 +71,13 @@ class Admin_Controller extends Secure_Controller
 			!isset($_POST['show_lo_award']) or
 			!isset($_POST['completed_date']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load the project
 		if (!$project = Project::select($_POST['id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Update the project
@@ -132,13 +132,13 @@ class Admin_Controller extends Secure_Controller
 		// Check for required paramaters
 		if (!isset($_POST['id']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load the project
 		if (!$project = Project::select($_POST['id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Delete all project photos
@@ -159,13 +159,13 @@ class Admin_Controller extends Secure_Controller
 		// Check for project id
 		if (!isset($_POST['project_id']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load project from database
 		if (!$project = Project::select($_POST['project_id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Create an image upload handler
@@ -261,13 +261,13 @@ class Admin_Controller extends Secure_Controller
 		// Check for required paramaters
 		if (!isset($_POST['id']))
 		{
-			return Response::bad_request();
+			Response::bad_request();
 		}
 
 		// Load the photo
 		if (!$photo = Project_Photo::select($_POST['id']))
 		{
-			return Response::not_found();
+			Response::not_found();
 		}
 
 		// Delete the photo

@@ -1,14 +1,4 @@
-<?php
-/**
- * An encapsulation class for handling PHP views.
- *
- * @package  Reveal
- * @version  1.0
- * @author   Jonathan Reinink <jonathan@reininks.com>
- * @link     https://github.com/reinink/Reveal
- */
-
-namespace Reinink\Reveal;
+<?php namespace Reinink\Reveal;
 
 use \Exception;
 
@@ -45,10 +35,9 @@ class ViewResponse extends Response
 			throw new Exception('View not found: ' . $path);
 		}
 
-		$this->content = null;
+		$this->path = $path;
 		$this->code = $code;
 		$this->headers = $headers;
-		$this->path = $path;
 	}
 
 	/**

@@ -40,38 +40,25 @@ class FileResponse extends Response
 	 * @param	array	$headers
 	 * @return	void
 	 */
-	public function __construct($path, $mime = null, $name = null, $download = false)
+	public function __construct($path, $mime = null, $name = '', $download = false, $code = 200, $headers = array())
 	{
-		$this->content = null;
-		$this->code = 200;
-		$this->headers = array();
 		$this->path = $path;
 		$this->mime = $mime;
 		$this->name = $name;
 		$this->download = $download;
+		$this->code = $code;
+		$this->headers = $headers;
 	}
 
 	public function send()
 	{
-		$headers[0][0] = 'Content-Type: ' . $this->mime;
-		$headers[1][0] = $this->download ? 'Content-Disposition: attachment;' : 'Content-Disposition: inline;';
-		$headers[1][0] .= $this->name ? ' filename=' . $this->name : '';
+		$this->headers['Content-Type'] . $this->mime;
+		$this->headers['Content-Disposition'] $this->download ? 'attachment; filename=' . $this->name : 'inline; filename=' . $this->name;
 
-		$this->headers = array_merge($headers, $this->headers);
-
-		foreach ($this->headers as $header)
-		{
-			if (isset($header[1]))
-			{
-				header($header[0], true, $header[1]);
-			}
-			else
-			{
-				header($header[0]);
-			}
-		}
+		parent::send();
 
 		readfile($this->path);
+
 		exit;
 	}
 }

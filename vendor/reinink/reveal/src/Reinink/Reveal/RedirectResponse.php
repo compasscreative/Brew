@@ -5,20 +5,24 @@ namespace Reinink\Reveal;
 class RedirectResponse extends Response
 {
 	/**
+	 * The redirect url.
+	 *
+	 * @var array
+	 */
+	public $data;
+
+	/**
 	 * Create a new Redirect instance.
 	 *
 	 * @param	string	$content
 	 * @param	array	$headers
 	 * @return	void
 	 */
-	public function __construct($url, $code)
+	public function __construct($url, $code = 200, $headers = array())
 	{
-		$this->content = null;
+		$this->url = $url;
 		$this->code = $code;
-		$this->headers = array
-		(
-			array('Location: ' . $url, $code)
-		);
+		$this->headers = $headers;
 	}
 
 	/**
@@ -28,7 +32,10 @@ class RedirectResponse extends Response
 	 */
 	public function send()
 	{
+		$this->headers['Location'] = $url;
+
 		parent::send();
+
 		exit;
 	}
 }

@@ -5,7 +5,7 @@ namespace Reinink\Reveal;
 class JSONResponse extends Response
 {
 	/**
-	 * The data array.
+	 * The JSON data array.
 	 *
 	 * @var array
 	 */
@@ -18,15 +18,11 @@ class JSONResponse extends Response
 	 * @param	array	$headers
 	 * @return	void
 	 */
-	public function __construct($data)
+	public function __construct($data, $code = 200, $headers = array())
 	{
-		$this->content = null;
-		$this->code = 200;
-		$this->headers = array
-		(
-			array('Content-Type: text/plain')
-		);
 		$this->data = $data;
+		$this->code = $code;
+		$this->headers = $headers;
 	}
 
 	/**
@@ -36,6 +32,8 @@ class JSONResponse extends Response
 	 */
 	public function send()
 	{
+		$this->headers['Content-Type'] = 'text/plain';
+
 		$this->content = json_encode($this->data);
 
 		parent::send();

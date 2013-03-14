@@ -1,12 +1,15 @@
 <?php
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Reinink\BooBoo\BooBoo;
 use Reinink\Deets\Config;
 use Reinink\Query\DB;
-use Reinink\Reveal\ErrorResponse;
 use Reinink\Reveal\Response;
+use Reinink\Reveal\ResponseException;
 use Reinink\Reveal\ViewResponse;
 use Reinink\Routy\Router;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,30 +24,6 @@ use Reinink\Routy\Router;
 
 	// Set storage path
 	define('STORAGE_PATH', dirname(dirname(__FILE__)) . '/storage/');
-
-
-/*
-|--------------------------------------------------------------------------
-| Setup error handling
-|--------------------------------------------------------------------------
-*/
-
-	set_exception_handler(function($e)
-	{
-		BooBoo::exception($e);
-	});
-
-	set_error_handler(function($code, $error, $file, $line)
-	{
-		BooBoo::native($code, $error, $file, $line);
-	});
-
-	register_shutdown_function(function()
-	{
-		BooBoo::shutdown();
-	});
-
-	error_reporting(-1);
 
 
 /*
@@ -69,6 +48,27 @@ use Reinink\Routy\Router;
 
 /*
 |--------------------------------------------------------------------------
+| Setup error handling
+|--------------------------------------------------------------------------
+*/
+
+	// Setup logging
+	$logger = new Logger('errors');
+	$logger->pushHandler(new StreamHandler(STORAGE_PATH. 'logs/errors.log'));
+
+	// Setup error handler
+	BooBoo::setup(function($e)
+	{
+		$view = new ViewResponse('error', 500);
+		$view->title = 'Server Error';
+		$view->exception = $e;
+		$view->send();
+
+	}, $logger);
+
+
+/*
+|--------------------------------------------------------------------------
 | Database connection
 |--------------------------------------------------------------------------
 */
@@ -84,6 +84,7 @@ use Reinink\Routy\Router;
 | Setup bundle path shortcuts
 |--------------------------------------------------------------------------
 */
+
 	// Views
 	ViewResponse::$callback = function($path)
 	{
@@ -133,6 +134,7 @@ use Reinink\Routy\Router;
 | Load bundles
 |--------------------------------------------------------------------------
 */
+
 	// Array to house bundles
 	$bundles = array('app');
 
@@ -166,11 +168,14 @@ use Reinink\Routy\Router;
 |--------------------------------------------------------------------------
 */
 
-	$response = Response::get(Router::run());
-
-	if ($response instanceof ErrorResponse)
+	try
 	{
-		$response->content = Response::view('error', array('code' => $response->code, 'message' => $response->message))->render();
+		Response::get(Router::run())->send();
 	}
-
-	$response->send();
+	catch (ResponseException $e)
+	{
+		$view = new ViewResponse('error', $e->getCode());
+		$view->title = 'Error ' . $e->getCode();
+		$view->exception = $e;
+		$view->send();
+	}
