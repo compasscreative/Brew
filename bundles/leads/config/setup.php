@@ -1,4 +1,5 @@
-<?php namespace Brew\Bundle\Leads;
+<?php
+namespace Brew\Leads;
 
 use Reinink\Deets\Config;
 use Reinink\Query\DB;
@@ -8,12 +9,10 @@ use Reinink\Query\DB;
 | Create tables
 |--------------------------------------------------------------------------
 */
-	// Leads
-	if (!in_array('leads', Config::get('db_tables')))
-	{
-		DB::query('leads::table.leads');
-	}
-
+// Leads
+if (!in_array('leads', Config::get('db_tables'))) {
+    DB::query('leads::table.leads');
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +20,9 @@ use Reinink\Query\DB;
 |--------------------------------------------------------------------------
 */
 
-	// Add menu item
-	Config::$values['admin::menu'][] = array
-	(
-		'name' => 'Leads',
-		'url' => '/admin/leads'
-	);
+// Add menu item
+Config::$values['admin::menu'][] = array
+(
+    'name' => 'Leads',
+    'url' => '/admin/leads'
+);

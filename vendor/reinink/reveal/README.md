@@ -18,16 +18,16 @@ Maybe you have a fancy `404` page you'd like to show? You can do that. Note, thi
 ```php
 <?php
 
-try
-{
-	Response::get(Router::run())->send();
-}
-catch (ResponseException $e)
-{
-	$view = new ViewResponse('error.php', $e->getCode());
-	$view->code = $e->getCode();
-	$view->message = $e->getMessage();
-	$view->send();
+try {
+
+    Response::get(Router::run())->send();
+
+} catch (ResponseException $e) {
+
+    $view = new ViewResponse('error.php', $e->getCode());
+    $view->code = $e->getCode();
+    $view->message = $e->getMessage();
+    $view->send();
 }
 ```
 
@@ -39,43 +39,31 @@ You can trigger a `404` within your application by throwing a specific error, re
 <?php
 
 // Throw a specific error
-public function display_profile($person_id)
+public function displayProfile($person_id)
 {
-	if (!$person = Person::select($person_id))
-	{
-		Response::not_found('Person with the id ' . $person_id . ' does not exist.');
-	}
+    if (!$person = Person::select($person_id)) {
+        Response::notFound('Person with the id ' . $person_id . ' does not exist.');
+    }
 
-	return Response::view('profile.php', array
-	(
-		'person' => $person
-	));
+    return Response::view('profile.php', array('person' => $person));
 }
 
 // Return false
-public function display_profile($person_id)
+public function displayProfile($person_id)
 {
-	if (!$person = Person::select($person_id))
-	{
-		return false;
-	}
+    if (!$person = Person::select($person_id)) {
+        return false;
+    }
 
-	return Response::view('profile.php', array
-	(
-		'person' => $person
-	));
+    return Response::view('profile.php', array('person' => $person));
 }
 
 // Return nothing
-public function display_profile($person_id)
+public function displayProfile($person_id)
 {
-	if ($person = Person::select($person_id))
-	{
-		return Response::view('profile.php', array
-		(
-			'person' => $person
-		));
-	}
+    if ($person = Person::select($person_id)) {
+        return Response::view('profile.php', array('person' => $person));
+    }
 }
 ```
 
@@ -94,11 +82,13 @@ return Response::view('home.php');
 ```php
 <?php
 
-return Response::view('home.php', array
-(
-	'name' => 'Jonathan',
-	'country' = 'Canada'
-));
+return Response::view(
+    'home.php',
+    array(
+        'name' => 'Jonathan',
+        'country' => 'Canada'
+    )
+);
 ```
 
 ## Redirects
@@ -147,7 +137,7 @@ In addition to `404` pages, Reveal can also help with other common errors. To tr
 <?php
 
 // 400
-Response::bad_request();
+Response::badRequest();
 
 // 401
 Response::unauthorized();
@@ -156,10 +146,10 @@ Response::unauthorized();
 Response::forbidden();
 
 // 404
-Response::not_found();
+Response::notFound();
 
 // 500
-Response::server_error();
+Response::serverError();
 ```
 
 ### Exceptions
@@ -170,7 +160,7 @@ You'll notice that error responses don't need to be returned. This is because th
 <?php
 
 // This is the same...
-Response::not_found();
+Response::notFound();
 
 // ...as this:
 throw new ResponseException('Page Not Found.', 404);

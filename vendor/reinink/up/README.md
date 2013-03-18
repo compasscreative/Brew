@@ -13,9 +13,8 @@ $upload = new FileUpload();
 
 // Validate uploaded file
 // "file" if the post filename
-if (!$upload->validate('file'))
-{
-	// Do something with $upload->error
+if (!$upload->validate('file')) {
+    // Do something with $upload->error
 }
 
 // Save the file
@@ -34,13 +33,13 @@ $upload = new PDFUpload();
 
 // Validate uploaded file
 // "pdf" if the post filename
-if (!$upload->validate('pdf'))
-{
-	// Do something with $upload->error
+if (!$upload->validate('pdf')) {
+    // Do something with $upload->error
 }
 
 // Save the file
 $upload->save('destination.pdf');
+
 ```
 
 ## Upload an image
@@ -58,9 +57,8 @@ $upload = new ImageUpload(new Magick);
 
 // Validate uploaded file
 // "image" if the post filename
-if (!$upload->validate('image'))
-{
-	// Do something with $upload->error
+if (!$upload->validate('image')) {
+    // Do something with $upload->error
 }
 
 // Save the file

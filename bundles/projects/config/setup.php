@@ -1,4 +1,5 @@
-<?php namespace Brew\Bundle\Projects;
+<?php
+namespace Brew\Projects;
 
 use Reinink\Deets\Config;
 use Reinink\Query\DB;
@@ -8,18 +9,16 @@ use Reinink\Query\DB;
 | Create tables
 |--------------------------------------------------------------------------
 */
-	// Projects
-	if (!in_array('projects', Config::get('db_tables')))
-	{
-		DB::query('projects::table.projects');
-	}
 
-	// Project Photos
-	if (!in_array('project_photos', Config::get('db_tables')))
-	{
-		DB::query('projects::table.project_photos');
-	}
+// Projects
+if (!in_array('projects', Config::get('db_tables'))) {
+    DB::query('projects::table.projects');
+}
 
+// Project Photos
+if (!in_array('project_photos', Config::get('db_tables'))) {
+    DB::query('projects::table.project_photos');
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -27,18 +26,15 @@ use Reinink\Query\DB;
 |--------------------------------------------------------------------------
 */
 
-	// Bundle folder
-	if (!is_dir(STORAGE_PATH . 'projects/'))
-	{
-		mkdir(STORAGE_PATH . 'projects/');
-	}
+// Bundle folder
+if (!is_dir(STORAGE_PATH . 'projects/')) {
+    mkdir(STORAGE_PATH . 'projects/');
+}
 
-	// Photos folder
-	if (!is_dir(STORAGE_PATH . 'projects/photos/'))
-	{
-		mkdir(STORAGE_PATH . 'projects/photos/');
-	}
-
+// Photos folder
+if (!is_dir(STORAGE_PATH . 'projects/photos/')) {
+    mkdir(STORAGE_PATH . 'projects/photos/');
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +42,9 @@ use Reinink\Query\DB;
 |--------------------------------------------------------------------------
 */
 
-	// Add menu item
-	Config::$values['admin::menu'][] = array
-	(
-		'name' => 'Projects',
-		'url' => '/admin/projects'
-	);
+// Add menu item
+Config::$values['admin::menu'][] = array
+(
+    'name' => 'Projects',
+    'url' => '/admin/projects'
+);

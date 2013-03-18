@@ -1,4 +1,5 @@
-<?php namespace Brew\Bundle\Leads;
+<?php
+namespace Brew\Leads;
 
 use Reinink\Deets\Config;
 
@@ -8,10 +9,12 @@ use Reinink\Deets\Config;
 |--------------------------------------------------------------------------
 */
 
-	// Contact form
-	Config::$values['leads::forms']['contact'] = new Form('From Name', 'info@example.com', array('info@example.com'));
-	Config::$values['leads::forms']['contact']->enable_name(true);
-	Config::$values['leads::forms']['contact']->enable_email(true);
-	Config::$values['leads::forms']['contact']->enable_phone();
-	Config::$values['leads::forms']['contact']->enable_address();
-	Config::$values['leads::forms']['contact']->enable_message();
+// Contact form
+Config::$values['leads::forms']['contact'] = new LeadForm();
+// Config::$values['leads::forms']['contact']->setFrom('John Doe', 'john@doe.com');
+// Config::$values['leads::forms']['contact']->setRecipients(array('john@doe.com'));
+Config::$values['leads::forms']['contact']->enableName(true);
+Config::$values['leads::forms']['contact']->enableEmail(true);
+Config::$values['leads::forms']['contact']->enablePhone();
+Config::$values['leads::forms']['contact']->enableAddress();
+Config::$values['leads::forms']['contact']->enableMessage();

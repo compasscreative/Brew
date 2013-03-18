@@ -1,25 +1,27 @@
-<?php namespace Brew\Bundle\Projects;
+<?php
+namespace Brew\Projects;
 
-use Reinink\Query\DB;
 use Reinink\Reveal\Response;
 use Reinink\Routy\Router;
 
 // Public
-Router::get('/projects/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', function($size, $id)
-{
-	return Response::jpg(STORAGE_PATH . 'projects/photos/' . $id . '/' . $size . '.jpg');
-});
+Router::get(
+    '/projects/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)',
+    function ($size, $id) {
+        return Response::jpg(STORAGE_PATH . 'projects/photos/' . $id . '/' . $size . '.jpg');
+    }
+);
 
 // Project pages
-Router::get('/admin/projects',					'Brew\Bundle\Projects\Admin_Controller::display_projects');
-Router::get('/admin/projects/add',				'Brew\Bundle\Projects\Admin_Controller::add_project');
-Router::get('/admin/projects/edit/([0-9]+)',		'Brew\Bundle\Projects\Admin_Controller::edit_project');
+Router::get('/admin/projects', 'Brew\Projects\AdminController::displayProjects');
+Router::get('/admin/projects/add', 'Brew\Projects\AdminController::addProject');
+Router::get('/admin/projects/edit/([0-9]+)', 'Brew\Projects\AdminController::editProject');
 
 // Project actions
-Router::post('/admin/projects/insert',			'Brew\Bundle\Projects\Admin_Controller::insert_project');
-Router::post('/admin/projects/update',			'Brew\Bundle\Projects\Admin_Controller::update_project');
-Router::post('/admin/projects/delete',			'Brew\Bundle\Projects\Admin_Controller::delete_project');
+Router::post('/admin/projects/insert', 'Brew\Projects\AdminController::insertProject');
+Router::post('/admin/projects/update', 'Brew\Projects\AdminController::updateProject');
+Router::post('/admin/projects/delete', 'Brew\Projects\AdminController::deleteProject');
 
 // Project photo actions
-Router::post('/admin/projects/photos/insert',	'Brew\Bundle\Projects\Admin_Controller::insert_photo');
-Router::post('/admin/projects/photos/delete',	'Brew\Bundle\Projects\Admin_Controller::delete_photo');
+Router::post('/admin/projects/photos/insert', 'Brew\Projects\AdminController::insertPhoto');
+Router::post('/admin/projects/photos/delete', 'Brew\Projects\AdminController::deletePhoto');

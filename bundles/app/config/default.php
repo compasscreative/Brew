@@ -1,4 +1,5 @@
-<?php namespace Brew\Bundle\App;
+<?php
+namespace Brew\App;
 
 use Reinink\Deets\Config;
 
@@ -13,8 +14,7 @@ use Reinink\Deets\Config;
 |
 */
 
-	Config::set('display_errors', false);
-
+Config::set('display_errors', false);
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +26,7 @@ use Reinink\Deets\Config;
 |
 */
 
-	date_default_timezone_set('America/Toronto');
-
+date_default_timezone_set('America/Toronto');
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +39,4 @@ use Reinink\Deets\Config;
 |
 */
 
-	Config::set('imagemagick', 'convert');
+Config::set('imagemagick', 'convert');

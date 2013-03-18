@@ -93,18 +93,214 @@
         ]
     },
     {
+        "name": "reinink/booboo",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/BooBoo.git",
+            "reference": "3f4cc031cb724093d4c590a56180835f7083ed8d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/BooBoo/zipball/3f4cc031cb724093d4c590a56180835f7083ed8d",
+            "reference": "3f4cc031cb724093d4c590a56180835f7083ed8d",
+            "shasum": ""
+        },
+        "time": "2013-03-18 13:31:57",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\BooBoo\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/BooBoo/tree/master",
+            "issues": "https://github.com/reinink/BooBoo/issues"
+        }
+    },
+    {
+        "name": "reinink/buster",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Buster.git",
+            "reference": "a8e3b5c9b3b8343997cb39237f32a05ee76e60f1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Buster/zipball/a8e3b5c9b3b8343997cb39237f32a05ee76e60f1",
+            "reference": "a8e3b5c9b3b8343997cb39237f32a05ee76e60f1",
+            "shasum": ""
+        },
+        "time": "2013-03-18 14:01:21",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Buster\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/Buster/tree/master",
+            "issues": "https://github.com/reinink/Buster/issues"
+        }
+    },
+    {
+        "name": "reinink/deets",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Deets.git",
+            "reference": "00367e5bf53d57c78b5d05f21e7815c768b0c485"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Deets/zipball/00367e5bf53d57c78b5d05f21e7815c768b0c485",
+            "reference": "00367e5bf53d57c78b5d05f21e7815c768b0c485",
+            "shasum": ""
+        },
+        "time": "2013-03-18 13:34:11",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Deets\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/Deets/tree/master",
+            "issues": "https://github.com/reinink/Deets/issues"
+        }
+    },
+    {
+        "name": "reinink/magick",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Magick.git",
+            "reference": "20f72a0e99a76fbd9ee25528f879eb6470e1ecab"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Magick/zipball/20f72a0e99a76fbd9ee25528f879eb6470e1ecab",
+            "reference": "20f72a0e99a76fbd9ee25528f879eb6470e1ecab",
+            "shasum": ""
+        },
+        "time": "2013-03-18 13:43:56",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Magick\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/Magick/tree/master",
+            "issues": "https://github.com/reinink/Magick/issues"
+        }
+    },
+    {
+        "name": "reinink/reveal",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Reveal.git",
+            "reference": "16725c6b080125f4d17fbbed65e49b0b78dcf439"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Reveal/zipball/16725c6b080125f4d17fbbed65e49b0b78dcf439",
+            "reference": "16725c6b080125f4d17fbbed65e49b0b78dcf439",
+            "shasum": ""
+        },
+        "time": "2013-03-18 17:15:43",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Reveal\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/Reveal/tree/master",
+            "issues": "https://github.com/reinink/Reveal/issues"
+        }
+    },
+    {
+        "name": "reinink/routy",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Routy.git",
+            "reference": "f56a72f5d3c94be925ca3a9395fcc676dd53b36e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Routy/zipball/f56a72f5d3c94be925ca3a9395fcc676dd53b36e",
+            "reference": "f56a72f5d3c94be925ca3a9395fcc676dd53b36e",
+            "shasum": ""
+        },
+        "time": "2013-03-18 13:53:42",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Routy\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/Routy/tree/master",
+            "issues": "https://github.com/reinink/Routy/issues"
+        }
+    },
+    {
+        "name": "reinink/up",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Up.git",
+            "reference": "54476eaab70f2a211259442132db6b9a676f35af"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Up/zipball/54476eaab70f2a211259442132db6b9a676f35af",
+            "reference": "54476eaab70f2a211259442132db6b9a676f35af",
+            "shasum": ""
+        },
+        "time": "2013-03-18 13:59:14",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Up\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/Up/tree/master",
+            "issues": "https://github.com/reinink/Up/issues"
+        }
+    },
+    {
         "name": "monolog/monolog",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "041aa3930f8d2b466ae897440ec9471d5159c5bf"
+            "reference": "5feb21ae1a842ad6d1d4a7c70848a569450ae769"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/041aa3930f8d2b466ae897440ec9471d5159c5bf",
-            "reference": "041aa3930f8d2b466ae897440ec9471d5159c5bf",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5feb21ae1a842ad6d1d4a7c70848a569450ae769",
+            "reference": "5feb21ae1a842ad6d1d4a7c70848a569450ae769",
             "shasum": ""
         },
         "require": {
@@ -123,7 +319,7 @@
             "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
             "raven/raven": "Allow sending log messages to a Sentry server"
         },
-        "time": "2013-02-26 10:18:11",
+        "time": "2013-03-17 18:36:02",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -157,133 +353,21 @@
         ]
     },
     {
-        "name": "reinink/booboo",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/BooBoo.git",
-            "reference": "93133a167dd533ccf6be7f5da39e429b3b139a98"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/BooBoo/zipball/93133a167dd533ccf6be7f5da39e429b3b139a98",
-            "reference": "93133a167dd533ccf6be7f5da39e429b3b139a98",
-            "shasum": ""
-        },
-        "time": "2013-03-14 12:18:05",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\BooBoo\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/BooBoo/tree/master",
-            "issues": "https://github.com/reinink/BooBoo/issues"
-        }
-    },
-    {
-        "name": "reinink/buster",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Buster.git",
-            "reference": "0eed98bfa8fb66197b742f93abbde0b3c5f7eaab"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Buster/zipball/0eed98bfa8fb66197b742f93abbde0b3c5f7eaab",
-            "reference": "0eed98bfa8fb66197b742f93abbde0b3c5f7eaab",
-            "shasum": ""
-        },
-        "time": "2013-03-12 17:09:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Buster\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/Buster/tree/master",
-            "issues": "https://github.com/reinink/Buster/issues"
-        }
-    },
-    {
-        "name": "reinink/deets",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Deets.git",
-            "reference": "9f488e389d18a49fb77c505e16f830509648ebcb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Deets/zipball/9f488e389d18a49fb77c505e16f830509648ebcb",
-            "reference": "9f488e389d18a49fb77c505e16f830509648ebcb",
-            "shasum": ""
-        },
-        "time": "2013-03-12 18:22:20",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Deets\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/Deets/tree/master",
-            "issues": "https://github.com/reinink/Deets/issues"
-        }
-    },
-    {
-        "name": "reinink/magick",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Magick.git",
-            "reference": "a56dd59c82321a1ca321b617d603f4016e074d01"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Magick/zipball/a56dd59c82321a1ca321b617d603f4016e074d01",
-            "reference": "a56dd59c82321a1ca321b617d603f4016e074d01",
-            "shasum": ""
-        },
-        "time": "2013-03-12 17:09:26",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Magick\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/Magick/tree/master",
-            "issues": "https://github.com/reinink/Magick/issues"
-        }
-    },
-    {
         "name": "reinink/query",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Query.git",
-            "reference": "bee59cef0ca30c3aeef13de9da393df3c8b76a0e"
+            "reference": "7056e8f1f78a379c8b080e6f7b681fa701255f36"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Query/zipball/bee59cef0ca30c3aeef13de9da393df3c8b76a0e",
-            "reference": "bee59cef0ca30c3aeef13de9da393df3c8b76a0e",
+            "url": "https://api.github.com/repos/reinink/Query/zipball/7056e8f1f78a379c8b080e6f7b681fa701255f36",
+            "reference": "7056e8f1f78a379c8b080e6f7b681fa701255f36",
             "shasum": ""
         },
-        "time": "2013-03-12 17:28:06",
+        "time": "2013-03-18 17:51:45",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -294,90 +378,6 @@
         "support": {
             "source": "https://github.com/reinink/Query/tree/master",
             "issues": "https://github.com/reinink/Query/issues"
-        }
-    },
-    {
-        "name": "reinink/reveal",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Reveal.git",
-            "reference": "fa9eededb08cd4a43a61ba72fc095a1f9bff15ae"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Reveal/zipball/fa9eededb08cd4a43a61ba72fc095a1f9bff15ae",
-            "reference": "fa9eededb08cd4a43a61ba72fc095a1f9bff15ae",
-            "shasum": ""
-        },
-        "time": "2013-03-14 13:12:05",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Reveal\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/Reveal/tree/master",
-            "issues": "https://github.com/reinink/Reveal/issues"
-        }
-    },
-    {
-        "name": "reinink/routy",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Routy.git",
-            "reference": "457a93b0ca3b472339bb872dbba581422a192d97"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Routy/zipball/457a93b0ca3b472339bb872dbba581422a192d97",
-            "reference": "457a93b0ca3b472339bb872dbba581422a192d97",
-            "shasum": ""
-        },
-        "time": "2013-03-12 17:09:40",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Routy\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/Routy/tree/master",
-            "issues": "https://github.com/reinink/Routy/issues"
-        }
-    },
-    {
-        "name": "reinink/up",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Up.git",
-            "reference": "7d5ecbc4911d1462c5519d73718744a94589e251"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Up/zipball/7d5ecbc4911d1462c5519d73718744a94589e251",
-            "reference": "7d5ecbc4911d1462c5519d73718744a94589e251",
-            "shasum": ""
-        },
-        "time": "2013-03-12 17:09:13",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Up\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/Up/tree/master",
-            "issues": "https://github.com/reinink/Up/issues"
         }
     }
 ]

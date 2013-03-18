@@ -1,5 +1,9 @@
-<?php namespace Reinink\Reveal;
+<?php
+
+namespace Reinink\Reveal;
 
 use \Exception;
 
-class ResponseException extends Exception{}
+class ResponseException extends Exception
+{
+}

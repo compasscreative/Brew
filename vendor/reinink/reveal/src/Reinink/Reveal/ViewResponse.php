@@ -1,93 +1,91 @@
-<?php namespace Reinink\Reveal;
+<?php
+
+namespace Reinink\Reveal;
 
 use \Exception;
 
 class ViewResponse extends Response
 {
-	/**
-	 * Function for overriding the path.
-	 *
-	 * @var string
-	 */
-	public static $callback;
+    /**
+     * Function for overriding the path.
+     *
+     * @var string
+     */
+    public static $callback;
 
-	/**
-	 * The path to the view file.
-	 *
-	 * @var string
-	 */
-	private $path;
+    /**
+     * The path to the view file.
+     *
+     * @var string
+     */
+    private $path;
 
-	/**
-	 * Create a new View instance.
-	 *
-	 * @param	string	$path
-	 */
-	public function __construct($path, $code = 200, $headers = array())
-	{
-		if (is_callable(self::$callback))
-		{
-			$path = call_user_func_array(self::$callback, array($path));
-		}
+    /**
+     * Create a new View instance.
+     *
+     * @param string $path
+     */
+    public function __construct($path, $code = 200, $headers = array())
+    {
+        if (is_callable(self::$callback)) {
+            $path = call_user_func_array(self::$callback, array($path));
+        }
 
-		if (!is_file($path))
-		{
-			throw new Exception('View not found: ' . $path);
-		}
+        if (!is_file($path)) {
+            throw new Exception('View not found: ' . $path);
+        }
 
-		$this->path = $path;
-		$this->code = $code;
-		$this->headers = $headers;
-	}
+        $this->path = $path;
+        $this->code = $code;
+        $this->headers = $headers;
+    }
 
-	/**
-	 * Send the headers and content of the response to the browser.
-	 *
-	 * @return	void
-	 */
-	public function send()
-	{
-		$this->content = $this->render();
+    /**
+     * Send the headers and content of the response to the browser.
+     *
+     * @return void
+     */
+    public function send()
+    {
+        $this->content = $this->render();
 
-		parent::send();
-	}
+        parent::send();
+    }
 
-	/**
-	 * Render the view.
-	 *
-	 * @return	string
-	 */
-	public function render()
-	{
-		ob_start();
+    /**
+     * Render the view.
+     *
+     * @return string
+     */
+    public function render()
+    {
+        ob_start();
 
-		include($this->path);
+        include($this->path);
 
-		$output = ob_get_contents();
+        $output = ob_get_contents();
 
-		ob_end_clean();
+        ob_end_clean();
 
-		return $output;
-	}
+        return $output;
+    }
 
-	/**
-	 * Insert another view inside the view.
-	 *
-	 * @param	string	$path
-	 * @return	void
-	 */
-	private function insert($path)
-	{
-		if (is_callable(self::$callback))
-		{
-			$path = call_user_func_array(self::$callback, array($path));
-		}
+    /**
+     * Insert another view inside the view.
+     *
+     * @param  string $path
+     * @return void
+     */
+    private function insert($path)
+    {
+        if (is_callable(self::$callback)) {
+            $path = call_user_func_array(self::$callback, array($path));
+        }
 
-		if (!is_file($path))
-		{
-			throw new Exception('View not found: ' . $path);
-		}
+        if (!is_file($path)) {
+            throw new Exception('View not found: ' . $path);
+        }
 
-		include $path;
-	}
+        include $path;
+    }
 }

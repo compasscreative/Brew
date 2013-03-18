@@ -19,22 +19,28 @@ Add the following code to your `.htaccess` file:
 <?php
 
 // Home page
-Router::get('/', function()
-{
-	// do something
-});
+Router::get(
+    '/',
+    function () {
+        // do something
+    }
+);
 
 // Contact page
-Router::get('/contact', function()
-{
-	// do something
-});
+Router::get(
+    '/contact',
+    function () {
+        // do something
+    }
+);
 
 // Process form post
-Router::post('/form-submit', function()
-{
-	// do something
-});
+Router::post(
+    '/form-submit',
+    function () {
+        // do something
+    }
+);
 ```
 
 ## More complicated routes
@@ -43,16 +49,20 @@ Router::post('/form-submit', function()
 <?php
 
 // User profile
-Router::get('/user/([0-9]+)', function($user_id)
-{
-	// do something with $user_id
-});
+Router::get(
+    '/user/([0-9]+)',
+    function ($user_id) {
+        // do something with $user_id
+    }
+);
 
 // Output image
-Router::get('/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', function($image_size, $image_id)
-{
-	// do something with $image_size and $image_id
-});
+Router::get(
+    '/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)',
+    function ($image_size, $image_id) {
+        // do something with $image_size and $image_id
+    }
+);
 ```
 
 ## Working with controller classes
@@ -75,25 +85,22 @@ Router::post('/form-submit', 'Controller::process_form');
 ```php
 <?php
 
-	// Check if home page
-	if (URI::is('/'))
-	{
-		// do something
-	}
+// Check if home page
+if (URI::is('/')) {
+    // do something
+}
 
-	// Check if contact page
-	if (URI::is('/contact'))
-	{
-		// do something
-	}
+// Check if contact page
+if (URI::is('/contact')) {
+    // do something
+}
 
-	// Check if in the products section
-	// Examples:	/products
-	//				/products/product-name
-	if (URI::is('/products(/[a-z-]*)?'))
-	{
-		// do something
-	}
+// Check if in the products section
+// Examples:    /products
+//              /products/product-name
+if (URI::is('/products(/[a-z-]*)?')) {
+    // do something
+}
 ```
 
 ## Segments
@@ -101,34 +108,31 @@ Router::post('/form-submit', 'Controller::process_form');
 ```php
 <?php
 
-	// Get all the current segements as an array
-	$segments = URI::segments();
+// Get all the current segements as an array
+$segments = URI::segments();
 
-	// Get a specific segement
-	$segment = URI::segment(1);
+// Get a specific segement
+$segment = URI::segment(1);
 
-	// Check if in the products section
-	// Examples:	/products
-	//				/products/product-name
-	if (URI::segment(1) === 'products')
-	{
-		// do something
-	}
+// Check if in the products section
+// Examples:    /products
+//              /products/product-name
+if (URI::segment(1) === 'products') {
+    // do something
+}
 ```
 
 ## Other checks
 ```php
 <?php
 
-	// Check if the request is secure (HTTPS)
-	if (Request::secure())
-	{
-		// do something
-	}
+// Check if the request is secure (HTTPS)
+if (Request::secure()) {
+    // do something
+}
 
-	// Check if the request is an AJAX call
-	if (Request::ajax())
-	{
-		// do something
-	}
+// Check if the request is an AJAX call
+if (Request::ajax()) {
+    // do something
+}
 ```
