@@ -295,12 +295,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "5feb21ae1a842ad6d1d4a7c70848a569450ae769"
+            "reference": "dd0b216e0229a24178c2f0782f8a7172c7ed1c96"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5feb21ae1a842ad6d1d4a7c70848a569450ae769",
-            "reference": "5feb21ae1a842ad6d1d4a7c70848a569450ae769",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/dd0b216e0229a24178c2f0782f8a7172c7ed1c96",
+            "reference": "dd0b216e0229a24178c2f0782f8a7172c7ed1c96",
             "shasum": ""
         },
         "require": {
@@ -319,7 +319,7 @@
             "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
             "raven/raven": "Allow sending log messages to a Sentry server"
         },
-        "time": "2013-03-17 18:36:02",
+        "time": "2013-03-18 18:06:02",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -359,15 +359,15 @@
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Query.git",
-            "reference": "7056e8f1f78a379c8b080e6f7b681fa701255f36"
+            "reference": "2376c83bba93209606aaf1d9799d25904efd32f2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Query/zipball/7056e8f1f78a379c8b080e6f7b681fa701255f36",
-            "reference": "7056e8f1f78a379c8b080e6f7b681fa701255f36",
+            "url": "https://api.github.com/repos/reinink/Query/zipball/2376c83bba93209606aaf1d9799d25904efd32f2",
+            "reference": "2376c83bba93209606aaf1d9799d25904efd32f2",
             "shasum": ""
         },
-        "time": "2013-03-18 17:51:45",
+        "time": "2013-03-18 19:04:12",
         "type": "library",
         "installation-source": "source",
         "autoload": {
