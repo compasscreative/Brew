@@ -1,0 +1,28 @@
+/*
+|--------------------------------------------------------------------------
+| This file is for reusable content blocks. For example, a contact form
+| that appears on multiple pages.
+|--------------------------------------------------------------------------
+*/
+
+.bundle_leads_form
+{
+    padding: 25px;
+    background: darken(white, 10%);
+
+    ul
+    {
+        list-style: none;
+        padding: 0;
+
+        li
+        {
+            margin: 0 0 10px 0;
+
+            .error_message
+            {
+                color: red;
+            }
+        }
+    }
+}

@@ -1,5 +1,26 @@
+/*
+|--------------------------------------------------------------------------
+| This files includes template styles.
+|--------------------------------------------------------------------------
+*/
 
-	body
-	{
-		margin: 15px;
-	}
+body
+{
+	margin: 15px;
+}
+
+.logo
+{
+    font-family: $font_regular;
+    color: $grey;
+    font-size: 40px;
+    text-decoration: none;
+}
+
+nav
+{
+    a
+    {
+        color: $red;
+    }
+}
