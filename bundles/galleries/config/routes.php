@@ -1,16 +1,13 @@
 <?php
 namespace Brew\Galleries;
 
-use Reinink\Reveal\Response;
+use Reinink\Trailmix\Config;
 use Reinink\Routy\Router;
 
 // Public
-Router::get(
-    '/galleries/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)',
-    function ($size, $id) {
-        return Response::jpg(STORAGE_PATH . 'galleries/photos/' . $id . '/' . $size . '.jpg');
-    }
-);
+Router::get(Config::get('galleries::base_url'), 'Brew\Galleries\PublicController::displayIndex');
+Router::get(Config::get('galleries::base_url') . '/([0-9]+)/([a-z-0-9]+)', 'Brew\Galleries\PublicController::displayGallery');
+Router::get(Config::get('galleries::base_url') . '/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', 'Brew\Galleries\PublicController::displayPhoto');
 
 // Gallery pages
 Router::get('/admin/galleries', 'Brew\Galleries\AdminController::displayGalleries');

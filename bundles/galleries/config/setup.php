@@ -1,7 +1,7 @@
 <?php
 namespace Brew\Galleries;
 
-use Reinink\Deets\Config;
+use Reinink\Trailmix\Config;
 use Reinink\Query\DB;
 
 /*
@@ -9,6 +9,7 @@ use Reinink\Query\DB;
 | Create tables
 |--------------------------------------------------------------------------
 */
+
 // Galleries
 if (!in_array('galleries', Config::get('db_tables'))) {
     DB::query('galleries::table.galleries');

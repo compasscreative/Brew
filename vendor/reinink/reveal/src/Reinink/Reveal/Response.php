@@ -225,7 +225,7 @@ class Response
         } elseif (is_bool($response) and $response === true) {
             return new Response();
         } else {
-            self::not_found();
+            self::notFound();
         }
     }
 }

@@ -1,0 +1,10 @@
+{
+	"name": "reinink/trailmix",
+	"autoload":
+	{
+		"psr-0":
+		{
+			"Reinink\\Trailmix\\": "src"
+		}
+	}
+}

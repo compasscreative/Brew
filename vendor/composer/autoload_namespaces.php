@@ -7,12 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Reinink\\Up\\' => $vendorDir . '/reinink/up/src',
+    'Reinink\\Trailmix\\' => $vendorDir . '/reinink/trailmix/src',
     'Reinink\\Routy\\' => $vendorDir . '/reinink/routy/src',
     'Reinink\\Reveal\\' => $vendorDir . '/reinink/reveal/src',
     'Reinink\\Query\\' => $vendorDir . '/reinink/query/src',
     'Reinink\\Magick\\' => $vendorDir . '/reinink/magick/src',
-    'Reinink\\Deets\\' => $vendorDir . '/reinink/deets/src',
-    'Reinink\\Buster\\' => $vendorDir . '/reinink/buster/src',
     'Reinink\\BooBoo\\' => $vendorDir . '/reinink/booboo/src',
     'Psr\\Log\\' => $vendorDir . '/psr/log/',
     'Monolog' => $vendorDir . '/monolog/monolog/src/',

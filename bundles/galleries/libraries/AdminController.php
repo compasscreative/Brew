@@ -2,7 +2,7 @@
 namespace Brew\Galleries;
 
 use Brew\Admin\SecureController;
-use Reinink\Deets\Config;
+use Reinink\Trailmix\Config;
 use Reinink\Magick\Magick;
 use Reinink\Reveal\Response;
 use Reinink\Up\ImageUpload;

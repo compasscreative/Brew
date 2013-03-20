@@ -2,7 +2,7 @@
 namespace Brew\Admin;
 
 use Brew\App\Brew;
-use Reinink\Deets\Config;
+use Reinink\Trailmix\Config;
 use Reinink\Reveal\Response;
 
 class PublicController

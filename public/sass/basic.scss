@@ -1,14 +1,20 @@
+/*
+|--------------------------------------------------------------------------
+| This file is for Internet Explorer 7 and below. Browser only receives
+| basic font styles, not even custom fonts.
+|--------------------------------------------------------------------------
+*/
 
-	// Vendor
-	@import "bourbon/bourbon";
-	@import "../vendor/html5-boilerplate/normalize";
-	@import "../vendor/html5-boilerplate/base";
+// Vendor
+@import "bourbon/bourbon";
+@import "../vendor/html5-boilerplate/normalize";
+@import "../vendor/html5-boilerplate/base";
 
-	// App
-	@import "../../bundles/app/sass/lib";
-	@import "../../bundles/app/sass/typography";
+// App
+@import "../../bundles/app/sass/library";
+@import "../../bundles/app/sass/typography";
 
-	body
-	{
-		text-align: center;
-	}
+body
+{
+	text-align: center;
+}

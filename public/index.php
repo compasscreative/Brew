@@ -3,32 +3,42 @@
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Reinink\BooBoo\BooBoo;
-use Reinink\Deets\Config;
 use Reinink\Query\DB;
 use Reinink\Reveal\Response;
 use Reinink\Reveal\ResponseException;
 use Reinink\Reveal\ViewResponse;
 use Reinink\Routy\Router;
+use Reinink\Trailmix\Asset;
+use Reinink\Trailmix\Config;
 
 /*
 |--------------------------------------------------------------------------
 | Path definitions
 |--------------------------------------------------------------------------
 */
-    // Set base bath
-    define('BASE_PATH', dirname(dirname(__FILE__)) . '/');
 
-    // Set public path
-    define('PUBLIC_PATH', dirname(__FILE__) . '/');
+// Set base bath
+define('BASE_PATH', dirname(dirname(__FILE__)) . '/');
 
-    // Set storage path
-    define('STORAGE_PATH', dirname(dirname(__FILE__)) . '/storage/');
+// Set public path
+define('PUBLIC_PATH', dirname(__FILE__) . '/');
+
+// Set storage path
+define('STORAGE_PATH', dirname(dirname(__FILE__)) . '/storage/');
+
+// Check if storage exists and is writeable
+if (!is_writable(STORAGE_PATH)) {
+    die('Storage folder is not writeable.');
+}
 
 /*
 |--------------------------------------------------------------------------
 | Setup auto loading
 |--------------------------------------------------------------------------
 */
+
+// Vendor classes
+include BASE_PATH . 'vendor/autoload.php';
 
 // Bundle classes
 spl_autoload_register(
@@ -40,14 +50,33 @@ spl_autoload_register(
     }
 );
 
-// Vendor classes
-include BASE_PATH . 'vendor/autoload.php';
+// Aliases
+spl_autoload_register(
+    function ($class) {
+
+        $aliases = [
+            'Asset' => 'Reinink\Trailmix\Asset',
+            'Config' => 'Reinink\Trailmix\Config',
+            'URI' => 'Reinink\Routy\URI'
+        ];
+
+        if (isset($aliases[$class])) {
+            return class_alias($aliases[$class], $class);
+        }
+    }
+);
+
 
 /*
 |--------------------------------------------------------------------------
 | Setup error handling
 |--------------------------------------------------------------------------
 */
+
+// Create logs folder
+if (!is_dir(STORAGE_PATH . 'logs/')) {
+    mkdir(STORAGE_PATH . 'logs/');
+}
 
 // Setup logging
 $logger = new Logger('errors');
@@ -80,9 +109,12 @@ Config::set('db_tables', explode(',', DB::field('SELECT group_concat(name) FROM 
 
 /*
 |--------------------------------------------------------------------------
-| Setup bundle path shortcuts
+| Setup bundle paths and shortcuts
 |--------------------------------------------------------------------------
 */
+
+// Assets
+Asset::$public_path = PUBLIC_PATH;
 
 // Views
 ViewResponse::$callback = function ($path) {
@@ -96,7 +128,7 @@ ViewResponse::$callback = function ($path) {
     $parts = explode('::', $path);
 
     // Set file path
-    return BASE_PATH . 'bundles/' . implode('/', array_slice($parts, 0, -1)) . '/views/' . end($parts) . '.php';
+    return BASE_PATH . 'bundles/' . implode('/', array_slice($parts, 0, -1)) . '/views/' . end($parts) . '.tpl';
 };
 
 // SQL
@@ -132,7 +164,7 @@ DB::$callback = function ($sql) {
 */
 
 // Array to house bundles
-$bundles = array('app');
+$bundles = ['app'];
 
 // Get list of bundles
 foreach (new DirectoryIterator(BASE_PATH . 'bundles') as $file) {
@@ -146,7 +178,7 @@ foreach ($bundles as $bundle) {
 
     $folder = BASE_PATH . 'bundles/' . $bundle . '/config/';
 
-    foreach (array('setup', 'default', 'production', 'development', 'routes') as $file) {
+    foreach (array('setup', 'options', 'local', 'routes') as $file) {
         if (is_file($folder . $file . '.php')) {
             include $folder . $file . '.php';
         }

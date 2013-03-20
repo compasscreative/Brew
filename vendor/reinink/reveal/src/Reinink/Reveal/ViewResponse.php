@@ -59,6 +59,10 @@ class ViewResponse extends Response
      */
     public function render()
     {
+        $e = function ($text) {
+            return htmlentities($text);
+        };
+
         ob_start();
 
         include($this->path);
@@ -85,6 +89,10 @@ class ViewResponse extends Response
         if (!is_file($path)) {
             throw new Exception('View not found: ' . $path);
         }
+
+        $e = function ($text) {
+            return htmlentities($text);
+        };
 
         include $path;
     }

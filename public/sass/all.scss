@@ -1,14 +1,18 @@
+/*
+|--------------------------------------------------------------------------
+| This is the main style file, which will be used by all newer browsers.
+|--------------------------------------------------------------------------
+*/
 
-	// Vendor
-	@import "bourbon/bourbon";
-	@import "../vendor/html5-boilerplate/normalize";
-	@import "../vendor/html5-boilerplate/base";
+// Vendor
+@import "bourbon/bourbon";
+@import "../vendor/html5-boilerplate/normalize";
+@import "../vendor/html5-boilerplate/base";
 
-	// App
-	@import "../../bundles/app/sass/utils";
-	@import "../../bundles/app/sass/fonts";
-	@import "../../bundles/app/sass/lib";
-	@import "../../bundles/app/sass/typography";
-	@import "../../bundles/app/sass/modules";
-	@import "../../bundles/app/sass/template";
-	@import "../../bundles/app/sass/content";
+// App
+@import "../../bundles/app/sass/library";
+@import "../../bundles/app/sass/fonts";
+@import "../../bundles/app/sass/typography";
+@import "../../bundles/app/sass/modules";
+@import "../../bundles/app/sass/template";
+@import "../../bundles/app/sass/content";

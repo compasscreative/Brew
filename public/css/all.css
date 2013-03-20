@@ -1,3 +1,8 @@
+/*
+|--------------------------------------------------------------------------
+| This is the main style file, which will be used by all newer browsers.
+|--------------------------------------------------------------------------
+*/
 /* normalize.css v1.0.2 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -657,5 +662,86 @@ textarea {
   h2,
   h3 {
     page-break-after: avoid; } }
+/*
+|--------------------------------------------------------------------------
+| This file is for variables and mixins. For example, you could include
+| font family definitions, colours, breakpoints, etc.
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| Font Families
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| Colours
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| Media query shortcuts
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| This file is for your font-face definitions.
+|--------------------------------------------------------------------------
+*/
+@font-face {
+  font-family: "Rockwell Regular";
+  font-weight: bold;
+  font-style: normal;
+  src: url("/fonts/rockwell/rockwell-regular.eot");
+  src: url("/fonts/rockwell/rockwell-regular.eot?#iefix") format("embedded-opentype"), url("/fonts/rockwell/rockwell-regular.woff") format("woff"), url("/fonts/rockwell/rockwell-regular.ttf") format("truetype"), url("/fonts/rockwell/rockwell-regular.svg#Rockwell Regular") format("svg"); }
+
+/*
+|--------------------------------------------------------------------------
+| This files includes your base font styles, which could include sizes,
+| families, colours and margins.
+|--------------------------------------------------------------------------
+*/
+h1 {
+  font-family: "Rockwell Regular", Arial, sans-serif;
+  color: #2d2d2f; }
+
+/*
+|--------------------------------------------------------------------------
+| This file is for reusable content blocks. For example, a contact form
+| that appears on multiple pages.
+|--------------------------------------------------------------------------
+*/
+.bundle_leads_form {
+  padding: 25px;
+  background: #e6e6e6; }
+  .bundle_leads_form ul {
+    list-style: none;
+    padding: 0; }
+    .bundle_leads_form ul li {
+      margin: 0 0 10px 0; }
+      .bundle_leads_form ul li .error_message {
+        color: red; }
+
+/*
+|--------------------------------------------------------------------------
+| This files includes template styles.
+|--------------------------------------------------------------------------
+*/
 body {
   margin: 15px; }
+
+.logo {
+  font-family: "Rockwell Regular", Arial, sans-serif;
+  color: #2d2d2f;
+  font-size: 40px;
+  text-decoration: none; }
+
+nav a {
+  color: #ff5b5b; }
+
+/*
+|--------------------------------------------------------------------------
+| This file is for all main content, that doesn't make sense to break
+| apart as a reusable module.
+|--------------------------------------------------------------------------
+*/

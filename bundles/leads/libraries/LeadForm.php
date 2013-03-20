@@ -3,6 +3,7 @@ namespace Brew\Leads;
 
 class LeadForm
 {
+    public $id;
     public $from_name;
     public $from_email;
     public $recipients;
@@ -24,6 +25,11 @@ class LeadForm
     public $message_required;
     public $referral_enabled;
     public $referral_required;
+
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
 
     public function setFrom($name, $email)
     {
@@ -98,8 +104,16 @@ class LeadForm
         return $this;
     }
 
-    public function render($id)
+    public function __toString()
     {
-        include BASE_PATH . 'bundles/leads/views/form.php';
+        ob_start();
+
+        include BASE_PATH . 'bundles/leads/views/form.tpl';
+
+        $output = ob_get_contents();
+
+        ob_end_clean();
+
+        return $output;
     }
 }

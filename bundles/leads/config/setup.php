@@ -1,7 +1,7 @@
 <?php
 namespace Brew\Leads;
 
-use Reinink\Deets\Config;
+use Reinink\Trailmix\Config;
 use Reinink\Query\DB;
 
 /*

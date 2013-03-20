@@ -1,5 +1,5 @@
 {
-    "hash": "65d3c2bcbc1f5148a3bac65d4e8c203c",
+    "hash": "212ad8b175385b86704565f3411738d0",
     "packages": [
         {
             "name": "michelf/php-markdown",
@@ -179,58 +179,6 @@
             "time": "2013-03-18 13:31:57"
         },
         {
-            "name": "reinink/buster",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reinink/Buster.git",
-                "reference": "a8e3b5c9b3b8343997cb39237f32a05ee76e60f1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reinink/Buster/zipball/a8e3b5c9b3b8343997cb39237f32a05ee76e60f1",
-                "reference": "a8e3b5c9b3b8343997cb39237f32a05ee76e60f1",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Reinink\\Buster\\": "src"
-                }
-            },
-            "support": {
-                "source": "https://github.com/reinink/Buster/tree/master",
-                "issues": "https://github.com/reinink/Buster/issues"
-            },
-            "time": "2013-03-18 14:01:21"
-        },
-        {
-            "name": "reinink/deets",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reinink/Deets.git",
-                "reference": "00367e5bf53d57c78b5d05f21e7815c768b0c485"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reinink/Deets/zipball/00367e5bf53d57c78b5d05f21e7815c768b0c485",
-                "reference": "00367e5bf53d57c78b5d05f21e7815c768b0c485",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Reinink\\Deets\\": "src"
-                }
-            },
-            "support": {
-                "source": "https://github.com/reinink/Deets/tree/master",
-                "issues": "https://github.com/reinink/Deets/issues"
-            },
-            "time": "2013-03-18 13:34:11"
-        },
-        {
             "name": "reinink/magick",
             "version": "dev-master",
             "source": {
@@ -288,12 +236,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reinink/Reveal.git",
-                "reference": "16725c6b080125f4d17fbbed65e49b0b78dcf439"
+                "reference": "6fd7c0b143fbcefd260c7a4a33715e8cc29a7669"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reinink/Reveal/zipball/16725c6b080125f4d17fbbed65e49b0b78dcf439",
-                "reference": "16725c6b080125f4d17fbbed65e49b0b78dcf439",
+                "url": "https://api.github.com/repos/reinink/Reveal/zipball/6fd7c0b143fbcefd260c7a4a33715e8cc29a7669",
+                "reference": "6fd7c0b143fbcefd260c7a4a33715e8cc29a7669",
                 "shasum": ""
             },
             "type": "library",
@@ -306,7 +254,7 @@
                 "source": "https://github.com/reinink/Reveal/tree/master",
                 "issues": "https://github.com/reinink/Reveal/issues"
             },
-            "time": "2013-03-18 17:15:43"
+            "time": "2013-03-20 15:36:14"
         },
         {
             "name": "reinink/routy",
@@ -333,6 +281,32 @@
                 "issues": "https://github.com/reinink/Routy/issues"
             },
             "time": "2013-03-18 13:53:42"
+        },
+        {
+            "name": "reinink/trailmix",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reinink/Trailmix.git",
+                "reference": "3e8fff8e1be690dd0a46bd1e4c9ddf3bb801e4a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reinink/Trailmix/zipball/3e8fff8e1be690dd0a46bd1e4c9ddf3bb801e4a6",
+                "reference": "3e8fff8e1be690dd0a46bd1e4c9ddf3bb801e4a6",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Reinink\\Trailmix\\": "src"
+                }
+            },
+            "support": {
+                "source": "https://github.com/reinink/Trailmix/tree/master",
+                "issues": "https://github.com/reinink/Trailmix/issues"
+            },
+            "time": "2013-03-20 15:14:48"
         },
         {
             "name": "reinink/up",
@@ -372,12 +346,11 @@
         "monolog/monolog": 20,
         "michelf/php-markdown": 20,
         "reinink/booboo": 20,
-        "reinink/buster": 20,
-        "reinink/deets": 20,
         "reinink/magick": 20,
         "reinink/query": 20,
         "reinink/reveal": 20,
         "reinink/routy": 20,
+        "reinink/trailmix": 20,
         "reinink/up": 20
     },
     "platform": [

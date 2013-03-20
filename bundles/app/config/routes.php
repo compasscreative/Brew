@@ -12,36 +12,8 @@ Router::get(
 );
 
 Router::get(
-    '/blog',
+    '/contact',
     function () {
-        return Response::view('blog/index');
-    }
-);
-
-Router::get(
-    '/galleries',
-    function () {
-        return Response::view('galleries/index');
-    }
-);
-
-Router::get(
-    '/leads',
-    function () {
-        return Response::view('leads');
-    }
-);
-
-Router::get(
-    '/projects',
-    function () {
-        return Response::view('projects/index');
-    }
-);
-
-Router::get(
-    '/team',
-    function () {
-        return Response::view('team/index');
+        return Response::view('contact');
     }
 );
