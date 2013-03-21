@@ -5,6 +5,10 @@ $this->insert('partials/header');
 
 <h1><?=$e($this->gallery->title)?></h1>
 
+<h2>Description:</h2>
+<p><?=$this->gallery->description?></p>
+
+<h2>Photos:</h2>
 <ul>
 	<? foreach ($this->photos as $photo): ?>
 		<li>
@@ -15,9 +19,7 @@ $this->insert('partials/header');
 	<? endforeach ?>
 </ul>
 
-<div class="description"><?=$this->gallery->description?></div>
-
-<h2>Other Galleries</h2>
+<h2>Other galleries:</h2>
 <ul>
 	<? foreach($this->other_galleries as $gallery): ?>
 		<li>

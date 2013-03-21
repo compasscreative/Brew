@@ -268,7 +268,8 @@ class AdminController extends SecureController
         return Response::json(
             array(
                 'success' => true,
-                'id' => $project_photo->id
+                'id' => $project_photo->id,
+                'url' => Config::get('projects::base_url') . '/photo/xsmall/' . $project_photo->id
             )
         );
     }

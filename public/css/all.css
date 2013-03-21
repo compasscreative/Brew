@@ -733,11 +733,25 @@ body {
 .logo {
   font-family: "Rockwell Regular", Arial, sans-serif;
   color: #2d2d2f;
-  font-size: 40px;
+  font-size: 45px;
   text-decoration: none; }
 
-nav a {
-  color: #ff5b5b; }
+nav ul {
+  list-style: none;
+  padding: 0; }
+  nav ul li {
+    display: inline-block;
+    margin-right: 10px; }
+    nav ul li a {
+      color: #ff5b5b; }
+      nav ul li a:hover {
+        color: #ff0f0f; }
+
+a {
+  color: #4183c4;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
 
 /*
 |--------------------------------------------------------------------------

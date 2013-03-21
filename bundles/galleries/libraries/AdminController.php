@@ -242,7 +242,8 @@ class AdminController extends SecureController
         return Response::json(
             array(
                 'success' => true,
-                'id' => $gallery_photo->id
+                'id' => $gallery_photo->id,
+                'url' => Config::get('galleries::base_url') . '/photo/xsmall/' . $gallery_photo->id
             )
         );
     }

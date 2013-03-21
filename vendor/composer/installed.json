@@ -188,34 +188,6 @@
         }
     },
     {
-        "name": "reinink/reveal",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Reveal.git",
-            "reference": "6fd7c0b143fbcefd260c7a4a33715e8cc29a7669"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Reveal/zipball/6fd7c0b143fbcefd260c7a4a33715e8cc29a7669",
-            "reference": "6fd7c0b143fbcefd260c7a4a33715e8cc29a7669",
-            "shasum": ""
-        },
-        "time": "2013-03-20 15:36:14",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Reveal\\": "src"
-            }
-        },
-        "support": {
-            "source": "https://github.com/reinink/Reveal/tree/master",
-            "issues": "https://github.com/reinink/Reveal/issues"
-        }
-    },
-    {
         "name": "reinink/routy",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -351,5 +323,33 @@
         "keywords": [
             "markdown"
         ]
+    },
+    {
+        "name": "reinink/reveal",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Reveal.git",
+            "reference": "d34450fde1ef3232b8134ce2edf1739445ff8b3e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Reveal/zipball/d34450fde1ef3232b8134ce2edf1739445ff8b3e",
+            "reference": "d34450fde1ef3232b8134ce2edf1739445ff8b3e",
+            "shasum": ""
+        },
+        "time": "2013-03-20 21:37:49",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Reveal\\": "src"
+            }
+        },
+        "support": {
+            "source": "https://github.com/reinink/Reveal/tree/master",
+            "issues": "https://github.com/reinink/Reveal/issues"
+        }
     }
 ]

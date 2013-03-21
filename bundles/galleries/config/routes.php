@@ -9,16 +9,16 @@ Router::get(Config::get('galleries::base_url'), 'Brew\Galleries\PublicController
 Router::get(Config::get('galleries::base_url') . '/([0-9]+)/([a-z-0-9]+)', 'Brew\Galleries\PublicController::displayGallery');
 Router::get(Config::get('galleries::base_url') . '/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', 'Brew\Galleries\PublicController::displayPhoto');
 
-// Gallery pages
+// Admin: Gallery Pages
 Router::get('/admin/galleries', 'Brew\Galleries\AdminController::displayGalleries');
 Router::get('/admin/galleries/add', 'Brew\Galleries\AdminController::addGallery');
 Router::get('/admin/galleries/edit/([0-9]+)', 'Brew\Galleries\AdminController::editGallery');
 
-// Gallery actions
+// Admin: Gallery Actions
 Router::post('/admin/galleries/insert', 'Brew\Galleries\AdminController::insertGallery');
 Router::post('/admin/galleries/update', 'Brew\Galleries\AdminController::updateGallery');
 Router::post('/admin/galleries/delete', 'Brew\Galleries\AdminController::deleteGallery');
 
-// Gallery photo actions
+// Admin: Gallery Photo Actions
 Router::post('/admin/galleries/photos/insert', 'Brew\Galleries\AdminController::insertPhoto');
 Router::post('/admin/galleries/photos/delete', 'Brew\Galleries\AdminController::deletePhoto');

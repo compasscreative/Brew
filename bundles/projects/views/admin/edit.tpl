@@ -78,19 +78,17 @@ $this->insert('admin::partials/header');
                                     <input type="hidden" name="photos[][seperator]" value="<?=$section?>">
                                     <?=$section?>
                                 </li>
-                                <?
-                                    foreach ($this->photos as $photo):
-                                        if ($photo->section === $section):
-                                            echo '<li>';
-                                            echo '<img class="thumb" src="/projects/photo/xsmall/' . $photo->id . '" width="75" height="75">';
-                                            echo '<div class="tools">';
-                                            echo '<textarea name="photos[][photo][' . $photo->id . ']">' . $photo->caption . '</textarea>';
-                                            echo '<button type="button" data-id="' . $photo->id . '" class="delete_photo">Delete</button>';
-                                            echo '</div>';
-                                            echo '</li>';
-                                        }
-                                    }
-                                ?>
+                                <? foreach ($this->photos as $photo): ?>
+                                    <? if ($photo->section === $section): ?>
+                                        <li>
+                                            <img class="thumb" src="<?=Config::get('projects::base_url')?>/photo/xsmall/<?=$photo->id?>" width="75" height="75">
+                                            <div class="tools">
+                                               <textarea name="photos[][photo][<?=$photo->id?>]"><?=$photo->caption?></textarea>
+                                                <button type="button" data-id="<?=$photo->id?>" class="delete_photo">Delete</button>
+                                            </div>
+                                        </li>
+                                    <? endif; ?>
+                                <? endforeach ?>
                             <? endforeach ?>
                         </ul>
                     </div>
