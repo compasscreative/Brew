@@ -11,63 +11,56 @@ class PublicController
 {
     public function displayIndex()
     {
-        // Load galleries
-        $galleries = DB::rows('galleries::public.galleries.all');
+        // Load team members
+        $team_members = TeamMember::select('id, first_name, last_name')->orderBy('display_order')->rows();
 
         // Add urls
-        foreach ($galleries as $gallery) {
-            $gallery->url = Config::get('team::base_url') . '/' . $gallery->id . '/' . Str::slug($gallery->title);
-            $gallery->photo_url = Config::get('team::base_url') . '/photo/medium/' . $gallery->photo_id;
+        foreach ($team_members as $team_member) {
+
+            // Page url
+            $team_member->page_url = Config::get('team::base_url') . '/' . $team_member->id . '/' . Str::slug($team_member->first_name . ' ' . $team_member->last_name);
+
+            // Set photo path
+            $path = STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg';
+
+            // Check if photo exists
+            if (is_file($path)) {
+                $team_member->photo_url = Config::get('team::base_url') . '/photo/small/' . $team_member->id . '/' . filemtime($path);
+            } else {
+                $team_member->photo_url = null;
+            }
         }
 
-        // Display page
-        return Response::view('galleries::index', array('galleries' => $galleries));
+        return Response::view('team::index', array('team_members' => $team_members));
     }
 
-    public function displayGallery($id, $slug)
+    public function displayTeamMember($id, $slug)
     {
-        // Load gallery
-        if (!$gallery = Gallery::select('id, title, description')->where('id', $id)->row()) {
+        // Load team member
+        if (!$team_member = TeamMember::select('id, first_name, last_name, title, bio, email, phone')->where('id', $id)->row()) {
             Response::notFound();
         }
 
         // Validate url slug
-        if ($slug !== Str::slug($gallery->title)) {
-            return Response::redirect(Config::get('team::base_url') . '/' . $gallery->id . '/' . Str::slug($gallery->title));
+        if ($slug !== Str::slug($team_member->first_name . ' ' . $team_member->last_name)) {
+            return Response::redirect(Config::get('team::base_url') . '/' . $team_member->id . '/' . Str::slug($team_member->first_name . ' ' . $team_member->last_name));
         }
 
-        // Convert markdown description
-        $gallery->description = Markdown::defaultTransform(htmlentities($gallery->description));
+        // Convert markdown bio
+        $team_member->bio = Markdown::defaultTransform(htmlentities($team_member->bio));
 
-        // Load photos
-        if (!$photos = GalleryPhoto::select('id, caption')->where('gallery_id', $id)->orderBy('display_order')->rows()) {
-            Response::notFound();
-        }
+        // Set photo path
+        $path = STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg';
 
-        // Add photo urls
-        foreach ($photos as $photo) {
-            $photo->xlarge_url = Config::get('team::base_url') . '/photo/xlarge/' . $photo->id;
-            $photo->small_url = Config::get('team::base_url') . '/photo/small/' . $photo->id;
-        }
-
-        // Load other galleries
-        $other_galleries = DB::rows('galleries::public.galleries.all');
-
-        // Add urls
-        foreach ($other_galleries as $other_gallery) {
-            $other_gallery->url = Config::get('team::base_url') . '/' . $other_gallery->id . '/' . Str::slug($other_gallery->title);
-            $other_gallery->photo_url = Config::get('team::base_url') . '/photo/small/' . $other_gallery->photo_id;
+        // Check if photo exists
+        if (is_file($path)) {
+            $team_member->photo_url = Config::get('team::base_url') . '/photo/medium/' . $team_member->id . '/' . filemtime($path);
+        } else {
+            $team_member->photo_url = null;
         }
 
         // Display page
-        return Response::view(
-            'galleries::gallery',
-            array(
-                'gallery' => $gallery,
-                'photos' => $photos,
-                'other_galleries' => $other_galleries
-            )
-        );
+        return Response::view('team::profile', array('team_member' => $team_member));
     }
 
     public function displayPhoto($size, $id)

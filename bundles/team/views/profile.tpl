@@ -1,34 +1,24 @@
 <?
-$this->title = $e($this->gallery->title);
+$this->title = $e($this->team_member->first_name) . ' ' . $e($this->team_member->last_name) . ' | Team';
 $this->insert('partials/header');
 ?>
 
-<h1><?=$e($this->gallery->title)?></h1>
+<? if ($this->team_member->photo_url): ?>
+    <img src="<?=$this->team_member->photo_url?>">
+<? endif ?>
 
-<h2>Description:</h2>
-<p><?=$this->gallery->description?></p>
+<h1><?=$e($this->team_member->first_name)?> <?=$e($this->team_member->last_name)?></h1>
 
-<h2>Photos:</h2>
-<ul>
-	<? foreach ($this->photos as $photo): ?>
-		<li>
-			<a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
-				<img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
-			</a>
-		</li>
-	<? endforeach ?>
-</ul>
+<h2>Title:</h2>
+<p><?=$this->team_member->title?></p>
 
-<h2>Other galleries:</h2>
-<ul>
-	<? foreach($this->other_galleries as $gallery): ?>
-		<li>
-			<a href="<?=$e($gallery->url)?>">
-				<img src="<?=$e($gallery->photo_url)?>" alt="<?=$e($gallery->photo_caption)?>">
-				<h3><?=$e($gallery->title)?></h3>
-			</a>
-		</li>
-	<? endforeach ?>
-</ul>
+<h2>Bio:</h2>
+<p><?=$this->team_member->bio?></p>
+
+<h2>Email:</h2>
+<p><?=$this->team_member->email?></p>
+
+<h2>Phone:</h2>
+<p><?=$this->team_member->phone?></p>
 
 <? $this->insert('partials/footer') ?>
