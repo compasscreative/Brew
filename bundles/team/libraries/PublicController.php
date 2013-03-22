@@ -31,7 +31,7 @@ class PublicController
             }
         }
 
-        return Response::view('team::index', array('team_members' => $team_members));
+        return Response::view(Config::get('team::index_view'), array('team_members' => $team_members));
     }
 
     public function displayTeamMember($id, $slug)
@@ -60,7 +60,7 @@ class PublicController
         }
 
         // Display page
-        return Response::view('team::profile', array('team_member' => $team_member));
+        return Response::view(Config::get('team::profile_view'), array('team_member' => $team_member));
     }
 
     public function displayPhoto($size, $id)

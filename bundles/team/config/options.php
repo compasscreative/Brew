@@ -10,3 +10,12 @@ use Reinink\Trailmix\Config;
 */
 
 Config::set('team::base_url', '/team');
+
+/*
+|--------------------------------------------------------------------------
+| Views
+|--------------------------------------------------------------------------
+*/
+
+Config::set('team::index_view', 'team::index');
+Config::set('team::profile_view', 'team::profile');
