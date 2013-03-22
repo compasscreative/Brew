@@ -17,7 +17,7 @@
             <div class="title">Login</div>
         </div>
         <div class="body">
-            <form action="/admin/login" method="post">
+            <form class="standard" action="/admin/login" method="post">
                 <ul>
                     <li>
                         <div class="label">

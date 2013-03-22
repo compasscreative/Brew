@@ -7,4 +7,5 @@
 @codekit-append '../../bundles/galleries/js/admin.js'
 @codekit-append '../../bundles/leads/js/admin.js'
 @codekit-append '../../bundles/projects/js/admin.js'
+@codekit-append '../../bundles/team/js/admin.js'
 */

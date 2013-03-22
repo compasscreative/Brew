@@ -10,23 +10,28 @@
 {
 	var defaults =
 	{
-		strong: true,
-		em: true,
-		h1: true,
-		h2: true,
-		h3: true,
-		ul: true,
-		ol: true,
-		a: true,
-		img: true,
-		blockquote: true,
-		code: true
+		buttons:
+		{
+			strong: true,
+			em: true,
+			h1: true,
+			h2: true,
+			h3: true,
+			ul: true,
+			ol: true,
+			a: true,
+			img: true,
+			blockquote: true,
+			code: true
+		},
+		tabbing: false
 	};
 
 	function Plugin(element, options)
 	{
 		this.element = element;
 		this.options = $.extend({}, defaults, options);
+		this.options.buttons = $.extend({}, defaults.buttons, options.buttons);
 		this.init();
 	}
 
@@ -38,69 +43,69 @@
 			var html = '<div class="markbar">';
 
 			// Add strong
-			if (this.options.strong)
+			if (this.options.buttons.strong)
 			{
-				html += '<a href="#strong" class="strong">Bold</a>';
+				html += '<a tabindex="-1" href="#strong" class="strong">Bold</a>';
 			}
 
 			// Add em
-			if (this.options.em)
+			if (this.options.buttons.em)
 			{
-				html += '<a href="#em" class="em">Italicize</a>';
+				html += '<a tabindex="-1" href="#em" class="em">Italicize</a>';
 			}
 
 			// Add h1
-			if (this.options.h1)
+			if (this.options.buttons.h1)
 			{
-				html += '<a href="#h1" class="h1">Heading 1</a>';
+				html += '<a tabindex="-1" href="#h1" class="h1">Heading 1</a>';
 			}
 
 			// Add h2
-			if (this.options.h2)
+			if (this.options.buttons.h2)
 			{
-				html += '<a href="#h2" class="h2">Heading 2</a>';
+				html += '<a tabindex="-1" href="#h2" class="h2">Heading 2</a>';
 			}
 
 			// Add h3
-			if (this.options.h3)
+			if (this.options.buttons.h3)
 			{
-				html += '<a href="#h3" class="h3">Heading 3</a>';
+				html += '<a tabindex="-1" href="#h3" class="h3">Heading 3</a>';
 			}
 
 			// Add ul
-			if (this.options.ul)
+			if (this.options.buttons.ul)
 			{
-				html += '<a href="#ul" class="ul">Unordered List</a>';
+				html += '<a tabindex="-1" href="#ul" class="ul">Unordered List</a>';
 			}
 
 			// Add ol
-			if (this.options.ol)
+			if (this.options.buttons.ol)
 			{
-				html += '<a href="#ol" class="ol">Ordered List</a>';
+				html += '<a tabindex="-1" href="#ol" class="ol">Ordered List</a>';
 			}
 
 			// Add a
-			if (this.options.a)
+			if (this.options.buttons.a)
 			{
-				html += '<a href="#a" class="a">Link</a>';
+				html += '<a tabindex="-1" href="#a" class="a">Link</a>';
 			}
 
 			// Add img
-			if (this.options.img)
+			if (this.options.buttons.img)
 			{
-				html += '<a href="#img" class="img">Image</a>';
+				html += '<a tabindex="-1" href="#img" class="img">Image</a>';
 			}
 
 			// Add blockquote
-			if (this.options.blockquote)
+			if (this.options.buttons.blockquote)
 			{
-				html += '<a href="#blockquote" class="blockquote">Blockquote</a>';
+				html += '<a tabindex="-1" href="#blockquote" class="blockquote">Blockquote</a>';
 			}
 
 			// Add code
-			if (this.options.code)
+			if (this.options.buttons.code)
 			{
-				html += '<a href="#code" class="code">Code</a>';
+				html += '<a tabindex="-1" href="#code" class="code">Code</a>';
 			}
 
 			// Close div
@@ -120,14 +125,17 @@
 			});
 
 			// Tabbing
-			$(this.element).on('keydown', function(event)
+			if (this.options.tabbing)
 			{
-				if (event.keyCode === 9)
+				$(this.element).on('keydown', function(event)
 				{
-					event.preventDefault();
-					self.tab(event);
-				}
-			});
+					if (event.keyCode === 9)
+					{
+						event.preventDefault();
+						self.tab(event);
+					}
+				});
+			}
 		},
 
 		strong: function()

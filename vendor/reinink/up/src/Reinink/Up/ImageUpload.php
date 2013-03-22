@@ -46,8 +46,8 @@ class ImageUpload extends FileUpload
             // Delete the original uploaded file
             @unlink($this->file_path);
 
-            // Update object with new file
-            $this->file_path = $this->file_path . '.jpg';
+            // Rename the new file (to it's original tmp name)
+            rename($this->file_path . '.jpg', $this->file_path);
 
             return true;
 

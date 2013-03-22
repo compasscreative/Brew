@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Editing Project</div>
     </div>
     <div class="body">
-        <form autocomplete="off" id="projects_project_edit">
+        <form class="standard" autocomplete="off" id="projects_project_edit">
             <input type="hidden" name="id" value="<?=$this->project->id?>">
             <ul>
                 <li>

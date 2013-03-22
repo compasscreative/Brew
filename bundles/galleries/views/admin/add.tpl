@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Add Gallery</div>
     </div>
     <div class="body">
-        <form autocomplete="off" id="galleries_gallery_add">
+        <form class="standard" autocomplete="off" id="galleries_gallery_add">
             <ul>
                 <li>
                     <div class="label">

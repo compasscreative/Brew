@@ -75,10 +75,13 @@ $(function()
 		*/
 		form.find('[name=description]').markbar(
 		{
-			h1: false,
-			img: false,
-			blockquote: false,
-			code: false
+			buttons:
+			{
+				h1: false,
+				img: false,
+				blockquote: false,
+				code: false
+			}
 		});
 	}
 });
@@ -169,10 +172,13 @@ $(function()
 		*/
 		form.find('[name=description]').markbar(
 		{
-			h1: false,
-			img: false,
-			blockquote: false,
-			code: false
+			buttons:
+			{
+				h1: false,
+				img: false,
+				blockquote: false,
+				code: false
+			}
 		});
 
 		/*

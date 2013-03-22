@@ -14,7 +14,8 @@ abstract class SecureController
 
         // Make sure user is logged in
         if (!isset($_SESSION['admin::logged_in']) or !$_SESSION['admin::logged_in']) {
-            Response::redirect('/admin/login');
+            header('Location: /admin/login');
+            exit;
         }
     }
 }

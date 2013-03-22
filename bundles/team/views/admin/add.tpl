@@ -1,75 +1,70 @@
 <?
-$this->title = 'Add Project';
+$this->title = 'Add Team Member';
 $this->insert('admin::partials/header');
 ?>
 
 <div class="panel">
     <div class="header">
-        <div class="title">Add Project</div>
+        <div class="title">Add Team Member</div>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="projects_project_add">
+        <form class="standard" autocomplete="off" id="team_team_member_add">
             <ul>
+                <li>
+                    <div class="label">
+                        <label>First name:</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" name="first_name" />
+                        <div class="error_message required">Required field.</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="label">
+                        <label>Last name:</label>
+                    </div>
+                    <div class="field">
+                        <input type="text" name="last_name" />
+                        <div class="error_message required">Required field.</div>
+                    </div>
+                </li>
                 <li>
                     <div class="label">
                         <label>Title:</label>
                     </div>
                     <div class="field">
                         <input type="text" name="title" />
-                        <div class="error_message required">Required field.</div>
                     </div>
                 </li>
                 <li>
                     <div class="label">
-                        <label>Date Completed:</label>
+                        <label>Bio:</label>
                     </div>
                     <div class="field">
-                        <input type="text" name="completed_date" value="<?=date('Y-m-d')?>" />
-                        <div class="error_message required">Required field.</div>
-                        <div class="error_message invalid">Not a valid date. Required format: YYYY-MM-DD</div>
-                    </div>
-                    <div class="instructions">Not published on the website, however it is used to order the projects.</div>
-                </li>
-                <li>
-                    <div class="label">
-                        <label>Introduction:</label>
-                    </div>
-                    <div class="field">
-                        <input type="text" name="introduction" />
+                        <textarea name="bio" style="height: 200px;"></textarea>
                     </div>
                 </li>
                 <li>
                     <div class="label">
-                        <label>Description:</label>
+                        <label>Email:</label>
                     </div>
                     <div class="field">
-                        <textarea name="description" style="height: 200px;"></textarea>
-                    </div>
-                    <div class="instructions" style="margin-top: 32px;">This field uses Markdown, a handy text to HTML converter. Use the toolbar to see how it works.</div>
-                </li>
-                <li>
-                    <div class="label">
-                        <label>Awards:</label>
-                    </div>
-                    <div class="field">
-                        <input type="text" name="awards" />
+                        <input type="text" name="email" />
+                        <div class="error_message invalid">Invalid email address.</div>
                     </div>
                 </li>
                 <li>
                     <div class="label">
-                        <label>Landscape Ontario:</label>
+                        <label>Phone:</label>
                     </div>
                     <div class="field">
-                        <select name="show_lo_award">
-                            <option value="1">Show award</option>
-                            <option value="0">Do not show award</option>
-                        </select>
+                        <input type="text" name="phone" />
                     </div>
                 </li>
                 <li>
                     <div class="buttons">
                         <button type="submit">Create</button>
-                        <button type="button" class="done" onclick="javascript:window.location = '/admin/projects';">Cancel</button>
+                        <button type="button" class="done" onclick="javascript:window.location = '/admin/galleries';">Cancel</button>
                     </div>
                 </li>
             </ul>
