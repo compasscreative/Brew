@@ -311,18 +311,6 @@ class AdminController extends SecureController
         return true;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public function displayBlogCategories()
     {
         return Response::view(
@@ -340,34 +328,17 @@ class AdminController extends SecureController
 
     public function editBlogCategory($id)
     {
-        // Load article
-        if (!$article = BlogArticle::select('id, category_id, title, body, status, published_date')
+        if ($category = BlogCategory::select('id, name')
                               ->where('id', $id)
                               ->row()) {
 
-            Response::notFound();
+            return Response::view(
+                'blog::admin/categories/edit',
+                [
+                    'category' => $category
+                ]
+            );
         }
-
-        // Load categories
-        $categories = BlogCategory::select('id, name')
-                                  ->orderBy('name')
-                                  ->rows();
-
-        // Load photos
-        $photos = BlogPhoto::select('id, caption')
-                              ->where('article_id', $id)
-                              ->orderBy('display_order')
-                              ->rows();
-
-        // Display page
-        return Response::view(
-            'blog::admin/categories/edit',
-            [
-                'article' => $article,
-                'categories' => $categories,
-                'photos' => $photos
-            ]
-        );
     }
 
     public function insertBlogCategory()
@@ -390,47 +361,19 @@ class AdminController extends SecureController
     {
         // Check for required paramaters
         if (!isset($_POST['id']) or
-            !isset($_POST['title']) or
-            !isset($_POST['published_date']) or
-            !isset($_POST['status']) or
-            !isset($_POST['category_id']) or
-            !isset($_POST['body'])) {
+            !isset($_POST['name'])) {
 
             Response::badRequest();
         }
 
-        // Load the article
-        if (!$article = BlogArticle::select($_POST['id'])) {
+        // Load the category
+        if (!$category = BlogCategory::select($_POST['id'])) {
             Response::notFound();
         }
 
-        // Update the article
-        $article->title = trim($_POST['title']);
-        $article->published_date = trim($_POST['published_date']);
-        $article->status = trim($_POST['status']);
-        $article->category_id = trim($_POST['category_id']);
-        $article->body = trim($_POST['body']);
-        $article->update();
-
-        // Update photo order and captions
-        if (isset($_POST['photos'])) {
-
-            $display_order = 1;
-
-            foreach ($_POST['photos'] as $id => $caption) {
-
-                if ($photo = BlogPhoto::select($id)) {
-
-                    // Update object
-                    $photo->caption = trim($caption);
-                    $photo->display_order = $display_order;
-                    $photo->update();
-
-                    // Update display order
-                    $display_order++;
-                }
-            }
-        }
+        // Update the category
+        $category->name = trim($_POST['name']);
+        $category->update();
 
         // Success
         return true;
@@ -443,21 +386,22 @@ class AdminController extends SecureController
             Response::badRequest();
         }
 
-        // Load the article
-        if (!$article = BlogArticle::select($_POST['id'])) {
+        // Load the category
+        if (!$category = BlogCategory::select($_POST['id'])) {
             Response::notFound();
         }
 
-        // Delete all blog photos
-        foreach (BlogPhoto::select()
-                          ->where('article_id', $article->id)
-                          ->rows() as $photo) {
+        // Update blog articles
+        foreach (BlogArticle::select()
+                          ->where('category_id', $category->id)
+                          ->rows() as $article) {
 
-            $photo->delete();
+            $article->category_id = null;
+            $article->update();
         }
 
-        // Delete the article
-        $article->delete();
+        // Delete the category
+        $category->delete();
 
         // Success
         return true;

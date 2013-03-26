@@ -1,34 +1,36 @@
 <?
-$this->title = $e($this->gallery->title);
+$this->title = $e($this->article->title) . ' | Blog';
 $this->insert('partials/header');
 ?>
 
-<h1><?=$e($this->gallery->title)?></h1>
+<div class="articles">
+    <div class="article">
 
-<h2>Description:</h2>
-<p><?=$this->gallery->description?></p>
+        <h1><?=$e($this->article->title)?></h1>
 
-<h2>Photos:</h2>
-<ul>
-	<? foreach ($this->photos as $photo): ?>
-		<li>
-			<a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
-				<img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
-			</a>
-		</li>
-	<? endforeach ?>
-</ul>
+        <p>Published on <?=date_create($this->article->published_date)->format('F j, Y')?></p>
 
-<h2>Other galleries:</h2>
-<ul>
-	<? foreach($this->other_galleries as $gallery): ?>
-		<li>
-			<a href="<?=$e($gallery->url)?>">
-				<img src="<?=$e($gallery->photo_url)?>" alt="<?=$e($gallery->photo_caption)?>">
-				<h3><?=$e($gallery->title)?></h3>
-			</a>
-		</li>
-	<? endforeach ?>
-</ul>
+        <? if ($this->photos): ?>
+            <img src="<?=$e($this->photos[0]->large_url)?>" alt="<?=$e($this->photos[0]->caption)?>" />
+            <? array_shift($this->photos) ?>
+        <? endif ?>
+
+        <ul>
+            <? foreach ($this->photos as $photo): ?>
+                <li>
+                    <a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
+                        <img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
+                    </a>
+                </li>
+            <? endforeach ?>
+        </ul>
+
+        <div class="body">
+            <?=$this->article->body?>
+        </div>
+    </div>
+</div>
+
+<?=$this->sidebar?>
 
 <? $this->insert('partials/footer') ?>

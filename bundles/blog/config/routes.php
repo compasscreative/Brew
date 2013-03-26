@@ -7,8 +7,9 @@ use Reinink\Trailmix\Config;
 
 // Public
 Router::get(Config::get('blog::base_url'), 'Brew\Blog\PublicController::displayIndex');
-Router::get(Config::get('blog::base_url') . '/([0-9]+)/([a-z-0-9]+)', 'Brew\Blog\PublicController::displayGallery');
+Router::get(Config::get('blog::base_url') . '/([0-9]+)/([a-z-0-9]+)', 'Brew\Blog\PublicController::displayBlogArticle');
 Router::get(Config::get('blog::base_url') . '/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', 'Brew\Blog\PublicController::displayPhoto');
+Router::get(Config::get('blog::base_url') . '/category/([0-9]+)/([a-z-0-9]+)', 'Brew\Blog\PublicController::displayCategory');
 
 // Admin: Blog Article Pages
 Router::get('/admin/blog', 'Brew\Blog\AdminController::redirectToArticles');

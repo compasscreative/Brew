@@ -15,4 +15,4 @@ LEFt JOIN
     )
 
 ORDER BY
-    blog_articles.published_date
+    blog_articles.published_date DESC

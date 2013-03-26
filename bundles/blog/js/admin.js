@@ -383,3 +383,90 @@ $(function()
 		});
 	}
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Edit category
+|--------------------------------------------------------------------------
+*/
+$(function()
+{
+	var form = $('form#blog_blog_category_edit');
+
+	if (form.length)
+	{
+		/*
+		| --------------------
+		| Form submit
+		| --------------------
+		*/
+		form.bind('submit', function(event)
+		{
+			// Prevent default
+			event.preventDefault();
+
+			// Send request
+			$.ajax(
+			{
+				type: 'post',
+				url: '/admin/blog/category/update',
+				data: form.serialize(),
+				dataType: 'json',
+				beforeSend: function()
+				{
+					// Clear existing errors
+					form.find('.error_message').hide();
+					form.find('input, select, textarea').removeClass('error');
+
+					// Validate name
+					if ($.trim(form.find('[name=name]').val()).length === 0)
+					{
+						form.find('[name=name]').addClass('error').siblings('.error_message.required').show();
+					}
+
+					// Return validation results
+					return form.find('.error').length === 0;
+				},
+				success: function()
+				{
+					// Display success message
+					form.find('.saved_message').fadeIn('fast', function()
+					{
+						setTimeout(function()
+						{
+							form.find('.saved_message').fadeOut('fast');
+
+						}, 1000);
+					});
+				}
+			});
+		});
+
+
+		/*
+		| --------------------
+		| Delete gallery
+		| --------------------
+		*/
+		form.on('click', 'button.delete_category', function()
+		{
+			if (confirm('Are you sure you want to delete this category?'))
+			{
+				$.ajax(
+				{
+					type: 'post',
+					url: '/admin/blog/category/delete',
+					data:
+					{
+						id: form.find('[name=id]').val()
+					},
+					success: function()
+					{
+						location.href = '/admin/blog/categories';
+					}
+				});
+			}
+		});
+	}
+});

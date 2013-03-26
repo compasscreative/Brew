@@ -22,7 +22,7 @@ $this->insert('admin::partials/header');
                 <? if ($this->categories): ?>
                     <? foreach ($this->categories as $category): ?>
                         <tr>
-                            <td><a href="/admin/blog/categories/edit/<?=$e($category->id)?>/"><?=$e($category->name)?></a></td>
+                            <td><a href="/admin/blog/category/edit/<?=$e($category->id)?>/"><?=$e($category->name)?></a></td>
                         </tr>
                     <? endforeach ?>
                 <? else: ?>
