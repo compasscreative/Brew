@@ -1,0 +1,10 @@
+{
+	"name": "reinink/query",
+	"autoload":
+	{
+		"psr-0":
+		{
+			"Reinink\\Query\\": "src"
+		}
+	}
+}

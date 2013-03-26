@@ -1,0 +1,10 @@
+{
+	"name": "reinink/booboo",
+	"autoload":
+	{
+		"psr-0":
+		{
+			"Reinink\\BooBoo\\": "src"
+		}
+	}
+}

@@ -51,4 +51,3 @@ build/config/buildinfo.properties
 
 # Composer
 composer.lock
-vendor/.git
