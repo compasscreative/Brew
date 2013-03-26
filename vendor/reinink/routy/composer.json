@@ -1,5 +1,7 @@
 {
 	"name": "reinink/routy",
+    "description": "PHP libraries that make routing more manageable.",
+    "version": "1.0.0",
 	"autoload":
 	{
 		"psr-0":

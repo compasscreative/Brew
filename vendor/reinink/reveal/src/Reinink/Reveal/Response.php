@@ -1,12 +1,4 @@
 <?php
-/**
- * PHP libraries that make HTTP responses more manageable.
- *
- * @package  Reveal
- * @version  1.2.2
- * @author   Jonathan Reinink <jonathan@reininks.com>
- * @link     https://github.com/reinink/Reveal
- */
 
 namespace Reinink\Reveal;
 

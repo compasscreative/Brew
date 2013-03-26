@@ -1,5 +1,7 @@
 {
 	"name": "reinink/booboo",
+    "description": "A PHP class that manages uncaught exceptions and errors.",
+    "version": "1.0.0",
 	"autoload":
 	{
 		"psr-0":

@@ -1,5 +1,7 @@
 {
 	"name": "reinink/trailmix",
+    "description": "Various PHP utility classes.",
+    "version": "1.0.0",
 	"autoload":
 	{
 		"psr-0":

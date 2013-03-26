@@ -1,12 +1,4 @@
 <?php
-/**
- * A PHP class that manages uncaught exceptions and errors.
- *
- * @package  BooBoo
- * @version  1.1.1
- * @author   Jonathan Reinink <jonathan@reininks.com>
- * @link     https://github.com/reinink/BooBoo
- */
 
 namespace Reinink\BooBoo;
 

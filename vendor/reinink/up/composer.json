@@ -1,5 +1,7 @@
 {
 	"name": "reinink/up",
+    "description": "PHP libraries that makes file uploading a little easier.",
+    "version": "1.0.0",
 	"autoload":
 	{
 		"psr-0":

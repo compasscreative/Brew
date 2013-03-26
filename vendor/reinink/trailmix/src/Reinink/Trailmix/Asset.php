@@ -1,5 +1,4 @@
 <?php
-
 namespace Reinink\Trailmix;
 
 class Asset

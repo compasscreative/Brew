@@ -1,5 +1,4 @@
 <?php
-
 namespace Reinink\Up;
 
 class PDFUpload extends FileUpload

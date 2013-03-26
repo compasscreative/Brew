@@ -1,5 +1,4 @@
 <?php
-
 namespace Reinink\Up;
 
 use Reinink\Magick\Magick;

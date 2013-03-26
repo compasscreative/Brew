@@ -1,13 +1,4 @@
 <?php
-/**
- * A class that makes file uploading a little easier.
- *
- * @package  Up
- * @version  1.1.0
- * @author   Jonathan Reinink <jonathan@reininks.com>
- * @link     https://github.com/reinink/Up
- */
-
 namespace Reinink\Up;
 
 class FileUpload

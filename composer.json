@@ -3,13 +3,13 @@
 	{
 		"monolog/monolog": "dev-master",
 		"michelf/php-markdown": "1.3.*@dev",
-		"reinink/booboo": "dev-master",
-		"reinink/magick": "dev-master",
-		"reinink/query": "dev-master",
-		"reinink/reveal": "dev-master",
-		"reinink/routy": "dev-master",
-		"reinink/trailmix": "dev-master",
-		"reinink/up": "dev-master"
+		"reinink/booboo": "1.0.*",
+		"reinink/magick": "1.0.*",
+		"reinink/query": "1.0.*",
+		"reinink/reveal": "1.0.*",
+		"reinink/routy": "1.0.*",
+		"reinink/trailmix": "1.0.*",
+		"reinink/up": "1.0.*"
 	},
 	"repositories": [
 		{

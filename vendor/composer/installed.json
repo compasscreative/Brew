@@ -46,12 +46,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "d13bd6e1acb4b7e413320d0b8854d39b1b5d8979"
+            "reference": "434ef8bbf660df5e52d83fb9b28e795864051be6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d13bd6e1acb4b7e413320d0b8854d39b1b5d8979",
-            "reference": "d13bd6e1acb4b7e413320d0b8854d39b1b5d8979",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/434ef8bbf660df5e52d83fb9b28e795864051be6",
+            "reference": "434ef8bbf660df5e52d83fb9b28e795864051be6",
             "shasum": ""
         },
         "require": {
@@ -70,7 +70,7 @@
             "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
             "raven/raven": "Allow sending log messages to a Sentry server"
         },
-        "time": "2013-03-24 12:38:38",
+        "time": "2013-03-26 16:05:11",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -105,197 +105,203 @@
     },
     {
         "name": "reinink/booboo",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/BooBoo.git",
-            "reference": "3f4cc031cb724093d4c590a56180835f7083ed8d"
+            "reference": "1.0.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/BooBoo/zipball/3f4cc031cb724093d4c590a56180835f7083ed8d",
-            "reference": "3f4cc031cb724093d4c590a56180835f7083ed8d",
+            "url": "https://api.github.com/repos/reinink/BooBoo/zipball/1.0.0",
+            "reference": "1.0.0",
             "shasum": ""
         },
-        "time": "2013-03-18 13:31:57",
+        "time": "2013-03-26 18:36:33",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Reinink\\BooBoo\\": "src"
             }
         },
+        "description": "A PHP class that manages uncaught exceptions and errors.",
         "support": {
-            "source": "https://github.com/reinink/BooBoo/tree/master",
+            "source": "https://github.com/reinink/BooBoo/tree/1.0.0",
             "issues": "https://github.com/reinink/BooBoo/issues"
         }
     },
     {
         "name": "reinink/magick",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Magick.git",
-            "reference": "20f72a0e99a76fbd9ee25528f879eb6470e1ecab"
+            "reference": "1.0.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Magick/zipball/20f72a0e99a76fbd9ee25528f879eb6470e1ecab",
-            "reference": "20f72a0e99a76fbd9ee25528f879eb6470e1ecab",
+            "url": "https://api.github.com/repos/reinink/Magick/zipball/1.0.0",
+            "reference": "1.0.0",
             "shasum": ""
         },
-        "time": "2013-03-18 13:43:56",
+        "time": "2013-03-26 18:38:21",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Reinink\\Magick\\": "src"
             }
         },
+        "description": "An ultra lightweight ImageMagick wrapper for PHP.",
         "support": {
-            "source": "https://github.com/reinink/Magick/tree/master",
+            "source": "https://github.com/reinink/Magick/tree/1.0.0",
             "issues": "https://github.com/reinink/Magick/issues"
         }
     },
     {
         "name": "reinink/query",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Query.git",
-            "reference": "2376c83bba93209606aaf1d9799d25904efd32f2"
+            "reference": "1.0.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Query/zipball/2376c83bba93209606aaf1d9799d25904efd32f2",
-            "reference": "2376c83bba93209606aaf1d9799d25904efd32f2",
+            "url": "https://api.github.com/repos/reinink/Query/zipball/1.0.0",
+            "reference": "1.0.0",
             "shasum": ""
         },
-        "time": "2013-03-18 19:04:12",
+        "time": "2013-03-26 18:39:39",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Reinink\\Query\\": "src"
             }
         },
+        "description": "A database layer for developers who like writing SQL.",
         "support": {
-            "source": "https://github.com/reinink/Query/tree/master",
+            "source": "https://github.com/reinink/Query/tree/1.0.0",
             "issues": "https://github.com/reinink/Query/issues"
         }
     },
     {
         "name": "reinink/reveal",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Reveal.git",
-            "reference": "d34450fde1ef3232b8134ce2edf1739445ff8b3e"
+            "reference": "1.0.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Reveal/zipball/d34450fde1ef3232b8134ce2edf1739445ff8b3e",
-            "reference": "d34450fde1ef3232b8134ce2edf1739445ff8b3e",
+            "url": "https://api.github.com/repos/reinink/Reveal/zipball/1.0.0",
+            "reference": "1.0.0",
             "shasum": ""
         },
-        "time": "2013-03-20 21:37:49",
+        "time": "2013-03-26 18:29:49",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Reinink\\Reveal\\": "src"
             }
         },
         "support": {
-            "source": "https://github.com/reinink/Reveal/tree/master",
+            "source": "https://github.com/reinink/Reveal/tree/1.0.0",
             "issues": "https://github.com/reinink/Reveal/issues"
         }
     },
     {
         "name": "reinink/routy",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Routy.git",
-            "reference": "f56a72f5d3c94be925ca3a9395fcc676dd53b36e"
+            "reference": "1.0.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Routy/zipball/f56a72f5d3c94be925ca3a9395fcc676dd53b36e",
-            "reference": "f56a72f5d3c94be925ca3a9395fcc676dd53b36e",
+            "url": "https://api.github.com/repos/reinink/Routy/zipball/1.0.0",
+            "reference": "1.0.0",
             "shasum": ""
         },
-        "time": "2013-03-18 13:53:42",
+        "time": "2013-03-26 18:42:06",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Reinink\\Routy\\": "src"
             }
         },
+        "description": "PHP libraries that make routing more manageable.",
         "support": {
-            "source": "https://github.com/reinink/Routy/tree/master",
+            "source": "https://github.com/reinink/Routy/tree/1.0.0",
             "issues": "https://github.com/reinink/Routy/issues"
         }
     },
     {
         "name": "reinink/trailmix",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Trailmix.git",
-            "reference": "3e8fff8e1be690dd0a46bd1e4c9ddf3bb801e4a6"
+            "reference": "1.0.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Trailmix/zipball/3e8fff8e1be690dd0a46bd1e4c9ddf3bb801e4a6",
-            "reference": "3e8fff8e1be690dd0a46bd1e4c9ddf3bb801e4a6",
+            "url": "https://api.github.com/repos/reinink/Trailmix/zipball/1.0.0",
+            "reference": "1.0.0",
             "shasum": ""
         },
-        "time": "2013-03-20 15:14:48",
+        "time": "2013-03-26 18:43:23",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Reinink\\Trailmix\\": "src"
             }
         },
+        "description": "Various PHP utility classes.",
         "support": {
-            "source": "https://github.com/reinink/Trailmix/tree/master",
+            "source": "https://github.com/reinink/Trailmix/tree/1.0.0",
             "issues": "https://github.com/reinink/Trailmix/issues"
         }
     },
     {
         "name": "reinink/up",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/reinink/Up.git",
-            "reference": "5be524c539b0251de0f7b483a3c8d4ad4f860f8a"
+            "reference": "1.0.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Up/zipball/5be524c539b0251de0f7b483a3c8d4ad4f860f8a",
-            "reference": "5be524c539b0251de0f7b483a3c8d4ad4f860f8a",
+            "url": "https://api.github.com/repos/reinink/Up/zipball/1.0.0",
+            "reference": "1.0.0",
             "shasum": ""
         },
-        "time": "2013-03-22 20:20:35",
+        "time": "2013-03-26 18:45:17",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Reinink\\Up\\": "src"
             }
         },
+        "description": "PHP libraries that makes file uploading a little easier.",
         "support": {
-            "source": "https://github.com/reinink/Up/tree/master",
+            "source": "https://github.com/reinink/Up/tree/1.0.0",
             "issues": "https://github.com/reinink/Up/issues"
         }
     },

@@ -1,5 +1,4 @@
 <?php
-
 namespace Reinink\Up;
 
 class MP3Upload extends FileUpload
