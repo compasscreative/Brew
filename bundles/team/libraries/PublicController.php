@@ -12,7 +12,7 @@ class PublicController
     public function displayIndex()
     {
         // Load team members
-        $team_members = TeamMember::select('id, first_name, last_name')->orderBy('display_order')->rows();
+        $team_members = TeamMember::select('id, first_name, last_name, title')->orderBy('display_order')->rows();
 
         // Add urls
         foreach ($team_members as $team_member) {

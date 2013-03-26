@@ -31,7 +31,7 @@ class LeadForm
         $this->id = $id;
     }
 
-    public function setFrom($name, $email)
+    public function setFrom($from_name, $from_email)
     {
         $this->from_name = $from_name;
         $this->from_email = $from_email;
