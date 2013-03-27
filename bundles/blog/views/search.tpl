@@ -1,23 +1,36 @@
 <?
-$this->title = 'Galleries';
+$this->title = 'Search for &ldquo;' . $e($this->query) . '&rdquo; | Blog';
 $this->insert('partials/header');
 ?>
 
-<h1>Galleries</h1>
+<h1>Search for &ldquo;<?=$e($this->query)?>&rdquo;</h1>
 
-<? if ($this->galleries): ?>
+<? if ($this->articles): ?>
     <ul>
-    	<? foreach($this->galleries as $gallery): ?>
-    		<li>
-    			<a href="<?=$e($gallery->url)?>">
-    				<img src="<?=$e($gallery->photo_url)?>" alt="<?=$e($gallery->photo_caption)?>">
-    				<h3><?=$e($gallery->title)?></h3>
-    			</a>
-    		</li>
-    	<? endforeach ?>
+        <? foreach($this->articles as $article): ?>
+            <li>
+                <div class="photo">
+                    <? if ($article->photo_url): ?>
+                        <a href="<?=$e($article->url)?>">
+                            <img src="<?=$e($article->photo_url)?>" alt="">
+                        </a>
+                    <? endif ?>
+                </div>
+
+                <div class="title">
+                    <a href="<?=$e($article->url)?>"><?=$e($article->title)?></a>
+                </div>
+
+                <div class="date">
+                    <?=date_create($article->published_date)->format('F j, Y')?>
+                </div>
+            </li>
+        <? endforeach ?>
     </ul>
 <? else: ?>
-    <p>No galleries found.</p>
+    <p>Sorry, no results were found.</p>
 <? endif ?>
+
+<?=$this->sidebar?>
 
 <? $this->insert('partials/footer') ?>

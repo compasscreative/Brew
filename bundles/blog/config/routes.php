@@ -10,6 +10,7 @@ Router::get(Config::get('blog::base_url'), 'Brew\Blog\PublicController::displayI
 Router::get(Config::get('blog::base_url') . '/([0-9]+)/([a-z-0-9]+)', 'Brew\Blog\PublicController::displayBlogArticle');
 Router::get(Config::get('blog::base_url') . '/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', 'Brew\Blog\PublicController::displayPhoto');
 Router::get(Config::get('blog::base_url') . '/category/([0-9]+)/([a-z-0-9]+)', 'Brew\Blog\PublicController::displayCategory');
+Router::post(Config::get('blog::base_url') . '/search', 'Brew\Blog\PublicController::displaySearchResults');
 
 // Admin: Blog Article Pages
 Router::get('/admin/blog', 'Brew\Blog\AdminController::redirectToArticles');

@@ -51,9 +51,9 @@ $(function()
 					// Return validation results
 					return form.find('.error').length === 0;
 				},
-				success: function(gallery)
+				success: function(article)
 				{
-					location.href = '/admin/blog/article/edit/' + gallery.id;
+					location.href = '/admin/blog/article/edit/' + article.id;
 				}
 			});
 		});
@@ -266,7 +266,7 @@ $(function()
 
 		/*
 		| --------------------
-		| Delete gallery
+		| Delete article
 		| --------------------
 		*/
 		form.on('click', 'button.delete_article', function()
@@ -375,9 +375,9 @@ $(function()
 					// Return validation results
 					return form.find('.error').length === 0;
 				},
-				success: function(gallery)
+				success: function(category)
 				{
-					location.href = '/admin/blog/category/edit/' + gallery.id;
+					location.href = '/admin/blog/category/edit/' + category.id;
 				}
 			});
 		});
@@ -446,7 +446,7 @@ $(function()
 
 		/*
 		| --------------------
-		| Delete gallery
+		| Delete category
 		| --------------------
 		*/
 		form.on('click', 'button.delete_category', function()

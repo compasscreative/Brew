@@ -3,9 +3,9 @@
 <div class="sidebar">
 
     <h3>Search</h3>
-    <form>
-        <input type="text">
-        <button>Search</button>
+    <form action="<?=$this->search_url?>" method="post">
+        <input type="text" name="query">
+        <button type="submit">Search</button>
     </form>
 
     <h3>Categories:</h3>

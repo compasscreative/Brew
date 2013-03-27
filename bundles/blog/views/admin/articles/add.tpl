@@ -62,7 +62,7 @@ $this->insert('admin::partials/header');
                         <label>Body:</label>
                     </div>
                     <div class="field">
-                        <textarea name="body" style="height: 200px;"></textarea>
+                        <textarea name="body" style="height: 300px;"></textarea>
                     </div>
                     <div class="instructions" style="margin-top: 32px;">This field uses Markdown, a handy text to HTML converter. Use the toolbar to see how it works.</div>
                 </li>

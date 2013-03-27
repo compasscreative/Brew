@@ -1,5 +1,5 @@
 <?php
-namespace Brew\Galleries;
+namespace Brew\Blog;
 
 use Reinink\Trailmix\Config;
 use Reinink\Query\DB;

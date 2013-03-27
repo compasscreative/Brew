@@ -33,7 +33,7 @@ class PublicController
 
         // Display page
         return Response::view(
-            'blog::index',
+            Config::get('blog::views')['index'],
             [
                 'articles' => $articles,
                 'sidebar' => $this->generateSidebar()->render()
@@ -50,7 +50,7 @@ class PublicController
 
         // Validate url slug
         if ($slug !== Str::slug($article->title)) {
-            return Response::redirect(Config::get('galleries::base_url') . '/' . $article->id . '/' . Str::slug($article->title));
+            return Response::redirect(Config::get('blog::base_url') . '/' . $article->id . '/' . Str::slug($article->title));
         }
 
         // Convert markdown body
@@ -93,55 +93,13 @@ class PublicController
 
         // Display page
         return Response::view(
-            'blog::article',
+            Config::get('blog::views')['article'],
             array(
                 'article' => $article,
                 'photos' => $photos,
                 'sidebar' => $this->generateSidebar()->render()
             )
         );
-    }
-
-    private function generateSidebar()
-    {
-        // Load categories
-        if ($categories = BlogCategory::select('id, name')->orderBy('name')->rows()) {
-
-            foreach ($categories as $category) {
-                $category->url = Config::get('blog::base_url') . '/category/' . $category->id . '/' . Str::slug($category->name);
-            }
-        }
-
-        // Load other articles
-        $other_articles = DB::rows('blog::public.articles.sidebar');
-
-        // Add article details
-        foreach ($other_articles as $other_article) {
-
-            // Set article url
-            $other_article->url = Config::get('blog::base_url') . '/' . $other_article->id . '/' . Str::slug($other_article->title);
-
-            // Set photo url
-            if ($other_article->photo_id) {
-                $other_article->photo_url = Config::get('blog::base_url') . '/photo/small/' . $other_article->photo_id;
-            } else {
-                $other_article->photo_url = null;
-            }
-        }
-
-        // Display page
-        return Response::view(
-            'blog::sidebar',
-            array(
-                'categories' => $categories,
-                'other_articles' => $other_articles
-            )
-        );
-    }
-
-    public function displayPhoto($size, $id)
-    {
-        return Response::jpg(STORAGE_PATH . 'blog/photos/' . $id . '/' . $size . '.jpg');
     }
 
     public function displayCategory($id, $slug)
@@ -175,12 +133,91 @@ class PublicController
 
         // Display page
         return Response::view(
-            'blog::category',
+            Config::get('blog::views')['category'],
             [
                 'category' => $category,
                 'articles' => $articles,
                 'sidebar' => $this->generateSidebar()->render()
             ]
+        );
+    }
+
+    public function displaySearchResults()
+    {
+        // Check for required paramaters
+        if (!isset($_POST['query'])) {
+
+            Response::badRequest();
+        }
+
+        // Load articles
+        $articles = DB::rows('blog::public.articles.search', array('query' => '%' . trim($_POST['query']) . '%'));
+
+        // Add article details
+        foreach ($articles as $article) {
+
+            // Set article url
+            $article->url = Config::get('blog::base_url') . '/' . $article->id . '/' . Str::slug($article->title);
+
+            // Set photo url
+            if ($article->photo_id) {
+                $article->photo_url = Config::get('blog::base_url') . '/photo/medium/' . $article->photo_id;
+            } else {
+                $article->photo_url = null;
+            }
+        }
+
+        // Display page
+        return Response::view(
+            Config::get('blog::views')['search'],
+            [
+                'query' => trim($_POST['query']),
+                'articles' => $articles,
+                'sidebar' => $this->generateSidebar()->render()
+            ]
+        );
+    }
+
+    public function displayPhoto($size, $id)
+    {
+        return Response::jpg(STORAGE_PATH . 'blog/photos/' . $id . '/' . $size . '.jpg');
+    }
+
+    private function generateSidebar()
+    {
+        // Load categories
+        if ($categories = BlogCategory::select('id, name')->orderBy('name')->rows()) {
+
+            foreach ($categories as $category) {
+                $category->url = Config::get('blog::base_url') . '/category/' . $category->id . '/' . Str::slug($category->name);
+            }
+        }
+
+        // Load other articles
+        $other_articles = DB::rows('blog::public.articles.sidebar');
+
+        // Add article details
+        foreach ($other_articles as $other_article) {
+
+            // Set article url
+            $other_article->url = Config::get('blog::base_url') . '/' . $other_article->id . '/' . Str::slug($other_article->title);
+
+            // Set photo url
+            if ($other_article->photo_id) {
+                $other_article->photo_url = Config::get('blog::base_url') . '/photo/small/' . $other_article->photo_id;
+            } else {
+                $other_article->photo_url = null;
+            }
+        }
+
+        // Display page
+        return Response::view(
+            Config::get('blog::views')['sidebar'],
+            array(
+                'search_url' => Config::get('blog::base_url') . '/search',
+                'categories' => $categories,
+                'other_articles' => $other_articles
+            )
         );
     }
 }

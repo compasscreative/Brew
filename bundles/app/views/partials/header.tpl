@@ -6,7 +6,7 @@
     <title><?
 
         if (isset($this->title)):
-            echo $e($this->title) . ' | Brew';
+            echo $this->title . ' | Brew';
         else:
             echo 'Brew';
         endif;
@@ -14,7 +14,7 @@
     ?></title>
     <?
         if (isset($this->description)):
-            echo '<meta name="description" content="' . $e($this->description) . '">';
+            echo '<meta name="description" content="' . $this->description . '">';
         endif;
     ?>
     <!--[if lt IE 8]><?=Asset::css('/css/basic.css')?><![endif]-->

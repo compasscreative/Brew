@@ -1,5 +1,5 @@
 <?php
-namespace Brew\Galleries;
+namespace Brew\Blog;
 
 use Reinink\Trailmix\Config;
 
@@ -22,6 +22,8 @@ Config::set(
     [
         'index' => 'blog::index',
         'article' => 'blog::article',
-        'search' => 'blog::search'
+        'category' => 'blog::category',
+        'search' => 'blog::search',
+        'sidebar' => 'blog::sidebar'
     ]
 );
