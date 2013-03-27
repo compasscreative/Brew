@@ -44,7 +44,7 @@ class PublicController
     public function displayBlogArticle($id, $slug)
     {
         // Load article
-        if (!$article = BlogArticle::select('id, title, body, published_date')->where('id', $id)->row()) {
+        if (!$article = BlogArticle::select('id, category_id, title, body, status, published_date')->where('id', $id)->row()) {
             Response::notFound();
         }
 
@@ -70,7 +70,14 @@ class PublicController
         if ($categories = BlogCategory::select('id, name')->orderBy('name')->rows()) {
 
             foreach ($categories as $category) {
+
+                // Set category url
                 $category->url = Config::get('blog::base_url') . '/category/' . $category->id . '/' . Str::slug($category->name);
+
+                // Set article category
+                if ($category->id === $article->category_id) {
+                    $article->category = $category;
+                }
             }
         }
 

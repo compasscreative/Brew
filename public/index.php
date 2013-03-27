@@ -57,6 +57,7 @@ spl_autoload_register(
         $aliases = [
             'Asset' => 'Reinink\Trailmix\Asset',
             'Config' => 'Reinink\Trailmix\Config',
+            'Request' => 'Reinink\Routy\Request',
             'URI' => 'Reinink\Routy\URI'
         ];
 

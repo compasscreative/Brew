@@ -211,7 +211,6 @@ $(function()
 		{
 			button: form.find('a.upload_photo')[0],
 			multiple: false,
-			debug: true,
 			request:
 			{
 				params:

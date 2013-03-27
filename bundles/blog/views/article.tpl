@@ -12,18 +12,19 @@ $this->insert('partials/header');
 
         <? if ($this->photos): ?>
             <img src="<?=$e($this->photos[0]->large_url)?>" alt="<?=$e($this->photos[0]->caption)?>" />
-            <? array_shift($this->photos) ?>
         <? endif ?>
 
-        <ul>
-            <? foreach ($this->photos as $photo): ?>
-                <li>
-                    <a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
-                        <img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
-                    </a>
-                </li>
-            <? endforeach ?>
-        </ul>
+        <? if (array_slice($this->photos, 1)): ?>
+            <ul>
+                <? foreach (array_slice($this->photos, 1) as $photo): ?>
+                    <li>
+                        <a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
+                            <img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
+                        </a>
+                    </li>
+                <? endforeach ?>
+            </ul>
+        <? endif ?>
 
         <div class="body">
             <?=$this->article->body?>

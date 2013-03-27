@@ -794,12 +794,22 @@ textarea {
               color: #666;
               font-size: 14px;
               line-height: 120%;
-              line-height: normal;
               font-weight: bold;
               text-align: right; }
           .container .panel .body form.standard > ul > li .field {
             float: left;
             width: 500px; }
+            .container .panel .body form.standard > ul > li .field label.sub_label {
+              display: block;
+              margin: 10px 0 3px 0;
+              font-family: Arial, Helvetica, sans-serif;
+              color: #8c8c8c;
+              font-size: 12px;
+              line-height: 120%;
+              text-transform: uppercase;
+              font-weight: bold; }
+              .container .panel .body form.standard > ul > li .field label.sub_label:first-child {
+                margin-top: 5px; }
             .container .panel .body form.standard > ul > li .field .error_message {
               display: none;
               padding: 5px 0 0 0;
@@ -884,6 +894,37 @@ textarea {
                 text-decoration: none; }
                 .container .panel .body form.standard > ul > li .field .info a:hover {
                   text-decoration: underline; }
+            .container .panel .body form.standard > ul > li .field .photo {
+              padding: 10px;
+              border-radius: 3px;
+              border: #dddddd dashed 1px; }
+              .container .panel .body form.standard > ul > li .field .photo img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin: 0 0 10px 0; }
+              .container .panel .body form.standard > ul > li .field .photo a {
+                display: inline-block;
+                vertical-align: middle;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0 10px;
+                height: 24px;
+                outline: 0;
+                border: none;
+                font-size: 12px;
+                line-height: 24px;
+                font-weight: bold;
+                color: white;
+                border-radius: 3px;
+                background: #f9a431;
+                overflow: hidden; }
+                .container .panel .body form.standard > ul > li .field .photo a:hover, .container .panel .body form.standard > ul > li .field .photo a:focus, .container .panel .body form.standard > ul > li .field .photo a.qq-upload-button-focus {
+                  background: #f08d07; }
+                .container .panel .body form.standard > ul > li .field .photo a:active {
+                  background: #be7006; }
             .container .panel .body form.standard > ul > li .field.photos ul {
               float: left;
               width: 500px;
