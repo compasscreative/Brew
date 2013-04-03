@@ -62,6 +62,23 @@ $this->insert('admin::partials/header');
                         <input type="text" name="phone" value="<?=$e($this->team_member->phone)?>" />
                     </div>
                 </li>
+                <? if ($this->categories): ?>
+                    <li>
+                        <div class="label">
+                            <label>Category:</label>
+                        </div>
+                        <div class="field">
+                            <select name="category">
+                                <option></option>
+                                <? foreach ($this->categories as $category): ?>
+                                    <option <? if($this->team_member->category === $category) echo 'selected="selected"'; ?>><?=$category?></option>
+                                <? endforeach ?>
+                            </select>
+                        </div>
+                    </li>
+                <? else: ?>
+                    <input type="hidden" name="category">
+                <? endif ?>
                 <li>
                     <div class="label">
                         <label>Photo:</label>

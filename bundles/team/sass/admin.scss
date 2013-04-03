@@ -1,65 +1,79 @@
 #team_index
 {
+    h2
+    {
+        margin: 10px 0 0 0;
+        font-family: "Lucida Grande", Verdana, sans-serif;
+        color: #666;
+        font-size: 12px;
+        line-height: 14px;
+        padding: 10px;
+        background-color: #fbfbfb;
+        border-bottom: #ddd solid 1px;
+    }
+
     ul
     {
-        margin: 15px 0 0 0;
-        padding: 0;
+        margin: 0 0 25px 0;
+        padding: 10px 0 0 0;
         list-style: none;
         overflow: hidden;
+        min-height: 30px;
 
         li
         {
             float: left;
-            width: 174px;
-            height: 260px;
-            margin: 0 15px 0 0;
+            border: solid white 2px;
+            margin: 0 8px 8px 0;
 
             a
             {
+                display: block;
+                width: 140px;
+                height: 175px;
                 text-decoration: none;
+                position: relative;
 
                 img
                 {
                     display: block;
-                    width: 174px;
-                    height: 218px;
+                    width: 140px;
+                    height: 175px;
                 }
 
                 .no_photo
                 {
-                    width: 174px;
-                    height: 218px;
+                    width: 140px;
+                    height: 175px;
                     background: lighten(black, 80%);
                 }
 
                 span
                 {
-                    display: inline-block;
-                    padding: 5px 0;
-
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    width: 130px;
+                    min-height: 15px;
+                    padding: 5px;
                     font-family: "Lucida Grande", Verdana, sans-serif;
-                    color: #666;;
+                    color: darken(#666, 10%);
                     font-size: 12px;
-                    line-height: 110%;
+                    line-height: 15px;
+                    background: lighten(black, 70%);
                 }
+            }
+
+            &.placeholder
+            {
+                border-color: lighten(black, 80%);
             }
 
             &.ui-sortable-helper
             {
+                border: none;
                 height: auto !important;
                 @include box-shadow(0 0 3px 2px hsla(0, 0%, 0%, 0.4));
-
-                a
-                {
-                    span
-                    {
-                        display: block;
-                        padding: 5px;
-                        color: black;
-                        text-decoration: none;
-                        background: lighten(black, 80%);
-                    }
-                }
             }
         }
     }

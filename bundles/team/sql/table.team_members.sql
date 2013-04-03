@@ -7,5 +7,6 @@ CREATE TABLE team_members
     bio TEXT,
     email TEXT,
     phone TEXT,
+    category TEXT,
     display_order INTEGER
 )

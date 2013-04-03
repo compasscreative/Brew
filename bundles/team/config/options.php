@@ -19,3 +19,18 @@ Config::set('team::base_url', '/team');
 
 Config::set('team::index_view', 'team::index');
 Config::set('team::profile_view', 'team::profile');
+
+/*
+|--------------------------------------------------------------------------
+| Groups
+|--------------------------------------------------------------------------
+*/
+
+Config::set(
+    'team::categories',
+    [
+        'Management',
+        'Designers',
+        'Programmers'
+    ]
+);

@@ -61,10 +61,27 @@ $this->insert('admin::partials/header');
                         <input type="text" name="phone" />
                     </div>
                 </li>
+                <? if ($this->categories): ?>
+                    <li>
+                        <div class="label">
+                            <label>Category:</label>
+                        </div>
+                        <div class="field">
+                            <select name="category">
+                                <option></option>
+                                <? foreach ($this->categories as $category): ?>
+                                    <option><?=$category?></option>
+                                <? endforeach ?>
+                            </select>
+                        </div>
+                    </li>
+                <? else: ?>
+                    <input type="hidden" name="category">
+                <? endif ?>
                 <li>
                     <div class="buttons">
                         <button type="submit">Create</button>
-                        <button type="button" class="done" onclick="javascript:window.location = '/admin/galleries';">Cancel</button>
+                        <button type="button" class="done" onclick="javascript:window.location = '/admin/team';">Cancel</button>
                     </div>
                 </li>
             </ul>

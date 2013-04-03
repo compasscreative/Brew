@@ -1,10 +1,5 @@
 @import "bourbon";
 
-html
-{
-
-}
-
 .container
 {
     width: 1000px;
@@ -58,6 +53,7 @@ html
 
         ul
         {
+            list-style: none;
             float: left;
             margin: 0;
             padding: 15px 0;

@@ -12,11 +12,14 @@ class AdminController extends SecureController
 {
     public function displayTeamMembers()
     {
+        // Create array of categories
+        $categories = array_merge(array(''), Config::get('team::categories'));
+
         // Load team members
-        $team_members = TeamMember::select('id, first_name, last_name')->orderBy('display_order')->rows();
+        $members = TeamMember::select('id, first_name, last_name, category')->orderBy('display_order')->rows();
 
         // Set photo url
-        foreach ($team_members as $team_member) {
+        foreach ($members as $team_member) {
 
             // Set photo path
             $path = STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg';
@@ -27,19 +30,35 @@ class AdminController extends SecureController
             } else {
                 $team_member->photo_url = null;
             }
+
+            // Validate category
+            if (!in_array($team_member->category, $categories)) {
+                $team_member->category = '';
+            }
         }
 
-        return Response::view('team::admin/index', array('team_members' => $team_members));
+        return Response::view(
+            'team::admin/index',
+            [
+                'categories' => $categories,
+                'members' => $members
+            ]
+        );
     }
 
     public function addTeamMember()
     {
-        return Response::view('team::admin/add');
+        return Response::view(
+            'team::admin/add',
+            [
+                'categories' => Config::get('team::categories')
+            ]
+        );
     }
 
     public function editTeamMember($id)
     {
-        if ($team_member = TeamMember::select('id, first_name, last_name, title, bio, email, phone')
+        if ($team_member = TeamMember::select('id, first_name, last_name, title, bio, email, phone, category')
                               ->where('id', $id)
                               ->row()) {
 
@@ -54,7 +73,13 @@ class AdminController extends SecureController
             }
 
             // Display page
-            return Response::view('team::admin/edit', array('team_member' => $team_member));
+            return Response::view(
+                'team::admin/edit',
+                [
+                    'team_member' => $team_member,
+                    'categories' => Config::get('team::categories')
+                ]
+            );
         }
     }
 
@@ -66,7 +91,8 @@ class AdminController extends SecureController
             !isset($_POST['title']) or
             !isset($_POST['bio']) or
             !isset($_POST['email']) or
-            !isset($_POST['phone'])) {
+            !isset($_POST['phone']) or
+            !isset($_POST['category'])) {
 
             Response::badRequest();
         }
@@ -79,6 +105,7 @@ class AdminController extends SecureController
         $team_member->bio = trim($_POST['bio']);
         $team_member->email = trim($_POST['email']);
         $team_member->phone = trim($_POST['phone']);
+        $team_member->category = trim($_POST['category']);
         $team_member->display_order = TeamMember::select('COUNT(*)+1')->field();
         $team_member->insert();
 
@@ -95,7 +122,8 @@ class AdminController extends SecureController
             !isset($_POST['title']) or
             !isset($_POST['bio']) or
             !isset($_POST['email']) or
-            !isset($_POST['phone'])) {
+            !isset($_POST['phone']) or
+            !isset($_POST['category'])) {
 
             Response::badRequest();
         }
@@ -112,6 +140,7 @@ class AdminController extends SecureController
         $team_member->bio = trim($_POST['bio']);
         $team_member->email = trim($_POST['email']);
         $team_member->phone = trim($_POST['phone']);
+        $team_member->category = trim($_POST['category']);
         $team_member->update();
 
         // Success
@@ -121,14 +150,16 @@ class AdminController extends SecureController
     public function updateTeamMemberOrder()
     {
         // Check for required paramaters
-        if (!isset($_POST['team_members'])) {
+        if (!isset($_POST['category']) or
+            !isset($_POST['members'])) {
 
             Response::badRequest();
         }
 
         // Load and update each team member
-        foreach ($_POST['team_members'] as $display_order => $id) {
+        foreach (explode(',', $_POST['members']) as $display_order => $id) {
             if ($team_member = TeamMember::select($id)) {
+                $team_member->category = $_POST['category'];
                 $team_member->display_order = $display_order + 1;
                 $team_member->update();
             }

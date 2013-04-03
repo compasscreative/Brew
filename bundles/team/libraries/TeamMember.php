@@ -13,6 +13,7 @@ class TeamMember extends Table
     protected $bio;
     protected $email;
     protected $phone;
+    protected $category;
     protected $display_order;
 
     public function delete()
