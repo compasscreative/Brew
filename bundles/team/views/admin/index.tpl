@@ -14,7 +14,7 @@ $this->insert('admin::partials/header');
         <form autocomplete="off" id="team_index">
             <? foreach ($this->categories as $category): ?>
 
-                <? if (count($this->categories)): ?>
+                <? if (count($this->categories) > 1): ?>
                     <h2><?=$category === '' ? 'Uncategorized' : $category?></h2>
                 <? endif ?>
 
