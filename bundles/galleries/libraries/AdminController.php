@@ -135,6 +135,11 @@ class AdminController extends SecureController
         return true;
     }
 
+    public function displayPhoto($id)
+    {
+        return Response::jpg(STORAGE_PATH . 'galleries/photos/' . $id . '/small.jpg');
+    }
+
     public function insertPhoto()
     {
         // Check for gallery id
@@ -243,7 +248,7 @@ class AdminController extends SecureController
             array(
                 'success' => true,
                 'id' => $gallery_photo->id,
-                'url' => Config::get('galleries::base_url') . '/photo/xsmall/' . $gallery_photo->id
+                'url' => '/galleries/photo/xsmall/' . $gallery_photo->id
             )
         );
     }
