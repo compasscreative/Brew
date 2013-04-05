@@ -377,7 +377,7 @@ $(function()
 				},
 				success: function(category)
 				{
-					location.href = '/admin/blog/category/edit/' + category.id;
+					location.href = '/admin/blog/categories';
 				}
 			});
 		});

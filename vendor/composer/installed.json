@@ -46,12 +46,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "434ef8bbf660df5e52d83fb9b28e795864051be6"
+            "reference": "88d705c19f8cc08c2cc5a0a615907df5e9dd376e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/434ef8bbf660df5e52d83fb9b28e795864051be6",
-            "reference": "434ef8bbf660df5e52d83fb9b28e795864051be6",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/88d705c19f8cc08c2cc5a0a615907df5e9dd376e",
+            "reference": "88d705c19f8cc08c2cc5a0a615907df5e9dd376e",
             "shasum": ""
         },
         "require": {
@@ -70,7 +70,7 @@
             "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
             "raven/raven": "Allow sending log messages to a Sentry server"
         },
-        "time": "2013-03-26 16:05:11",
+        "time": "2013-04-05 13:36:57",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -130,35 +130,6 @@
         "support": {
             "source": "https://github.com/reinink/BooBoo/tree/1.0.0",
             "issues": "https://github.com/reinink/BooBoo/issues"
-        }
-    },
-    {
-        "name": "reinink/magick",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/Magick.git",
-            "reference": "1.0.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/Magick/zipball/1.0.0",
-            "reference": "1.0.0",
-            "shasum": ""
-        },
-        "time": "2013-03-26 18:38:21",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\Magick\\": "src"
-            }
-        },
-        "description": "An ultra lightweight ImageMagick wrapper for PHP.",
-        "support": {
-            "source": "https://github.com/reinink/Magick/tree/1.0.0",
-            "issues": "https://github.com/reinink/Magick/issues"
         }
     },
     {
@@ -357,5 +328,34 @@
         "keywords": [
             "markdown"
         ]
+    },
+    {
+        "name": "reinink/magick",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reinink/Magick.git",
+            "reference": "1.0.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reinink/Magick/zipball/1.0.1",
+            "reference": "1.0.1",
+            "shasum": ""
+        },
+        "time": "2013-04-05 17:13:52",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Reinink\\Magick\\": "src"
+            }
+        },
+        "description": "An ultra lightweight ImageMagick wrapper for PHP.",
+        "support": {
+            "source": "https://github.com/reinink/Magick/tree/master",
+            "issues": "https://github.com/reinink/Magick/issues"
+        }
     }
 ]

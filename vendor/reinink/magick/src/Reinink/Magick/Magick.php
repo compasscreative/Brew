@@ -132,6 +132,18 @@ class Magick
     }
 
     /**
+     * Disable cropping.
+     *
+     * @return Magick
+     */
+    public function disableCrop()
+    {
+        $this->crop = null;
+
+        return $this;
+    }
+
+    /**
      * Set the convert width in pixels.
      *
      * @param  int    $width
@@ -206,6 +218,9 @@ class Magick
         // Convert command
         $command = $this->convert_path;
 
+        // Auto-rotate and flatten
+        $command .= ' -background white -flatten -auto-orient';
+
         // Source path
         $command .= ' ' . $this->file_path;
 
@@ -222,9 +237,6 @@ class Magick
         } elseif (is_null($this->width) and !is_null($this->height)) {
             $command .= ' -resize x' . $this->height;
         }
-
-        // Auto-rotate and flatten
-        $command .= ' -background white -flatten -auto-orient';
 
         // Image quality
         $command .= ' -quality ' . $this->quality;

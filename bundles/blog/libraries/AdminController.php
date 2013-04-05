@@ -353,8 +353,8 @@ class AdminController extends SecureController
         $category->name = trim($_POST['name']);
         $category->insert();
 
-        // Return new id
-        return Response::json(array('id' => $category->id));
+        // Success
+        return true;
     }
 
     public function updateBlogCategory()
