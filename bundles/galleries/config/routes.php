@@ -1,7 +1,7 @@
 <?php
+
 namespace Brew\Galleries;
 
-use Reinink\Trailmix\Config;
 use Reinink\Routy\Router;
 
 // Admin: Gallery Pages
@@ -15,6 +15,6 @@ Router::post('/admin/galleries/update', 'Brew\Galleries\AdminController::updateG
 Router::post('/admin/galleries/delete', 'Brew\Galleries\AdminController::deleteGallery');
 
 // Admin: Gallery Photo Actions
-Router::get('/admin/galleries/photo/small/([0-9]+)', 'Brew\Galleries\AdminController::displayPhoto');
+Router::get('/admin/galleries/photo/([0-9]+)', 'Brew\Galleries\AdminController::displayPhoto');
 Router::post('/admin/galleries/photos/insert', 'Brew\Galleries\AdminController::insertPhoto');
 Router::post('/admin/galleries/photos/delete', 'Brew\Galleries\AdminController::deletePhoto');

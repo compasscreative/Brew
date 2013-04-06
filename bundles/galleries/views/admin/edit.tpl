@@ -58,7 +58,7 @@ $this->insert('admin::partials/header');
                         <ul>
                             <? foreach ($this->photos as $photo): ?>
                                 <li>
-                                    <img class="thumb" src="/galleries/photo/xsmall/<?=$e($photo->id)?>" width="75" height="75">
+                                    <img class="thumb" src="/admin/galleries/photo/<?=$e($photo->id)?>" width="75" height="75">
                                     <div class="tools">
                                         <textarea name="photos[<?=$e($photo->id)?>]"><?=$e($photo->caption)?></textarea>
                                         <button type="button" data-id="<?=$e($photo->id)?>" class="delete_photo">Delete</button>
