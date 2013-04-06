@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Leads;
 
 class LeadEmailer
@@ -6,7 +7,7 @@ class LeadEmailer
     private $lead;
     private $form;
 
-    public function __construct(Lead $lead, Form $form)
+    public function __construct(Lead $lead, LeadForm $form)
     {
         $this->lead = $lead;
         $this->form = $form;
