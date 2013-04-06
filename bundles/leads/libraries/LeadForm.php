@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Leads;
 
 class LeadForm
