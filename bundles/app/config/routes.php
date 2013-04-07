@@ -11,6 +11,12 @@ Router::get(
     }
 );
 
+/*
+|--------------------------------------------------------------------------
+| Galleries
+|--------------------------------------------------------------------------
+*/
+
 Router::get(
     '/galleries',
     function () {
@@ -79,6 +85,77 @@ Router::get(
         return $api->getPhotoResponse($size, $id);
     }
 );
+
+/*
+|--------------------------------------------------------------------------
+| Team
+|--------------------------------------------------------------------------
+*/
+
+Router::get(
+    '/team',
+    function () {
+
+        // Create API
+        $api = new \Brew\Team\API();
+
+        // Load all team members
+        $team_members = $api->getAllTeamMembers();
+
+        // Return view
+        return Response::view(
+            'team',
+            [
+                'team_members' => $team_members
+            ]
+        );
+    }
+);
+
+Router::get(
+    '/team/([0-9]+)/([a-z-0-9]+)',
+    function ($id, $slug) {
+
+        // Create API
+        $api = new \Brew\Team\API();
+
+        // Load team member
+        if (!$team_member = $api->getTeamMember($id)) {
+            return Response::notFound();
+        }
+
+        // Validate slug
+        if ($team_member->slug !== $slug) {
+            return Response::redirect('/team/' . $team_member->id . '/' . $team_member->slug);
+        }
+
+        // Return view
+        return Response::view(
+            'team_member',
+            [
+                'team_member' => $team_member
+            ]
+        );
+    }
+);
+
+Router::get(
+    '/team/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)',
+    function ($size, $id) {
+
+        // Create API
+        $api = new \Brew\Team\API();
+
+        // Return photo
+        return $api->getPhotoResponse($size, $id);
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Contact (Leads)
+|--------------------------------------------------------------------------
+*/
 
 Router::get(
     '/contact',

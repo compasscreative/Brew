@@ -26,7 +26,7 @@ class AdminController extends SecureController
 
             // Check if photo exists
             if (is_file($path)) {
-                $team_member->photo_url = Config::get('team::base_url') . '/photo/small/' . $team_member->id . '/' . filemtime($path);
+                $team_member->photo_url = '/admin/team/photo/small/' . $team_member->id . '/' . filemtime($path);
             } else {
                 $team_member->photo_url = null;
             }
@@ -67,7 +67,7 @@ class AdminController extends SecureController
 
             // Check if photo exists
             if (is_file($path)) {
-                $team_member->photo_url = Config::get('team::base_url') . '/photo/medium/' . $team_member->id . '/' . filemtime($path);
+                $team_member->photo_url = '/admin/team/photo/medium/' . $team_member->id . '/' . filemtime($path);
             } else {
                 $team_member->photo_url = null;
             }
@@ -293,7 +293,7 @@ class AdminController extends SecureController
         return Response::json(
             array(
                 'success' => true,
-                'url' => Config::get('team::base_url') . '/photo/medium/' . $team_member->id . '/' . filemtime($folder . 'medium.jpg')
+                'url' => '/admin/team/photo/medium/' . $team_member->id . '/' . filemtime($folder . 'medium.jpg')
             )
         );
     }
