@@ -4,7 +4,6 @@ namespace Brew\Galleries;
 use Michelf\Markdown;
 use Reinink\Query\DB;
 use Reinink\Reveal\Response;
-use Reinink\Trailmix\Config;
 use Reinink\Trailmix\Str;
 
 class API
@@ -26,7 +25,7 @@ class API
     {
         // Load gallery
         if (!$gallery = Gallery::select('id, title, description')->where('id', $id)->row()) {
-            Response::notFound();
+            return false;
         }
 
         // Add slug

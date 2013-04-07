@@ -17,7 +17,7 @@ Router::get(
 
         // Return view
         return Response::view(
-            'galleries::index',
+            'galleries',
             [
                 'galleries' => $galleries
             ]
@@ -52,7 +52,7 @@ Router::get(
 
         // Return view
         return Response::view(
-            'galleries::gallery',
+            'gallery',
             [
                 'gallery' => $gallery,
                 'photos' => $photos,
@@ -114,8 +114,10 @@ $this->insert('partials/header');
 
 <h1><?=$e($this->gallery->title)?></h1>
 
-<h2>Description:</h2>
-<p><?=$this->gallery->description?></p>
+<? if ($this->gallery->description): ?>
+    <h2>Description:</h2>
+    <?=$this->gallery->description?>
+<? endif ?>
 
 <h2>Photos:</h2>
 <ul>
