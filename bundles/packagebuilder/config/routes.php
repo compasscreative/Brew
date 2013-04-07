@@ -2,7 +2,6 @@
 
 namespace Brew\PackageBuilder;
 
-use Reinink\Trailmix\Config;
 use Reinink\Routy\Router;
 
 // Admin: Pages
