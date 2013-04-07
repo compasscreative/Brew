@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\PackageBuilder;
 
 use Brew\Admin\SecureController;
@@ -41,21 +42,21 @@ class AdminController extends SecureController
 
             // Check if small photo exists
             if (is_file($folder . 'small_small.jpg')) {
-                $option->small_photo_url = Config::get('packagebuilder::base_url') . '/photo/small/small/' . $option->id . '/' . filemtime($folder . 'small_small.jpg');
+                $option->small_photo_url = '/admin/package-builder/photo/small/' . $option->id . '/' . filemtime($folder . 'small_small.jpg');
             } else {
                 $option->small_photo_url = null;
             }
 
             // Check if medium photo exists
             if (is_file($folder . 'medium_small.jpg')) {
-                $option->medium_photo_url = Config::get('packagebuilder::base_url') . '/photo/small/medium/' . $option->id . '/' . filemtime($folder . 'medium_small.jpg');
+                $option->medium_photo_url = '/admin/package-builder/photo/medium/' . $option->id . '/' . filemtime($folder . 'medium_small.jpg');
             } else {
                 $option->medium_photo_url = null;
             }
 
             // Check if large photo exists
             if (is_file($folder . 'large_small.jpg')) {
-                $option->large_photo_url = Config::get('packagebuilder::base_url') . '/photo/small/large/' . $option->id . '/' . filemtime($folder . 'large_small.jpg');
+                $option->large_photo_url = '/admin/package-builder/photo/large/' . $option->id . '/' . filemtime($folder . 'large_small.jpg');
             } else {
                 $option->large_photo_url = null;
             }
@@ -184,6 +185,11 @@ class AdminController extends SecureController
         return true;
     }
 
+    public function displayPhoto($size, $id)
+    {
+        return Response::jpg(STORAGE_PATH . 'packagebuilder/photos/' . $id . '/' . $size . '_small.jpg');
+    }
+
     public function updatePhoto()
     {
         // Check for required paramaters
@@ -250,7 +256,7 @@ class AdminController extends SecureController
         return Response::json(
             array(
                 'success' => true,
-                'url' => Config::get('packagebuilder::base_url') . '/photo/small/' . $_POST['size'] . '/' . $option->id . '/' . filemtime($folder . $_POST['size'] . '_small.jpg')
+                'url' => '/admin/package-builder/photo/' . $_POST['size'] . '/' . $option->id . '/' . filemtime($folder . $_POST['size'] . '_small.jpg')
             )
         );
     }

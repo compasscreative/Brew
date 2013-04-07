@@ -1,10 +1,3 @@
-<?
-$this->title = 'Package Builder';
-$this->insert('partials/header');
-?>
-
-<h1>Package Builder</h1>
-
 <? if ($this->sections): ?>
     <form class="package_builder">
 
@@ -90,5 +83,3 @@ $this->insert('partials/header');
 
     </form>
 <? endif ?>
-
-<? $this->insert('partials/footer') ?>
