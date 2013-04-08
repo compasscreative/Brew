@@ -9,4 +9,4 @@ use Reinink\Trailmix\Config;
 |--------------------------------------------------------------------------
 */
 
-Config::set('projects::base_url', '/featured-projects');
+Config::set('projects::base_url', '/projects');
