@@ -99,6 +99,9 @@ Router::get(
         // Create API
         $api = new \Brew\Team\API();
 
+        // Get categories
+        $team_categories = $api->getCategories();
+
         // Load all team members
         $team_members = $api->getAllTeamMembers();
 
@@ -106,6 +109,7 @@ Router::get(
         return Response::view(
             'team',
             [
+                'team_categories' => $team_categories,
                 'team_members' => $team_members
             ]
         );

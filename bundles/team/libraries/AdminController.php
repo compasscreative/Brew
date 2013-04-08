@@ -196,6 +196,11 @@ class AdminController extends SecureController
         return true;
     }
 
+    public function displayPhoto($size, $id)
+    {
+        return Response::jpg(STORAGE_PATH . 'team/photos/' . $id . '/' . $size . '.jpg');
+    }
+
     public function insertPhoto()
     {
         // Check for required paramaters

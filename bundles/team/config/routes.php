@@ -4,11 +4,6 @@ namespace Brew\Team;
 use Reinink\Trailmix\Config;
 use Reinink\Routy\Router;
 
-// Public
-// Router::get(Config::get('team::base_url'), 'Brew\Team\PublicController::displayIndex');
-// Router::get(Config::get('team::base_url') . '/([0-9]+)/([a-z-0-9]+)', 'Brew\Team\PublicController::displayTeamMember');
-// Router::get(Config::get('team::base_url') . '/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)/[0-9]+', 'Brew\Team\PublicController::displayPhoto');
-
 // Admin: Pages
 Router::get('/admin/team', 'Brew\Team\AdminController::displayTeamMembers');
 Router::get('/admin/team/add', 'Brew\Team\AdminController::addTeamMember');
