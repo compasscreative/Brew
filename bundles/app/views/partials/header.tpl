@@ -32,9 +32,9 @@
             <li <?=URI::is('/') ? 'class="selected"' : ''?>><a href="/">Home</a></li>
             <li <?=URI::is('/blog') ? 'class="selected"' : ''?>><a href="/blog">Blog</a></li>
             <li <?=URI::is('/galleries') ? 'class="selected"' : ''?>><a href="/galleries">Galleries</a></li>
-            <li <?=URI::is(Config::get('projects::base_url')) ? 'class="selected"' : ''?>><a href="<?=Config::get('projects::base_url')?>">Projects</a></li>
+            <li <?=URI::is('/projects') ? 'class="selected"' : ''?>><a href="/projects">Projects</a></li>
             <li <?=URI::is('/team') ? 'class="selected"' : ''?>><a href="/team">Team</a></li>
-            <li <?=URI::is(Config::get('packagebuilder::base_url')) ? 'class="selected"' : ''?>><a href="<?=Config::get('packagebuilder::base_url')?>">Package Builder</a></li>
+            <li <?=URI::is('/package-builder') ? 'class="selected"' : ''?>><a href="/package-builder">Package Builder</a></li>
             <li <?=URI::is('/contact') ? 'class="selected"' : ''?>><a href="/contact">Contact</a></li>
             <li><a href="/admin"><em>Admin</em></a></li>
         </ul>
