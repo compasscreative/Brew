@@ -24,8 +24,8 @@
 
         <? if ($this->address_enabled): ?>
             <li>
-                <label for="bundle-leads-form-<?=$this->id?>-address">Location</label>
-                <input type="text" name="address" data-required="<?=$this->address_required?>" id="bundle-leads-form-<?=$this->id?>-address">
+                <label for="bundle-leads-form-<?=$this->id?>-address">Address</label>
+                <textarea name="address" data-required="<?=$this->address_required?>" id="bundle-leads-form-<?=$this->id?>-address"></textarea>
             </li>
         <? endif ?>
 
