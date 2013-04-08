@@ -9,21 +9,18 @@ Router::get(
     '/team',
     function () {
 
+
         // Create API
         $api = new \Brew\Team\API();
 
-        // Get categories
-        $team_categories = $api->getCategories();
-
-        // Load all team members
-        $team_members = $api->getAllTeamMembers();
+        // Load team members by category
+        $categories = $api->getTeamMembersByCategory();
 
         // Return view
         return Response::view(
             'team',
             [
-                'team_categories' => $team_categories,
-                'team_members' => $team_members
+                'categories' => $categories
             ]
         );
     }
@@ -80,21 +77,20 @@ $this->insert('partials/header');
 
 <h1>Team</h1>
 
-<? if ($this->team_members): ?>
-    <? foreach ($this->team_categories as $category): ?>
-        <h2><?=$e($category)?></h2>
+<? if ($this->categories): ?>
+    <? foreach ($this->categories as $category): ?>
+        <h2><?=$e($category->name)?></h2>
         <ul>
-            <? foreach ($this->team_members as $team_member): ?>
-                <? if ($team_member->category !== $category) continue; ?>
-                <li id="<?=$team_member->id?>">
-                    <a href="/admin/team/edit/<?=$e($team_member->id)?>/">
-                        <? if ($team_member->has_photo): ?>
-                            <img src="/team/photo/small/<?=$e($team_member->id)?>" alt="<?=$e($team_member->first_name)?> <?=$e($team_member->last_name)?>">
+            <? foreach ($category->members as $member): ?>
+                <li id="<?=$member->id?>">
+                    <a href="/admin/team/edit/<?=$e($member->id)?>/">
+                        <? if ($member->has_photo): ?>
+                            <img src="/team/photo/small/<?=$e($member->id)?>" alt="<?=$e($member->first_name)?> <?=$e($member->last_name)?>">
                         <?php else: ?>
                             <!-- Insert blank photo here -->
                         <? endif ?>
-                        <h3><?=$e($team_member->first_name)?> <?=$e($team_member->last_name)?></h3>
-                        <h4><?=$e($team_member->title)?></h4>
+                        <h3><?=$e($member->first_name)?> <?=$e($member->last_name)?></h3>
+                        <h4><?=$e($member->title)?></h4>
                     </a>
                 </li>
             <? endforeach ?>
