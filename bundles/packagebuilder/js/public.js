@@ -4,6 +4,14 @@ $(function()
 
 	if (form.length)
 	{
+		// Show/hide options
+		form.find('.options li').click(function()
+		{
+			form.find('.options li').removeClass('selected');
+			$(this).addClass('selected');
+		});
+
+		// Update budget
 		form.find('input[type="radio"]').change(function()
 		{
 			// Set defaults
@@ -37,11 +45,11 @@ $(function()
 				total.high += extra.high;
 
 				// Display extras
-				$(this).find('.value').html('$' + extra.low.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,') + ' to $' + extra.high.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,'));
+				$(this).find('strong').html('$' + extra.low.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,') + ' to $' + extra.high.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,'));
 			});
 
 			// Display total
-			form.find('.total .value').html('$' + total.low.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,') + ' to $' + total.high.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,'));
+			form.find('.total strong').html('$' + total.low.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,') + ' to $' + total.high.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,'));
 		});
 	}
 });

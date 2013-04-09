@@ -1,5 +1,5 @@
 <?
-$this->title = 'Add Option';
+$this->title = 'Add Option | Package Builder';
 $this->insert('admin::partials/header');
 ?>
 
@@ -29,6 +29,9 @@ $this->insert('admin::partials/header');
                                 <option><?=$section?></option>
                             <? endforeach ?>
                         </select>
+                    </div>
+                    <div class="instructions">
+                        Note that this field cannot be changed once created.
                     </div>
                 </li>
                 <li>

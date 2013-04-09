@@ -1,11 +1,14 @@
 <?
-$this->title = 'Editing Option';
+$this->title = 'Editing Option | Package Builder';
 $this->insert('admin::partials/header');
 ?>
 
 <div class="panel">
     <div class="header">
         <div class="title">Editing Option</div>
+        <ul class="menu">
+            <li><a href="/admin/package-builder/add">Add option</a></li>
+        </ul>
     </div>
     <div class="body">
         <form class="standard" autocomplete="off" id="packagebuilder_option_edit">
@@ -18,18 +21,6 @@ $this->insert('admin::partials/header');
                     <div class="field">
                         <input type="text" name="name" value="<?=$e($this->option->name)?>">
                         <div class="error_message required">Required field.</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="label">
-                        <label>Section:</label>
-                    </div>
-                    <div class="field">
-                        <select name="section">
-                            <? foreach ($this->sections as $section): ?>
-                                <option <? if ($this->option->section === $section) echo 'selected="selected"'; ?>><?=$section?></option>
-                            <? endforeach ?>
-                        </select>
                     </div>
                 </li>
                 <li>

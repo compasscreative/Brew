@@ -162,6 +162,15 @@
             border-style: solid;
             border-radius: 0 0 5px 5px;
 
+            h2
+            {
+                margin: 25px 0 10px 0;
+                font-family: "Lucida Grande", Verdana, sans-serif;
+                color: #666;
+                font-size: 16px;
+                line-height: 120%;
+            }
+
             > table
             {
                 width: 100%;
@@ -197,6 +206,71 @@
                 tr td a:hover
                 {
                     text-decoration: underline;
+                }
+            }
+
+            ul.table
+            {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                font-family: "Lucida Grande", Verdana, sans-serif;
+                color: #666;
+                font-size: 12px;
+                line-height: 14px;
+
+                li
+                {
+                    overflow: hidden;
+                    padding: 10px 0;
+                    border-bottom: #ddd solid 1px;
+
+                    &:nth-child(even)
+                    {
+                        background-color: #fbfbfb;
+                    }
+
+                    &.headings
+                    {
+                        > div
+                        {
+                            font-weight: bold;
+                        }
+                    }
+
+                    &.ui-sortable-helper
+                    {
+                        background: #FFFBE9;
+                        border-color: darken(#FFFBE9, 15);
+                        border-style: solid;
+                        border-width: 1px 0;
+                    }
+
+                    > div
+                    {
+                        float: left;
+                        padding: 0 0 0 10px;
+                        @include box-sizing(border-box);
+
+                        .drag_handle
+                        {
+                            cursor: pointer;
+                            padding: 0 5px 0 0;
+                        }
+
+                        a
+                        {
+                            color: #ff5b5b;
+                            text-decoration: none;
+
+                            &:hover
+                            {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+
                 }
             }
 

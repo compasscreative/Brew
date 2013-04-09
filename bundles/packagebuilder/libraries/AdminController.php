@@ -13,12 +13,34 @@ class AdminController extends SecureController
 {
     public function displayOptions()
     {
-        // Load options
-        $options = PackageBuilderOption::select('id, name, section, small_price_1, small_price_2, medium_price_1, medium_price_2, large_price_1, large_price_2')
-                                       ->orderBy('display_order')
-                                       ->rows();
+        // Create array to house data
+        $sections = [];
 
-        return Response::view('packagebuilder::admin/index', array('options' => $options));
+        // Add data to array
+        foreach (Config::get('packagebuilder::sections') as $name) {
+
+            // Load options
+            $options = PackageBuilderOption::select('id, name, section, small_price_1, small_price_2, medium_price_1, medium_price_2, large_price_1, large_price_2')
+                                           ->where('section', $name)
+                                           ->orderBy('display_order')
+                                           ->rows();
+
+            // Add data to array
+            if ($options) {
+
+                $section = (object) null;
+                $section->name = $name;
+                $section->options = $options;
+
+                $sections[] = $section;
+            }
+        }
+
+        // Return view
+        return Response::view('packagebuilder::admin/index',
+        [
+            'sections' => $sections
+        ]);
     }
 
     public function addOption()
@@ -33,7 +55,7 @@ class AdminController extends SecureController
 
     public function editOption($id)
     {
-        if ($option = PackageBuilderOption::select('id, name, section, small_price_1, small_price_2, small_description, medium_price_1, medium_price_2, medium_description, large_price_1, large_price_2, large_description')
+        if ($option = PackageBuilderOption::select('id, name, small_price_1, small_price_2, small_description, medium_price_1, medium_price_2, medium_description, large_price_1, large_price_2, large_description')
                               ->where('id', $id)
                               ->row()) {
 
@@ -65,8 +87,7 @@ class AdminController extends SecureController
             return Response::view(
                 'packagebuilder::admin/edit',
                 [
-                    'option' => $option,
-                    'sections' => Config::get('packagebuilder::sections')
+                    'option' => $option
                 ]
             );
         }
@@ -103,6 +124,7 @@ class AdminController extends SecureController
         $option->large_price_1 = trim($_POST['large_price_1']);
         $option->large_price_2 = trim($_POST['large_price_2']);
         $option->large_description = trim($_POST['large_description']);
+        $option->display_order = PackageBuilderOption::select('COUNT(*)+1')->where('section', $_POST['section'])->field();
         $option->insert();
 
         // Return new id
@@ -114,7 +136,6 @@ class AdminController extends SecureController
         // Check for required paramaters
         if (!isset($_POST['id']) or
             !isset($_POST['name']) or
-            !isset($_POST['section']) or
             !isset($_POST['small_price_1']) or
             !isset($_POST['small_price_2']) or
             !isset($_POST['small_description']) or
@@ -135,7 +156,6 @@ class AdminController extends SecureController
 
         // Update the team member
         $option->name = trim($_POST['name']);
-        $option->section = trim($_POST['section']);
         $option->small_price_1 = trim($_POST['small_price_1']);
         $option->small_price_2 = trim($_POST['small_price_2']);
         $option->small_description = trim($_POST['small_description']);
@@ -146,6 +166,25 @@ class AdminController extends SecureController
         $option->large_price_2 = trim($_POST['large_price_2']);
         $option->large_description = trim($_POST['large_description']);
         $option->update();
+
+        // Success
+        return true;
+    }
+
+    public function updateOptionOrder()
+    {
+        // Check for required paramaters
+        if (!isset($_POST['options'])) {
+            Response::badRequest();
+        }
+
+        // Update option display orders
+        foreach (explode(',', $_POST['options']) as $display_order => $id) {
+            if ($option = PackageBuilderOption::select($id)) {
+                $option->display_order = $display_order + 1;
+                $option->update();
+            }
+        }
 
         // Success
         return true;
