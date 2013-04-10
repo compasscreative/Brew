@@ -10,6 +10,7 @@ $this->insert('admin::partials/header');
     <div class="body">
         <form class="standard" autocomplete="off" id="blog_blog_article_edit">
             <input type="hidden" name="id" value="<?=$e($this->article->id)?>">
+            <input type="hidden" name="type" value="<?=$e($this->article->type)?>">
             <ul>
                 <li>
                     <div class="label">
@@ -65,7 +66,9 @@ $this->insert('admin::partials/header');
                     <div class="field">
                         <textarea name="body" style="height: 300px;"><?=$e($this->article->body)?></textarea>
                     </div>
-                    <div class="instructions" style="margin-top: 32px;">This field uses Markdown, a handy text to HTML converter. Use the toolbar to see how it works.</div>
+                    <? if ($this->article->type === 'Markdown'): ?>
+                        <div class="instructions" style="margin-top: 32px;">This field uses Markdown, a handy text to HTML converter. Use the toolbar to see how it works.</div>
+                    <? endif ?>
                 </li>
                 <li>
                     <div class="label">

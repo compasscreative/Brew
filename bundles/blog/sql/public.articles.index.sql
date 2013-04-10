@@ -1,5 +1,6 @@
 SELECT
     article.id,
+    article.type,
     article.title,
     article.body,
     article.published_date,

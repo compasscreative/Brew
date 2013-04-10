@@ -67,22 +67,6 @@ $(function()
 		{
 			dateFormat:'yy-mm-dd'
 		});
-
-		/*
-		| --------------------
-		| Setup markbar editor
-		| --------------------
-		*/
-		form.find('[name=body]').markbar(
-		{
-			buttons:
-			{
-				h1: false,
-				img: false,
-				blockquote: false,
-				code: false
-			}
-		});
 	}
 });
 
@@ -170,16 +154,19 @@ $(function()
 		| Setup markbar editor
 		| --------------------
 		*/
-		form.find('[name=body]').markbar(
+		if (form.find('[name=type]').val() === 'Markdown')
 		{
-			buttons:
+			form.find('[name=body]').markbar(
 			{
-				h1: false,
-				img: false,
-				blockquote: false,
-				code: false
-			}
-		});
+				buttons:
+				{
+					h1: false,
+					img: false,
+					blockquote: false,
+					code: false
+				}
+			});
+		}
 
 		/*
 		| --------------------

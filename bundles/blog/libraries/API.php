@@ -18,8 +18,14 @@ class API
         // Add article details
         foreach ($articles as $article) {
 
-            // Set intro
-            $article->intro = Markdown::defaultTransform(htmlentities(explode('<!--BREAK-->', $article->body)[0]));
+            // Set intro and photo
+            if ($article->type === 'Markdown') {
+                $article->intro = Markdown::defaultTransform(htmlentities(explode('<!--BREAK-->', $article->body)[0]));
+            } else {
+                $article->intro = explode('<!--BREAK-->', $article->body)[0];
+                $article->photo_id = null;
+                $article->photo_caption = null;
+            }
 
             // Set slug
             $article->slug = Str::slug($article->title);
@@ -41,11 +47,6 @@ class API
         return $articles;
     }
 
-    public function getPhotoResponse($size, $id)
-    {
-        return Response::jpg(STORAGE_PATH . 'blog/photos/' . $id . '/' . $size . '.jpg');
-    }
-
     public function getCategories()
     {
         // Load categories
@@ -62,7 +63,7 @@ class API
     public function getArticle($id)
     {
         // Load article
-        if (!$article = BlogArticle::select('id, category_id, title, body, status, published_date')->where('id', $id)->row()) {
+        if (!$article = BlogArticle::select('id, type, title, body, status, published_date')->where('id', $id)->row()) {
             return false;
         }
 
@@ -70,10 +71,18 @@ class API
         $article->slug = Str::slug($article->title);
 
         // Convert markdown body
-        $article->body = Markdown::defaultTransform(htmlentities(str_replace('<!--BREAK-->', '', $article->body)));
+        if ($article->type === 'Markdown') {
+            $article->body = Markdown::defaultTransform(htmlentities(str_replace('<!--BREAK-->', '', $article->body)));
+        } else {
+            $article->body = str_replace('<!--BREAK-->', '', $article->body);
+        }
 
         // Load photos
-        $article->photos = BlogPhoto::select('id, caption')->where('article_id', $id)->orderBy('display_order')->rows();
+        if ($article->type === 'Markdown') {
+            $article->photos = BlogPhoto::select('id, caption')->where('article_id', $id)->orderBy('display_order')->rows();
+        } else {
+            $article->photos = array();
+        }
 
         return $article;
     }
@@ -114,5 +123,15 @@ class API
         }
 
         return $search;
+    }
+
+    public function getPhotoResponse($size, $id)
+    {
+        return Response::jpg(STORAGE_PATH . 'blog/photos/' . $id . '/' . $size . '.jpg');
+    }
+
+    public function getImageResponse($id, $filename)
+    {
+        return Response::jpg(STORAGE_PATH . 'blog/images/' . $id . '/' . $filename . '.jpg');
     }
 }

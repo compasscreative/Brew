@@ -39,7 +39,7 @@ class AdminController extends SecureController
     public function editBlogArticle($id)
     {
         // Load article
-        if (!$article = BlogArticle::select('id, category_id, title, body, status, published_date')
+        if (!$article = BlogArticle::select('id, category_id, type, title, body, status, published_date')
                               ->where('id', $id)
                               ->row()) {
 
@@ -73,9 +73,8 @@ class AdminController extends SecureController
         // Check for required paramaters
         if (!isset($_POST['title']) or
             !isset($_POST['published_date']) or
-            !isset($_POST['status']) or
             !isset($_POST['category_id']) or
-            !isset($_POST['body'])) {
+            !isset($_POST['type'])) {
 
             Response::badRequest();
         }
@@ -84,9 +83,8 @@ class AdminController extends SecureController
         $article = new BlogArticle();
         $article->title = trim($_POST['title']);
         $article->published_date = trim($_POST['published_date']);
-        $article->status = trim($_POST['status']);
         $article->category_id = trim($_POST['category_id']);
-        $article->body = trim($_POST['body']);
+        $article->type = trim($_POST['type']);
         $article->insert();
 
         // Return new id

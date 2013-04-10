@@ -29,17 +29,7 @@ $this->insert('admin::partials/header');
                         <div class="error_message invalid">Not a valid date. Required format: YYYY-MM-DD</div>
                     </div>
                 </li>
-                <li>
-                    <div class="label">
-                        <label>Status:</label>
-                    </div>
-                    <div class="field">
-                        <select name="status">
-                            <option>Draft</option>
-                            <option>Published</option>
-                        </select>
-                    </div>
-                </li>
+
                 <? if ($this->categories): ?>
                     <li>
                         <div class="label">
@@ -57,15 +47,23 @@ $this->insert('admin::partials/header');
                 <? else: ?>
                     <input type="hidden" name="category_id">
                 <? endif ?>
-                <li>
-                    <div class="label">
-                        <label>Body:</label>
-                    </div>
-                    <div class="field">
-                        <textarea name="body" style="height: 300px;"></textarea>
-                    </div>
-                    <div class="instructions" style="margin-top: 32px;">This field uses Markdown, a handy text to HTML converter. Use the toolbar to see how it works.</div>
-                </li>
+
+                <? if (Config::get('blog::enable_type_option')): ?>
+                    <li>
+                        <div class="label">
+                            <label>Type:</label>
+                        </div>
+                        <div class="field">
+                            <select name="type">
+                                <option value="Markdown">Markdown (recommended)</option>
+                                <option value="HTML">HTML</option>
+                            </select>
+                        </div>
+                    </li>
+                <? else: ?>
+                    <input type="hidden" name="type" value="Markdown">
+                <? endif ?>
+
                 <li>
                     <div class="buttons">
                         <button type="submit">Create</button>

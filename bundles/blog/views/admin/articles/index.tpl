@@ -19,6 +19,9 @@ $this->insert('admin::partials/header');
                     <th>Category</th>
                     <th>Status</th>
                     <th>Published date</th>
+                    <? if (Config::get('blog::enable_type_option')): ?>
+                        <th>Type</th>
+                    <? endif ?>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +32,9 @@ $this->insert('admin::partials/header');
                             <td><?=$e($article->category_name)?></td>
                             <td><?=$e($article->status)?></td>
                             <td><?=$e(date_create($article->published_date)->format('F d, Y'))?></td>
+                            <? if (Config::get('blog::enable_type_option')): ?>
+                                <td><?=$e($article->type)?></td>
+                            <? endif ?>
                         </tr>
                     <? endforeach ?>
                 <? else: ?>

@@ -77,6 +77,18 @@ Router::get(
 );
 
 Router::get(
+    '/blog/image/([0-9]+)/([a-z-0-9]+)',
+    function ($id, $filename) {
+
+        // Create API
+        $api = new \Brew\Blog\API();
+
+        // Return photo
+        return $api->getImageResponse($id, $filename);
+    }
+);
+
+Router::get(
     '/blog/category/([0-9]+)/([a-z-0-9]+)',
     function ($id, $slug) {
 

@@ -41,6 +41,11 @@ if (!is_dir(STORAGE_PATH . 'blog/photos/')) {
     mkdir(STORAGE_PATH . 'blog/photos/');
 }
 
+// Images folder
+if (!is_dir(STORAGE_PATH . 'blog/images/')) {
+    mkdir(STORAGE_PATH . 'blog/images/');
+}
+
 /*
 |--------------------------------------------------------------------------
 | Setup admin

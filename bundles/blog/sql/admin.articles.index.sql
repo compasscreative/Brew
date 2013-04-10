@@ -1,5 +1,6 @@
 SELECT
     blog_articles.id,
+    blog_articles.type,
     blog_articles.title,
     blog_articles.status,
     blog_articles.published_date,
