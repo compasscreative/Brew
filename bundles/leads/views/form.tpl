@@ -1,5 +1,6 @@
 <form class="bundle_leads_form">
     <input type="hidden" name="id" value="<?=$this->id?>">
+    <input type="hidden" name="success_url" value="<?=$this->success_url?>">
     <ul>
         <? if ($this->name_enabled): ?>
             <li>
