@@ -114,12 +114,11 @@ $(function()
 			data: form.serialize(),
 			error: function()
 			{
-				alert('An error occurred: unable to send request.');
+				alert('An error occurred and were were unable to send this request. Please contact us directly. Sorry for this inconvenience!');
 			},
 			success: function()
 			{
-				form.find('ul').remove();
-				form.find('.sent').show();
+				location.href = form.find('[name="success_url"]').val();
 			}
 		});
 	}

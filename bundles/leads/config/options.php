@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Leads;
 
 use Reinink\Trailmix\Config;
@@ -10,7 +11,7 @@ use Reinink\Trailmix\Config;
 */
 
 // Contact form
-Config::$values['leads::forms']['contact'] = new LeadForm('contact');
+Config::$values['leads::forms']['contact'] = new LeadForm('contact', '/thank-you');
 // Config::$values['leads::forms']['contact']->setFrom('John Doe', 'john@doe.com');
 // Config::$values['leads::forms']['contact']->setRecipients(array('john@doe.com'));
 Config::$values['leads::forms']['contact']->enableName(true);

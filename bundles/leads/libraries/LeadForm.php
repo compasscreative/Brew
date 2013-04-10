@@ -5,6 +5,7 @@ namespace Brew\Leads;
 class LeadForm
 {
     public $id;
+    public $success_url;
     public $from_name;
     public $from_email;
     public $recipients;
@@ -27,9 +28,10 @@ class LeadForm
     public $referral_enabled;
     public $referral_required;
 
-    public function __construct($id)
+    public function __construct($id, $success_url)
     {
         $this->id = $id;
+        $this->success_url = $success_url;
     }
 
     public function setFrom($from_name, $from_email)
