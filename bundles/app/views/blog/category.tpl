@@ -5,20 +5,20 @@ $this->insert('partials/header');
 
 <h1><?=$e($this->category->name)?></h1>
 
-<? if ($this->articles): ?>
+<? if ($this->category->articles): ?>
     <ul>
-        <? foreach($this->articles as $article): ?>
+        <? foreach($this->category->articles as $article): ?>
             <li>
                 <div class="photo">
-                    <? if ($article->photo_url): ?>
-                        <a href="<?=$e($article->url)?>">
-                            <img src="<?=$e($article->photo_url)?>" alt="">
+                    <? if ($article->photo_id): ?>
+                        <a href="/blog/<?=$e($article->id)?>/<?=$e($article->slug)?>">
+                            <img src="/blog/photo/medium/<?=$e($article->photo_id)?>" alt="<?=$e($article->photo_caption)?>">
                         </a>
                     <? endif ?>
                 </div>
 
                 <div class="title">
-                    <a href="<?=$e($article->url)?>"><?=$e($article->title)?></a>
+                    <a href="/blog/<?=$e($article->id)?>/<?=$e($article->slug)?>"><?=$e($article->title)?></a>
                 </div>
 
                 <div class="date">
@@ -27,8 +27,10 @@ $this->insert('partials/header');
             </li>
         <? endforeach ?>
     </ul>
+<? else: ?>
+    <p>Sorry, there are not articles in this category.</p>
 <? endif ?>
 
-<?=$this->sidebar?>
+<? $this->insert('blog/sidebar') ?>
 
 <? $this->insert('partials/footer') ?>

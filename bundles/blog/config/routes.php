@@ -1,16 +1,8 @@
 <?php
+
 namespace Brew\Blog;
 
-use Reinink\Reveal\Response;
 use Reinink\Routy\Router;
-use Reinink\Trailmix\Config;
-
-// Public
-Router::get(Config::get('blog::base_url'), 'Brew\Blog\PublicController::displayIndex');
-Router::get(Config::get('blog::base_url') . '/([0-9]+)/([a-z-0-9]+)', 'Brew\Blog\PublicController::displayBlogArticle');
-Router::get(Config::get('blog::base_url') . '/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)', 'Brew\Blog\PublicController::displayPhoto');
-Router::get(Config::get('blog::base_url') . '/category/([0-9]+)/([a-z-0-9]+)', 'Brew\Blog\PublicController::displayCategory');
-Router::post(Config::get('blog::base_url') . '/search', 'Brew\Blog\PublicController::displaySearchResults');
 
 // Admin: Blog Article Pages
 Router::get('/admin/blog', 'Brew\Blog\AdminController::redirectToArticles');
@@ -24,6 +16,7 @@ Router::post('/admin/blog/article/update', 'Brew\Blog\AdminController::updateBlo
 Router::post('/admin/blog/article/delete', 'Brew\Blog\AdminController::deleteBlogArticle');
 
 // Admin: Blog Photo Actions
+Router::get('/admin/blog/photo/([0-9]+)', 'Brew\Blog\AdminController::displayBlogPhoto');
 Router::post('/admin/blog/photos/insert', 'Brew\Blog\AdminController::insertBlogPhoto');
 Router::post('/admin/blog/photos/delete', 'Brew\Blog\AdminController::deleteBlogPhoto');
 

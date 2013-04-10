@@ -10,16 +10,16 @@ $this->insert('partials/header');
 
         <p>Published on <?=date_create($this->article->published_date)->format('F j, Y')?></p>
 
-        <? if ($this->photos): ?>
-            <img src="<?=$e($this->photos[0]->large_url)?>" alt="<?=$e($this->photos[0]->caption)?>" />
+        <? if ($this->article->photos): ?>
+            <img src="/blog/photo/large/<?=$e($this->article->photos[0]->id)?>" alt="<?=$e($this->article->photos[0]->caption)?>" />
         <? endif ?>
 
-        <? if (array_slice($this->photos, 1)): ?>
+        <? if (array_slice($this->article->photos, 1)): ?>
             <ul>
-                <? foreach (array_slice($this->photos, 1) as $photo): ?>
+                <? foreach (array_slice($this->article->photos, 1) as $photo): ?>
                     <li>
-                        <a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
-                            <img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
+                        <a href="/blog/photo/xlarge/<?=$e($photo->id)?>" title="<?=$e($photo->caption)?>">
+                            <img src="/blog/photo/small/<?=$e($photo->id)?>" alt="<?=$e($photo->caption)?>" />
                         </a>
                     </li>
                 <? endforeach ?>
@@ -29,9 +29,10 @@ $this->insert('partials/header');
         <div class="body">
             <?=$this->article->body?>
         </div>
+
     </div>
 </div>
 
-<?=$this->sidebar?>
+<? $this->insert('blog/sidebar') ?>
 
 <? $this->insert('partials/footer') ?>

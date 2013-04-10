@@ -2,7 +2,8 @@ SELECT
     article.id,
     article.title,
     article.published_date,
-    photo.id AS photo_id
+    photo.id AS photo_id,
+    photo.caption AS photo_caption
 
 FROM
     blog_articles AS article

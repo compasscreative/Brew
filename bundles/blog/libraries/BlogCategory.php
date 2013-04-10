@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Blog;
 
 use Reinink\Query\Table;

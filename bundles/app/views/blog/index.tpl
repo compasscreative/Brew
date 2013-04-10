@@ -10,13 +10,13 @@ $this->insert('partials/header');
         <? foreach($this->articles as $article): ?>
             <div class="article">
 
-                <h2><a href="<?=$e($article->url)?>"><?=$e($article->title)?></a></h2>
+                <h2><a href="/blog/<?=$e($article->id)?>/<?=$e($article->slug)?>"><?=$e($article->title)?></a></h2>
 
                 <p>Published on <?=date_create($article->published_date)->format('F j, Y')?></p>
 
-                <? if ($article->photo_url): ?>
-                    <a href="<?=$e($article->url)?>">
-                        <img src="<?=$e($article->photo_url)?>" alt="">
+                <? if ($article->photo_id): ?>
+                    <a href="/blog/<?=$e($article->id)?>/<?=$e($article->slug)?>">
+                        <img src="/blog/photo/large/<?=$e($article->photo_id)?>" alt="<?=$e($article->photo_caption)?>">
                     </a>
                 <? endif ?>
 
@@ -31,6 +31,6 @@ $this->insert('partials/header');
     <p>No articles found.</p>
 <? endif ?>
 
-<?=$this->sidebar?>
+<? $this->insert('blog/sidebar') ?>
 
 <? $this->insert('partials/footer') ?>

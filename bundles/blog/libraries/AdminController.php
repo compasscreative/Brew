@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Blog;
 
 use Brew\Admin\SecureController;
@@ -169,6 +170,11 @@ class AdminController extends SecureController
         return true;
     }
 
+    public function displayBlogPhoto($id)
+    {
+        return Response::jpg(STORAGE_PATH . 'blog/photos/' . $id . '/xsmall.jpg');
+    }
+
     public function insertBlogPhoto()
     {
         // Check for required paramaters
@@ -277,7 +283,7 @@ class AdminController extends SecureController
             array(
                 'success' => true,
                 'id' => $photo->id,
-                'url' => Config::get('blog::base_url') . '/photo/xsmall/' . $photo->id
+                'url' => '/admin/blog/photo/' . $photo->id
             )
         );
     }

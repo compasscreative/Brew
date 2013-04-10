@@ -13,6 +13,122 @@ Router::get(
 
 /*
 |--------------------------------------------------------------------------
+| Blog
+|--------------------------------------------------------------------------
+*/
+
+Router::get(
+    '/blog',
+    function () {
+
+        // Create API
+        $api = new \Brew\Blog\API();
+
+        // Return view
+        return Response::view(
+            'blog/index',
+            [
+                'articles' => $api->getIndexArticles(),
+                'categories' => $api->getCategories(),
+                'sidebar_articles' => $api->getSidebarArticles()
+            ]
+        );
+    }
+);
+
+Router::get(
+    '/blog/([0-9]+)/([a-z-0-9]+)',
+    function ($id, $slug) {
+
+        // Create API
+        $api = new \Brew\Blog\API();
+
+        // Load article
+        if (!$article = $api->getArticle($id)) {
+            return Response::notFound();
+        }
+
+        // Validate slug
+        if ($article->slug !== $slug) {
+            return Response::redirect('/blog/' . $article->id . '/' . $article->slug);
+        }
+
+        // Return view
+        return Response::view(
+            'blog/article',
+            [
+                'article' => $article,
+                'categories' => $api->getCategories()
+            ]
+        );
+    }
+);
+
+Router::get(
+    '/blog/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)',
+    function ($size, $id) {
+
+        // Create API
+        $api = new \Brew\Blog\API();
+
+        // Return photo
+        return $api->getPhotoResponse($size, $id);
+    }
+);
+
+Router::get(
+    '/blog/category/([0-9]+)/([a-z-0-9]+)',
+    function ($id, $slug) {
+
+        // Create API
+        $api = new \Brew\Blog\API();
+
+        // Load category
+        if (!$category = $api->getCategory($id, $slug)) {
+            return Response::notFound();
+        }
+
+        // Validate slug
+        if ($category->slug !== $slug) {
+            return Response::redirect('/blog/category/' . $category->id . '/' . $category->slug);
+        }
+
+        // Return view
+        return Response::view(
+            'blog/category',
+            [
+                'category' => $category,
+                'categories' => $api->getCategories()
+            ]
+        );
+    }
+);
+
+Router::post(
+    '/blog/search',
+    function () {
+
+        // Create API
+        $api = new \Brew\Blog\API();
+
+        // Load search
+        if (!$search = $api->getSearchResults($_POST['query'])) {
+            return Response::notFound();
+        }
+
+        // Return view
+        return Response::view(
+            'blog/search',
+            [
+                'search' => $search,
+                'categories' => $api->getCategories()
+            ]
+        );
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
 | Galleries
 |--------------------------------------------------------------------------
 */
