@@ -80,7 +80,4 @@
             <button type="submit" class="button">Send</button>
         </li>
     </ul>
-    <div class="sent" style="display: none;">
-        <p>Thank-you for contacting us. Your message has been sent.</p>
-    </div>
 </form>
