@@ -39,7 +39,11 @@ $this->insert('admin::partials/header');
                     <? endforeach ?>
                 <? else: ?>
                     <tr>
-                        <td colspan="4">No blog articles found.</td>
+                        <? if (Config::get('blog::enable_type_option')): ?>
+                            <td colspan="5">No blog articles found.</td>
+                        <? else: ?>
+                            <td colspan="4">No blog articles found.</td>
+                        <? endif ?>
                     </tr>
                 <? endif ?>
             </tbody>
