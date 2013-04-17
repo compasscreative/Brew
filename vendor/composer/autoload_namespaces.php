@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Whoops' => $vendorDir . '/filp/whoops/src/',
     'Reinink\\Up\\' => $vendorDir . '/reinink/up/src',
     'Reinink\\Trailmix\\' => $vendorDir . '/reinink/trailmix/src',
     'Reinink\\Routy\\' => $vendorDir . '/reinink/routy/src',

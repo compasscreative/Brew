@@ -2,7 +2,6 @@
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Reinink\BooBoo\BooBoo;
 use Reinink\Query\DB;
 use Reinink\Reveal\Response;
 use Reinink\Reveal\ResponseException;
@@ -10,6 +9,9 @@ use Reinink\Reveal\ViewResponse;
 use Reinink\Routy\Router;
 use Reinink\Trailmix\Asset;
 use Reinink\Trailmix\Config;
+use Whoops\Handler\JsonResponseHandler;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,7 @@ define('STORAGE_PATH', dirname(dirname(__FILE__)) . '/storage/');
 if (!is_writable(STORAGE_PATH)) {
     die('Storage folder is not writeable.');
 }
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,27 +77,50 @@ spl_autoload_register(
 |--------------------------------------------------------------------------
 */
 
-// Create logs folder
-if (!is_dir(STORAGE_PATH . 'logs/')) {
-    mkdir(STORAGE_PATH . 'logs/');
-}
+$whoops = new Run;
+$whoops->pushHandler(
+    function ($exception, $inspector, $whoops) {
 
-// Setup logging
-$logger = new Logger('errors');
-$logger->pushHandler(new StreamHandler(STORAGE_PATH. 'logs/errors.log'));
+        // Clear output
+        ob_get_level() and ob_end_clean();
 
-// Setup error handler
-BooBoo::setup(
-    function ($e) {
+        // Set response code
+        http_response_code(500);
 
-        $view = new ViewResponse('error', 500);
-        $view->title = 'Server Error';
-        $view->exception = $e;
-        $view->send();
+        // Create logs folder
+        if (!is_dir(STORAGE_PATH . 'logs/')) {
+            mkdir(STORAGE_PATH . 'logs/');
+        }
+
+        // Log error
+        $logger = new Logger('errors');
+        $logger->pushHandler(new StreamHandler(STORAGE_PATH . 'logs/errors.log'));
+        $logger->critical(
+            $exception->getMessage(),
+            array(
+                'Message' => $exception->getMessage(),
+                'File' => $exception->getFile(),
+                'Line' => $exception->getLine()
+            )
+        );
+
+        // Display errors
+        if (Config::get('display_errors')) {
+            if (Request::ajax()) {
+                echo "Message:\n" . $exception->getMessage() . "\n\n";
+                echo "File:\n" . $exception->getFile() . "\n\n";
+                echo "Line:\n" . $exception->getLine();
+            } else {
+                $whoops->pushHandler(new PrettyPageHandler());
+                $whoops->handleException($exception);
+            }
+        }
+
         exit;
-    },
-    $logger
+    }
 );
+$whoops->register();
+
 
 /*
 |--------------------------------------------------------------------------
