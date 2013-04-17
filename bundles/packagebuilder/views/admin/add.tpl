@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Add Option</div>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="packagebuilder_option_add">
+        <form class="standard" autocomplete="off">
             <ul>
                 <li>
                     <div class="label">

@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Editing Gallery</div>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="galleries_gallery_edit">
+        <form class="standard" autocomplete="off">
             <input type="hidden" name="id" value="<?=$e($this->gallery->id)?>">
             <ul>
                 <li>

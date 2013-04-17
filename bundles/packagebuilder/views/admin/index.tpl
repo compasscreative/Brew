@@ -11,7 +11,7 @@ $this->insert('admin::partials/header');
         </ul>
     </div>
     <div class="body">
-        <form autocomplete="off" id="packagebuilder_index">
+        <form autocomplete="off">
             <? foreach ($this->sections as $section): ?>
                 <h2><?=$e($section->name)?></h2>
                 <ul class="table">

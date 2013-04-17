@@ -253,6 +253,12 @@
                         padding: 0 0 0 10px;
                         @include box-sizing(border-box);
 
+                        &:after
+                        {
+                            content: ".";
+                            visibility: hidden;
+                        }
+
                         .drag_handle
                         {
                             cursor: pointer;

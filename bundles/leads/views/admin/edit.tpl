@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Lead from <?=$this->lead->name?></div>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="leads_lead_edit">
+        <form class="standard" autocomplete="off">
             <input type="hidden" name="id" value="<?=$this->lead->id?>">
             <ul>
                 <li>

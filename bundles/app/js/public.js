@@ -1,4 +1,4 @@
-$(function()
+$.router('/.*', function()
 {
-
+    // Add code...
 });

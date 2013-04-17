@@ -7,15 +7,15 @@ $this->insert('partials/header');
 
 <? if ($this->projects): ?>
     <ul>
-    	<? foreach($this->projects as $project): ?>
-    		<li>
-    			<a href="<?=$e($project->url)?>">
-    				<img src="<?=$e($project->photo_url)?>" alt="<?=$e($project->photo_caption)?>">
-    				<h3><?=$e($project->title)?></h3>
+        <? foreach($this->projects as $project): ?>
+            <li>
+                <a href="<?=$e($project->url)?>">
+                    <img src="<?=$e($project->photo_url)?>" alt="<?=$e($project->photo_caption)?>">
+                    <h3><?=$e($project->title)?></h3>
                     <p><?=$e($project->introduction)?></p>
-    			</a>
-    		</li>
-    	<? endforeach ?>
+                </a>
+            </li>
+        <? endforeach ?>
     </ul>
 <? else: ?>
     <p>No projects found.</p>

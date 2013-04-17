@@ -11,7 +11,7 @@ $this->insert('admin::partials/header');
         </ul>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="packagebuilder_option_edit">
+        <form class="standard" autocomplete="off">
             <input type="hidden" name="id" value="<?=$e($this->option->id)?>">
             <ul>
                 <li>

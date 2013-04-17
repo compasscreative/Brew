@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Add Team Member</div>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="team_team_member_add">
+        <form class="standard" autocomplete="off">
             <ul>
                 <li>
                     <div class="label">

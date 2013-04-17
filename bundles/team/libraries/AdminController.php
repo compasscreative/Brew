@@ -16,22 +16,10 @@ class AdminController extends SecureController
         $categories = array_merge(array(''), Config::get('team::categories'));
 
         // Load team members
-        $members = TeamMember::select('id, first_name, last_name, category')->orderBy('display_order')->rows();
+        $members = TeamMember::select('id, first_name, last_name, category, title, email, phone')->orderBy('display_order')->rows();
 
-        // Set photo url
+        // Validate team member category
         foreach ($members as $team_member) {
-
-            // Set photo path
-            $path = STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg';
-
-            // Check if photo exists
-            if (is_file($path)) {
-                $team_member->photo_url = '/admin/team/photo/small/' . $team_member->id . '/' . filemtime($path);
-            } else {
-                $team_member->photo_url = null;
-            }
-
-            // Validate category
             if (!in_array($team_member->category, $categories)) {
                 $team_member->category = '';
             }

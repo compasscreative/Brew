@@ -13,13 +13,13 @@ $this->insert('partials/header');
 
 <h2>Photos:</h2>
 <ul>
-	<? foreach ($this->photos as $photo): ?>
-		<li>
-			<a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
-				<img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
-			</a>
-		</li>
-	<? endforeach ?>
+    <? foreach ($this->photos as $photo): ?>
+        <li>
+            <a href="<?=$e($photo->xlarge_url)?>" title="<?=$e($photo->caption)?>">
+                <img src="<?=$e($photo->small_url)?>" alt="<?=$e($photo->caption)?>" />
+            </a>
+        </li>
+    <? endforeach ?>
 </ul>
 
 <? $this->insert('partials/footer') ?>

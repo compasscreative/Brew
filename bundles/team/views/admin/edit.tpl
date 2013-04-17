@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Editing Team Member</div>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="team_team_member_edit">
+        <form class="standard" autocomplete="off">
             <input type="hidden" name="id" value="<?=$e($this->team_member->id)?>">
             <ul>
                 <li>

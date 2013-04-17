@@ -8,7 +8,7 @@ $this->insert('admin::partials/header');
         <div class="title">Editing Blog Category</div>
     </div>
     <div class="body">
-        <form class="standard" autocomplete="off" id="blog_blog_category_edit">
+        <form class="standard" autocomplete="off">
             <input type="hidden" name="id" value="<?=$e($this->category->id)?>">
             <ul>
                 <li>
