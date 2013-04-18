@@ -16,5 +16,4 @@ INNER JOIN
     )
 
 ORDER BY
-    galleries.priority,
-    galleries.title
+    galleries.display_order

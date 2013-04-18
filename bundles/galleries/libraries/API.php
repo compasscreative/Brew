@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Galleries;
 
 use Michelf\Markdown;

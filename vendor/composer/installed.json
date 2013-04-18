@@ -104,35 +104,6 @@
         ]
     },
     {
-        "name": "reinink/booboo",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/reinink/BooBoo.git",
-            "reference": "1.0.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/reinink/BooBoo/zipball/1.0.0",
-            "reference": "1.0.0",
-            "shasum": ""
-        },
-        "time": "2013-03-26 18:36:33",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Reinink\\BooBoo\\": "src"
-            }
-        },
-        "description": "A PHP class that manages uncaught exceptions and errors.",
-        "support": {
-            "source": "https://github.com/reinink/BooBoo/tree/1.0.0",
-            "issues": "https://github.com/reinink/BooBoo/issues"
-        }
-    },
-    {
         "name": "reinink/query",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",

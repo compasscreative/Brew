@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Admin;
 
 use Reinink\Routy\Router;

@@ -997,6 +997,27 @@ textarea {
                   line-height: 100%;
                   font-weight: bold;
                   background: #9d9d9d; }
+                  .container .panel .body form.standard > ul > li .field.photos ul li.uploading.error {
+                    background: #ff8080; }
+                    .container .panel .body form.standard > ul > li .field.photos ul li.uploading.error button {
+                      display: inline-block;
+                      vertical-align: middle;
+                      -webkit-box-sizing: border-box;
+                      -moz-box-sizing: border-box;
+                      box-sizing: border-box;
+                      margin: 0 0 0 5px;
+                      padding: 0 4px;
+                      height: 18px;
+                      outline: 0;
+                      border: none;
+                      font-size: 12px;
+                      line-height: 100%;
+                      color: black;
+                      border-radius: 2px;
+                      background: #ffe5e5;
+                      overflow: hidden; }
+                      .container .panel .body form.standard > ul > li .field.photos ul li.uploading.error button:hover, .container .panel .body form.standard > ul > li .field.photos ul li.uploading.error button:focus, .container .panel .body form.standard > ul > li .field.photos ul li.uploading.error button:active {
+                        background: white; }
                 .container .panel .body form.standard > ul > li .field.photos ul li img {
                   display: block;
                   float: left; }
@@ -1009,6 +1030,11 @@ textarea {
                   line-height: 100%;
                   font-weight: bold;
                   background: #e95c41; }
+                .container .panel .body form.standard > ul > li .field.photos ul li.no_photos {
+                  margin: 10px 0 5px 0;
+                  font-size: 12px;
+                  line-height: 110%;
+                  color: gray; }
                 .container .panel .body form.standard > ul > li .field.photos ul li .tools {
                   float: left;
                   width: 400px;

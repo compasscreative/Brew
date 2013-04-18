@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\App;
 
 use Reinink\Routy\Router;
@@ -141,6 +142,19 @@ Router::post(
 
 /*
 |--------------------------------------------------------------------------
+| Contact (Leads)
+|--------------------------------------------------------------------------
+*/
+
+Router::get(
+    '/contact',
+    function () {
+        return Response::view('contact');
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
 | Galleries
 |--------------------------------------------------------------------------
 */
@@ -157,7 +171,7 @@ Router::get(
 
         // Return view
         return Response::view(
-            'galleries',
+            'galleries/galleries',
             [
                 'galleries' => $galleries
             ]
@@ -192,7 +206,7 @@ Router::get(
 
         // Return view
         return Response::view(
-            'gallery',
+            'galleries/gallery',
             [
                 'gallery' => $gallery,
                 'photos' => $photos,
@@ -208,6 +222,119 @@ Router::get(
 
         // Create API
         $api = new \Brew\Galleries\API();
+
+        // Return photo
+        return $api->getPhotoResponse($size, $id);
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Package Builder
+|--------------------------------------------------------------------------
+*/
+
+Router::get(
+    '/package-builder',
+    function () {
+
+        // Create API
+        $api = new \Brew\PackageBuilder\API();
+
+        // Get form
+        $form = $api->getForm('/package-builder');
+
+        // Return view
+        return Response::view(
+            'package_builder/package_builder',
+            [
+                'form' => $form
+            ]
+        );
+    }
+);
+
+Router::get(
+    '/package-builder/photo/(large|small)/(small|medium|large)/([0-9]+)/[0-9]+',
+    function ($image_size, $option_size, $id) {
+
+        // Create API
+        $api = new \Brew\PackageBuilder\API();
+
+        // Return photo
+        return $api->getPhotoResponse($image_size, $option_size, $id);
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Products
+|--------------------------------------------------------------------------
+*/
+
+Router::get(
+    '/products',
+    function () {
+
+        // Create API
+        $api = new \Brew\Products\API();
+
+        // Load all products
+        $products = $api->getAllProducts();
+
+        // Return view
+        return Response::view(
+            'products/products',
+            [
+                'products' => $products
+            ]
+        );
+    }
+);
+
+Router::get(
+    '/products/([0-9]+)/([a-z-0-9]+)',
+    function ($id, $slug) {
+
+        // Create API
+        $api = new \Brew\Products\API();
+
+        // Load product
+        if (!$product = $api->getProduct($id)) {
+            return Response::notFound();
+        }
+
+        // Validate slug
+        if ($product->slug !== $slug) {
+            return Response::redirect('/products/' . $product->id . '/' . $product->slug);
+        }
+
+        // Load photos
+        if (!$photos = $api->getProductPhotos($product->id)) {
+            return Response::notFound();
+        }
+
+        // Load all products
+        $products = $api->getAllProducts();
+
+        // Return view
+        return Response::view(
+            'products/product',
+            [
+                'product' => $product,
+                'photos' => $photos,
+                'products' => $products
+            ]
+        );
+    }
+);
+
+Router::get(
+    '/products/photo/(xlarge|large|medium|small|xsmall)/([0-9]+)',
+    function ($size, $id) {
+
+        // Create API
+        $api = new \Brew\Products\API();
 
         // Return photo
         return $api->getPhotoResponse($size, $id);
@@ -232,7 +359,7 @@ Router::get(
 
         // Return view
         return Response::view(
-            'team',
+            'team/team',
             [
                 'categories' => $categories
             ]
@@ -259,7 +386,7 @@ Router::get(
 
         // Return view
         return Response::view(
-            'team_member',
+            'team/team_member',
             [
                 'team_member' => $team_member
             ]
@@ -276,56 +403,5 @@ Router::get(
 
         // Return photo
         return $api->getPhotoResponse($size, $id);
-    }
-);
-
-/*
-|--------------------------------------------------------------------------
-| Package Builder
-|--------------------------------------------------------------------------
-*/
-
-Router::get(
-    '/package-builder',
-    function () {
-
-        // Create API
-        $api = new \Brew\PackageBuilder\API();
-
-        // Get form
-        $form = $api->getForm('/package-builder');
-
-        // Return view
-        return Response::view(
-            'package_builder',
-            [
-                'form' => $form
-            ]
-        );
-    }
-);
-
-Router::get(
-    '/package-builder/photo/(large|small)/(small|medium|large)/([0-9]+)/[0-9]+',
-    function ($image_size, $option_size, $id) {
-
-        // Create API
-        $api = new \Brew\PackageBuilder\API();
-
-        // Return photo
-        return $api->getPhotoResponse($image_size, $option_size, $id);
-    }
-);
-
-/*
-|--------------------------------------------------------------------------
-| Contact (Leads)
-|--------------------------------------------------------------------------
-*/
-
-Router::get(
-    '/contact',
-    function () {
-        return Response::view('contact');
     }
 );

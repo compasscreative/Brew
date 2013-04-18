@@ -11,7 +11,7 @@ $this->insert('partials/header');
         <ul>
             <? foreach ($category->members as $member): ?>
                 <li id="<?=$member->id?>">
-                    <a href="/admin/team/edit/<?=$e($member->id)?>/">
+                    <a href="/team/<?=$e($member->id)?>/<?=$e($member->slug)?>">
                         <? if ($member->has_photo): ?>
                             <img src="/team/photo/small/<?=$e($member->id)?>" alt="<?=$e($member->first_name)?> <?=$e($member->last_name)?>">
                         <?php else: ?>

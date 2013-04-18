@@ -1,5 +1,42 @@
 /*
 |--------------------------------------------------------------------------
+| Index
+|--------------------------------------------------------------------------
+*/
+
+$.router('/admin/galleries', function()
+{
+    var form = $('form');
+
+    /*
+    | --------------------
+    | Setup image sorting
+    | --------------------
+    */
+    form.find('ul').sortable(
+    {
+        items: 'li:not(.headings)',
+        handle: '.drag_handle',
+        placeholder: 'drag_placeholder',
+        forcePlaceholderSize: true,
+        update: function(event, ui)
+        {
+            $.ajax(
+            {
+                type: 'post',
+                url: '/admin/galleries/order',
+                data:
+                {
+                    galleries: $(this).sortable('toArray').join(',')
+                }
+            });
+        }
+    }).disableSelection();
+});
+
+
+/*
+|--------------------------------------------------------------------------
 | Add
 |--------------------------------------------------------------------------
 */
@@ -140,15 +177,27 @@ $.router('/admin/galleries/edit/[0-9]+', function()
 
     /*
     | --------------------
-    | Setup image sorting
+    | Delete gallery
     | --------------------
     */
-    form.find('.photos ul').sortable(
+    form.on('click', 'button.delete_gallery', function()
     {
-        handle: 'img'
-    }).css(
-    {
-        'min-height': form.find('.photos ul').height() + 'px'
+        if (confirm('Are you sure you want to delete this gallery?'))
+        {
+            $.ajax(
+            {
+                type: 'post',
+                url: '/admin/galleries/delete',
+                data:
+                {
+                    id: form.find('[name=id]').val()
+                },
+                success: function()
+                {
+                    location.href = '/admin/galleries';
+                }
+            });
+        }
     });
 
     /*
@@ -176,12 +225,12 @@ $.router('/admin/galleries/edit/[0-9]+', function()
         },
         callbacks:
         {
-            onError: function(id, name, errorReason)
-            {
-                alert(errorReason);
-            },
             onUpload: function(id, filename)
             {
+                // Hide "no photos" message
+                form.find('.photos ul li.no_photos').hide();
+
+                // Insert row for new photo
                 form.find('.photos ul').append('<li id="photo_' + id + '" class="uploading"></li>');
             },
             onProgress: function(id, filename, uploaded_bytes, total_bytes)
@@ -217,33 +266,26 @@ $.router('/admin/galleries/edit/[0-9]+', function()
                         'min-height': form.find('.photos ul').height() + 'px'
                     });
                 }
+                else
+                {
+                    // Show error
+                    form.find('#photo_' + id).html('Sorry, but we were unable to save the file: ' + filename + ' <button type="button" class="delete_photo">OK</button>').addClass('error');
+                }
             }
         }
     });
 
     /*
     | --------------------
-    | Delete gallery
+    | Setup image sorting
     | --------------------
     */
-    form.on('click', 'button.delete_gallery', function()
+    form.find('.photos ul').sortable(
     {
-        if (confirm('Are you sure you want to delete this gallery?'))
-        {
-            $.ajax(
-            {
-                type: 'post',
-                url: '/admin/galleries/delete',
-                data:
-                {
-                    id: form.find('[name=id]').val()
-                },
-                success: function()
-                {
-                    location.href = '/admin/galleries';
-                }
-            });
-        }
+        handle: 'img'
+    }).css(
+    {
+        'min-height': form.find('.photos ul').height() + 'px'
     });
 
     /*
@@ -253,13 +295,13 @@ $.router('/admin/galleries/edit/[0-9]+', function()
     */
     form.on('click', 'button.delete_photo', function()
     {
-        if (confirm('Are you sure you want to delete this photo?'))
-        {
-            // Get photo id
-            var li = $(this).closest('li');
-            var id = $(this).data('id');
+        // Get photo id
+        var li = $(this).closest('li');
+        var id = $(this).data('id');
 
-            // Send request
+        // Send request
+        if (id)
+        {
             $.ajax(
             {
                 type: 'post',
@@ -267,22 +309,26 @@ $.router('/admin/galleries/edit/[0-9]+', function()
                 data:
                 {
                     id: id
-                },
-                success: function()
-                {
-                    // Disable min height
-                    form.find('.photos ul').css({ 'min-height': 0 });
-
-                    // Remove list item
-                    li.remove();
-
-                    // Re-enable min height
-                    form.find('.photos ul').css(
-                    {
-                        'min-height': form.find('.photos ul').height() + 'px'
-                    });
                 }
             });
+        }
+
+        // Disable min height
+        form.find('.photos ul').css({ 'min-height': 0 });
+
+        // Remove list item
+        li.remove();
+
+        // Re-enable min height
+        form.find('.photos ul').css(
+        {
+            'min-height': form.find('.photos ul').height() + 'px'
+        });
+
+        // Hide "no photos" message
+        if (form.find('.photos ul li:visible').length === 0)
+        {
+            form.find('.photos ul li.no_photos').show();
         }
     });
 });

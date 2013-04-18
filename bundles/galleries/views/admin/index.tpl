@@ -11,30 +11,29 @@ $this->insert('admin::partials/header');
         </ul>
     </div>
     <div class="body">
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Priority</th>
-                    <th>Photos</th>
-                </tr>
-            </thead>
-            <tbody>
+        <form autocomplete="off">
+            <ul class="table">
+                <li class="headings">
+                    <div style="width: 75%;">Name</div>
+                    <div style="width: 25%;">Photos</div>
+                </li>
                 <? if ($this->galleries): ?>
                     <? foreach ($this->galleries as $gallery): ?>
-                        <tr>
-                            <td><a href="/admin/galleries/edit/<?=$e($gallery->id)?>/"><?=$e($gallery->title)?></a></td>
-                            <td><?=$e($gallery->priority)?></td>
-                            <td><?=$e($gallery->photos)?></td>
-                        </tr>
+                        <li id="<?=$e($gallery->id)?>">
+                            <div style="width: 75%;">
+                                <span class="drag_handle">&#9776;</span>
+                                <a href="/admin/galleries/edit/<?=$e($gallery->id)?>/"><?=$e($gallery->title)?></a>
+                            </div>
+                            <div style="width: 25%;"><?=$e($gallery->photos)?></div>
+                        </li>
                     <? endforeach ?>
                 <? else: ?>
-                    <tr>
-                        <td colspan="3">No galleries found.</td>
-                    </tr>
+                    <li>
+                        <div>No galleries found.</div>
+                    </li>
                 <? endif ?>
-            </tbody>
-        </table>
+            </ul>
+        </form>
     </div>
 </div>
 

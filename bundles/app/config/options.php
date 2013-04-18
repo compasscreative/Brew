@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\App;
 
 use Reinink\Trailmix\Config;

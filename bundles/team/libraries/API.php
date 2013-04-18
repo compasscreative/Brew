@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Team;
 
 use Michelf\Markdown;
@@ -96,7 +97,7 @@ class API
         $team_member->has_photo = is_file(STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg');
 
         // Convert markdown bio
-        $team_member->bio = Markdown::defaultTransform(htmlentities($team_member->bio));
+        $team_member->bio = trim(Markdown::defaultTransform(htmlentities($team_member->bio)));
 
         return $team_member;
     }

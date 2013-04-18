@@ -12,6 +12,7 @@ Router::get('/admin/galleries/edit/([0-9]+)', 'Brew\Galleries\AdminController::e
 // Admin: Gallery Actions
 Router::post('/admin/galleries/insert', 'Brew\Galleries\AdminController::insertGallery');
 Router::post('/admin/galleries/update', 'Brew\Galleries\AdminController::updateGallery');
+Router::post('/admin/galleries/order', 'Brew\Galleries\AdminController::updateGalleryOrder');
 Router::post('/admin/galleries/delete', 'Brew\Galleries\AdminController::deleteGallery');
 
 // Admin: Gallery Photo Actions

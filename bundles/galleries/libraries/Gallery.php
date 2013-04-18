@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Galleries;
 
 use Reinink\Query\Table;
@@ -9,5 +10,5 @@ class Gallery extends Table
     protected $id;
     protected $title;
     protected $description;
-    protected $priority;
+    protected $display_order;
 }

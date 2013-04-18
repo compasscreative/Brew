@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Projects;
 
 use Michelf\Markdown;

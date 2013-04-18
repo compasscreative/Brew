@@ -81,7 +81,7 @@ $whoops = new Run;
 $whoops->pushHandler(
     function ($exception, $inspector, $whoops) {
 
-        // Clear output
+        // Remove any previous output
         ob_get_level() and ob_end_clean();
 
         // Set response code

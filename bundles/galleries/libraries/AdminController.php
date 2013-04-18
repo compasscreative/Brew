@@ -1,4 +1,5 @@
 <?php
+
 namespace Brew\Galleries;
 
 use Brew\Admin\SecureController;
@@ -11,11 +12,14 @@ class AdminController extends SecureController
 {
     public function displayGalleries()
     {
-        $galleries = Gallery::select('id, title, priority, (SELECT COUNT(*) FROM gallery_photos WHERE gallery_id = galleries.id) AS photos')
-                            ->orderBy('priority, title')
-                            ->rows();
-
-        return Response::view('galleries::admin/index', array('galleries' => $galleries));
+        return Response::view(
+            'galleries::admin/index',
+            [
+                'galleries' => Gallery::select('id, title, (SELECT COUNT(*) FROM gallery_photos WHERE gallery_id = galleries.id) AS photos')
+                                      ->orderBy('display_order')
+                                      ->rows()
+            ]
+        );
     }
 
     public function addGallery()
@@ -25,27 +29,35 @@ class AdminController extends SecureController
 
     public function editGallery($id)
     {
-        if (!$gallery = Gallery::select('id, title, priority, description')
-                              ->where('id', $id)
-                              ->row()) {
+        // Load gallery
+        if (!$gallery = Gallery::select('id, title, description')
+                               ->where('id', $id)
+                               ->row()) {
 
             Response::notFound();
         }
 
+        // Load gallery photos
         $photos = GalleryPhoto::select('id, caption')
                               ->where('gallery_id', $id)
                               ->orderBy('display_order')
                               ->rows();
 
-        return Response::view('galleries::admin/edit', array('gallery' => $gallery, 'photos' => $photos));
+        // Return view
+        return Response::view(
+            'galleries::admin/edit',
+            [
+                'gallery' => $gallery,
+                'photos' => $photos
+            ]
+        );
     }
 
     public function insertGallery()
     {
         // Check for required paramaters
         if (!isset($_POST['title']) or
-            !isset($_POST['description']) or
-            !isset($_POST['priority'])) {
+            !isset($_POST['description'])) {
 
             Response::badRequest();
         }
@@ -54,11 +66,15 @@ class AdminController extends SecureController
         $gallery = new Gallery();
         $gallery->title = trim($_POST['title']);
         $gallery->description = trim($_POST['description']);
-        $gallery->priority = trim($_POST['priority']);
+        $gallery->display_order = Gallery::select('COUNT(*)+1')->field();
         $gallery->insert();
 
         // Return new id
-        return Response::json(array('id' => $gallery->id));
+        return Response::json(
+            [
+                'id' => $gallery->id
+            ]
+        );
     }
 
     public function updateGallery()
@@ -66,8 +82,7 @@ class AdminController extends SecureController
         // Check for required paramaters
         if (!isset($_POST['id']) or
             !isset($_POST['title']) or
-            !isset($_POST['description']) or
-            !isset($_POST['priority'])) {
+            !isset($_POST['description'])) {
 
             Response::badRequest();
         }
@@ -78,10 +93,8 @@ class AdminController extends SecureController
         }
 
         // Update the gallery
-        $gallery->id = trim($_POST['id']);
         $gallery->title = trim($_POST['title']);
         $gallery->description = trim($_POST['description']);
-        $gallery->priority = trim($_POST['priority']);
         $gallery->update();
 
         // Update photo order and captions
@@ -108,6 +121,25 @@ class AdminController extends SecureController
         return true;
     }
 
+    public function updateGalleryOrder()
+    {
+        // Check for required paramaters
+        if (!isset($_POST['galleries'])) {
+            Response::badRequest();
+        }
+
+        // Update gallery display orders
+        foreach (explode(',', $_POST['galleries']) as $display_order => $id) {
+            if ($gallery = gallery::select($id)) {
+                $gallery->display_order = $display_order + 1;
+                $gallery->update();
+            }
+        }
+
+        // Success
+        return true;
+    }
+
     public function deleteGallery()
     {
         // Check for required paramaters
@@ -125,11 +157,36 @@ class AdminController extends SecureController
                              ->where('gallery_id', $gallery->id)
                              ->rows() as $photo) {
 
+            // Set image folder
+            $folder = STORAGE_PATH . 'galleries/photos/' . $photo->id . '/';
+
+            // Delete all images
+            foreach (['xlarge.jpg', 'large.jpg', 'medium.jpg', 'small.jpg', 'xsmall.jpg'] as $filename) {
+                if (is_file($folder . $filename)) {
+                    unlink($folder . $filename);
+                }
+            }
+
+            // Delete the folder
+            if (is_dir($folder)) {
+                rmdir($folder);
+            }
+
+            // Delete the photo
             $photo->delete();
         }
 
         // Delete the gallery
         $gallery->delete();
+
+        // Reorder remaining galleries
+        foreach (Gallery::select()
+                        ->orderBy('display_order')
+                        ->rows() as $key => $gallery) {
+
+            $gallery->display_order = $key + 1;
+            $gallery->update();
+        }
 
         // Success
         return true;
@@ -158,10 +215,10 @@ class AdminController extends SecureController
         // Validate uploaded file
         if (!$upload->validate('image')) {
             return Response::json(
-                array(
+                [
                     'success' => false,
                     'reason' => $upload->error
-                )
+                ]
             );
         }
 
@@ -187,10 +244,10 @@ class AdminController extends SecureController
         if (!$im->setHeight(1200)
                 ->convert($folder . 'xlarge.jpg')) {
             return Response::json(
-                array(
+                [
                     'success' => false,
                     'reason' => 'Unable to create xlarge image.'
-                )
+                ]
             );
         }
 
@@ -200,10 +257,10 @@ class AdminController extends SecureController
                 ->setWidth(1175)
                 ->convert($folder . 'large.jpg')) {
             return Response::json(
-                array(
+                [
                     'success' => false,
                     'reason' => 'Unable to create large image.'
-                )
+                ]
             );
         }
 
@@ -212,10 +269,10 @@ class AdminController extends SecureController
                 ->setWidth(750)
                 ->convert($folder . 'medium.jpg')) {
             return Response::json(
-                array(
+                [
                     'success' => false,
                     'reason' => 'Unable to create medium image.'
-                )
+                ]
             );
         }
 
@@ -224,10 +281,10 @@ class AdminController extends SecureController
                 ->setWidth(250)
                 ->convert($folder . 'small.jpg')) {
             return Response::json(
-                array(
+                [
                     'success' => false,
                     'reason' => 'Unable to create small image.'
-                )
+                ]
             );
         }
 
@@ -236,20 +293,20 @@ class AdminController extends SecureController
                 ->setWidth(75)
                 ->convert($folder . 'xsmall.jpg')) {
             return Response::json(
-                array(
+                [
                     'success' => false,
                     'reason' => 'Unable to create xsmall image.'
-                )
+                ]
             );
         }
 
         // Return success
         return Response::json(
-            array(
+            [
                 'success' => true,
                 'id' => $gallery_photo->id,
                 'url' => '/admin/galleries/photo/' . $gallery_photo->id
-            )
+            ]
         );
     }
 
@@ -263,6 +320,21 @@ class AdminController extends SecureController
         // Load the photo
         if (!$photo = GalleryPhoto::select($_POST['id'])) {
             Response::notFound();
+        }
+
+        // Set image folder
+        $folder = STORAGE_PATH . 'galleries/photos/' . $photo->id . '/';
+
+        // Delete all images
+        foreach (['xlarge.jpg', 'large.jpg', 'medium.jpg', 'small.jpg', 'xsmall.jpg'] as $filename) {
+            if (is_file($folder . $filename)) {
+                unlink($folder . $filename);
+            }
+        }
+
+        // Delete the folder
+        if (is_dir($folder)) {
+            rmdir($folder);
         }
 
         // Delete the photo
