@@ -7,9 +7,6 @@ use Reinink\Reveal\Response;
 use Reinink\Reveal\ResponseException;
 use Reinink\Reveal\ViewResponse;
 use Reinink\Routy\Router;
-use Reinink\Trailmix\Asset;
-use Reinink\Trailmix\Config;
-use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
