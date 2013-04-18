@@ -12,7 +12,7 @@ Brew is a lightweight PHP and SQLite based framework with a bundling system for 
 - [Blog](bundles/blog)
 - [Galleries](bundles/galleries)
 - [Leads](bundles/leads)
-- [Package Builde/reininkr](/Brew/tree/master/bundles/packagebuilder)
+- [Package Builder](bundles/packagebuilder)
 - [Products](bundles/products)
 - [Projects](bundles/projects)
 - [Team](bundles/team)
