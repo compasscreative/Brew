@@ -5,6 +5,7 @@ Team
 
 ```php
 <?php
+
 Router::get(
     '/team',
     function () {

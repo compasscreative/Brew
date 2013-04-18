@@ -5,6 +5,7 @@ Package Builder
 
 ```php
 <?php
+
 Router::get(
     '/package-builder',
     function () {

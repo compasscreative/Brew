@@ -5,6 +5,7 @@ Blog
 
 ```php
 <?php
+
 Router::get(
     '/blog',
     function () {

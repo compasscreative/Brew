@@ -5,6 +5,7 @@ Galleries
 
 ```php
 <?php
+
 Router::get(
     '/galleries',
     function () {
