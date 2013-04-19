@@ -27,20 +27,15 @@ Router::get(
 );
 
 Router::get(
-    '/products/([0-9]+)/([a-z-0-9]+)',
-    function ($id, $slug) {
+    '/products/([a-z-0-9]+)',
+    function ($slug) {
 
         // Create API
         $api = new \Brew\Products\API();
 
         // Load product
-        if (!$product = $api->getProduct($id)) {
+        if (!$product = $api->getProductBySlug($slug)) {
             return Response::notFound();
-        }
-
-        // Validate slug
-        if ($product->slug !== $slug) {
-            return Response::redirect('/products/' . $product->id . '/' . $product->slug);
         }
 
         // Load photos
@@ -92,7 +87,7 @@ $this->insert('partials/header');
     <ul>
         <? foreach($this->products as $product): ?>
             <li>
-                <a href="/products/<?=$e($product->id)?>/<?=$e($product->slug)?>">
+                <a href="/products/<?=$e($product->slug)?>">
                     <img src="/products/photo/small/<?=$e($product->photo_id)?>" alt="<?=$e($product->photo_caption)?>">
                     <h3><?=$e($product->title)?></h3>
                 </a>
@@ -142,7 +137,7 @@ $this->insert('partials/header');
 <ul>
     <? foreach($this->products as $product): ?>
         <li>
-            <a href="/products/<?=$e($product->id)?>/<?=$e($product->slug)?>">
+            <a href="/products/<?=$e($product->slug)?>">
                 <img src="/products/photo/small/<?=$e($product->photo_id)?>" alt="<?=$e($product->photo_caption)?>">
                 <h3><?=$e($product->title)?></h3>
             </a>
