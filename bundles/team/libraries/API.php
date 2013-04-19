@@ -9,39 +9,13 @@ use Reinink\Trailmix\Str;
 
 class API
 {
-    public function getMemberByName($first_name, $last_name)
-    {
-        // Load team member
-        $team_member = TeamMember::select('id, first_name, last_name, title, category')
-                                 ->where('first_name', $first_name)
-                                 ->and('last_name', $last_name)
-                                 ->orderBy('display_order')
-                                 ->row();
-
-        // Check if member was found
-        if (!$team_member) {
-            return false;
-        }
-
-        // Add slug
-        $team_member->slug = Str::slug($team_member->first_name . ' ' . $team_member->last_name);
-
-        // Add photo status
-        $team_member->has_photo = is_file(STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg');
-
-        return $team_member;
-    }
-
     public function getTeamMembers()
     {
         // Load team members
-        $team_members = TeamMember::select('id, first_name, last_name, title, category')->orderBy('display_order')->rows();
+        $team_members = TeamMember::select('id, first_name, last_name, title, category, slug')->orderBy('display_order')->rows();
 
         // Add details
         foreach ($team_members as $team_member) {
-
-            // Add slug
-            $team_member->slug = Str::slug($team_member->first_name . ' ' . $team_member->last_name);
 
             // Add photo status
             $team_member->has_photo = is_file(STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg');
@@ -83,15 +57,14 @@ class API
         return $categories;
     }
 
-    public function getTeamMember($id)
+    public function getTeamMemberById($id)
     {
         // Load team member
-        if (!$team_member = TeamMember::select('id, first_name, last_name, title, bio, email, phone')->where('id', $id)->row()) {
+        if (!$team_member = TeamMember::select('id, first_name, last_name, title, bio, email, phone')
+                                      ->where('id', $id)
+                                      ->row()) {
             return false;
         }
-
-        // Add slug
-        $team_member->slug = Str::slug($team_member->first_name . ' ' . $team_member->last_name);
 
         // Add photo status
         $team_member->has_photo = is_file(STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg');
@@ -99,6 +72,46 @@ class API
         // Convert markdown bio
         $team_member->bio = trim(Markdown::defaultTransform(htmlentities($team_member->bio)));
 
+        // Return team member
+        return $team_member;
+    }
+
+    public function getTeamMemberBySlug($slug)
+    {
+        // Load team member
+        if (!$team_member = TeamMember::select('id, first_name, last_name, title, bio, email, phone')
+                                      ->where('slug', $slug)
+                                      ->row()) {
+            return false;
+        }
+
+        // Add photo status
+        $team_member->has_photo = is_file(STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg');
+
+        // Convert markdown bio
+        $team_member->bio = trim(Markdown::defaultTransform(htmlentities($team_member->bio)));
+
+        // Return team member
+        return $team_member;
+    }
+
+    public function getTeamMemberByName($first_name, $last_name)
+    {
+        // Load team member
+        if (!$team_member = TeamMember::select('id, first_name, last_name, title, bio, email, phone')
+                                      ->where('first_name', $first_name)
+                                      ->and('last_name', $last_name)
+                                      ->row()) {
+            return false;
+        }
+
+        // Add photo status
+        $team_member->has_photo = is_file(STORAGE_PATH . 'team/photos/' . $team_member->id . '/medium.jpg');
+
+        // Convert markdown bio
+        $team_member->bio = trim(Markdown::defaultTransform(htmlentities($team_member->bio)));
+
+        // Return team member
         return $team_member;
     }
 

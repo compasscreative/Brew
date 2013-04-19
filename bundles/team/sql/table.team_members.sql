@@ -8,5 +8,6 @@ CREATE TABLE team_members
     email TEXT,
     phone TEXT,
     category TEXT,
-    display_order INTEGER
+    display_order INTEGER,
+    slug TEXT
 )

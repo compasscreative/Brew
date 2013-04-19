@@ -10,7 +10,6 @@ Router::get(
     '/team',
     function () {
 
-
         // Create API
         $api = new \Brew\Team\API();
 
@@ -19,7 +18,7 @@ Router::get(
 
         // Return view
         return Response::view(
-            'team',
+            'team/team',
             [
                 'categories' => $categories
             ]
@@ -28,29 +27,21 @@ Router::get(
 );
 
 Router::get(
-    '/team/([0-9]+)/([a-z-0-9]+)',
-    function ($id, $slug) {
+    '/team/([a-z-0-9]+)',
+    function ($slug) {
 
         // Create API
         $api = new \Brew\Team\API();
 
         // Load team member
-        if (!$team_member = $api->getTeamMember($id)) {
-            return Response::notFound();
+        if ($team_member = $api->getTeamMemberBySlug($slug)) {
+            return Response::view(
+                'team/team_member',
+                [
+                    'team_member' => $team_member
+                ]
+            );
         }
-
-        // Validate slug
-        if ($team_member->slug !== $slug) {
-            return Response::redirect('/team/' . $team_member->id . '/' . $team_member->slug);
-        }
-
-        // Return view
-        return Response::view(
-            'team_member',
-            [
-                'team_member' => $team_member
-            ]
-        );
     }
 );
 
@@ -84,7 +75,7 @@ $this->insert('partials/header');
         <ul>
             <? foreach ($category->members as $member): ?>
                 <li id="<?=$member->id?>">
-                    <a href="/admin/team/edit/<?=$e($member->id)?>/">
+                    <a href="/team/<?=$e($member->slug)?>">
                         <? if ($member->has_photo): ?>
                             <img src="/team/photo/small/<?=$e($member->id)?>" alt="<?=$e($member->first_name)?> <?=$e($member->last_name)?>">
                         <?php else: ?>

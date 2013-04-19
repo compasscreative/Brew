@@ -7,6 +7,7 @@ use Reinink\Magick\Magick;
 use Reinink\Reveal\Response;
 use Reinink\Trailmix\Asset;
 use Reinink\Trailmix\Config;
+use Reinink\Trailmix\Str;
 use Reinink\Up\ImageUpload;
 
 class AdminController extends SecureController
@@ -96,6 +97,7 @@ class AdminController extends SecureController
         $team_member->phone = trim($_POST['phone']);
         $team_member->category = trim($_POST['category']);
         $team_member->display_order = TeamMember::select('COUNT(*)+1')->field();
+        $team_member->slug = Str::slug($team_member->first_name . ' ' . $team_member->last_name);
         $team_member->insert();
 
         // Return new id
@@ -130,6 +132,7 @@ class AdminController extends SecureController
         $team_member->email = trim($_POST['email']);
         $team_member->phone = trim($_POST['phone']);
         $team_member->category = trim($_POST['category']);
+        $team_member->slug = Str::slug($team_member->first_name . ' ' . $team_member->last_name);
         $team_member->update();
 
         // Success
@@ -167,6 +170,23 @@ class AdminController extends SecureController
         // Load the team member
         if (!$team_member = TeamMember::select($_POST['id'])) {
             Response::notFound();
+        }
+
+        // Set image folder
+        $folder = STORAGE_PATH . 'team/photos/' . $team_member->id . '/';
+
+        // Delete images and folder
+        if (is_dir($folder)) {
+
+            // Delete images
+            foreach (['xlarge.jpg', 'large.jpg', 'medium.jpg', 'small.jpg', 'xsmall.jpg'] as $filename) {
+                if (is_file($folder . $filename)) {
+                    unlink($folder . $filename);
+                }
+            }
+
+            // Delete folder
+            rmdir($folder);
         }
 
         // Delete the team member
