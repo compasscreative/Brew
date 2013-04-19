@@ -6,5 +6,6 @@ CREATE TABLE products
     description TEXT,
     title_tag TEXT,
     description_tag TEXT,
-    display_order INTEGER
+    display_order INTEGER,
+    slug TEXT
 )

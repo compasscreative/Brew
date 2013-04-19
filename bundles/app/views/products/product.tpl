@@ -31,7 +31,7 @@ $this->insert('partials/header');
 <ul>
     <? foreach($this->products as $product): ?>
         <li>
-            <a href="/products/<?=$e($product->id)?>/<?=$e($product->slug)?>">
+            <a href="/products/<?=$e($product->slug)?>">
                 <img src="/products/photo/small/<?=$e($product->photo_id)?>" alt="<?=$e($product->photo_caption)?>">
                 <h3><?=$e($product->title)?></h3>
             </a>

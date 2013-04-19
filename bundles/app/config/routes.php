@@ -293,20 +293,15 @@ Router::get(
 );
 
 Router::get(
-    '/products/([0-9]+)/([a-z-0-9]+)',
-    function ($id, $slug) {
+    '/products/([a-z-0-9]+)',
+    function ($slug) {
 
         // Create API
         $api = new \Brew\Products\API();
 
         // Load product
-        if (!$product = $api->getProduct($id)) {
+        if (!$product = $api->getProductBySlug($slug)) {
             return Response::notFound();
-        }
-
-        // Validate slug
-        if ($product->slug !== $slug) {
-            return Response::redirect('/products/' . $product->id . '/' . $product->slug);
         }
 
         // Load photos

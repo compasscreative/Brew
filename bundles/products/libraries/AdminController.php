@@ -3,9 +3,10 @@
 namespace Brew\Products;
 
 use Brew\Admin\SecureController;
-use Reinink\Trailmix\Config;
 use Reinink\Magick\Magick;
 use Reinink\Reveal\Response;
+use Reinink\Trailmix\Config;
+use Reinink\Trailmix\Str;
 use Reinink\Up\ImageUpload;
 
 class AdminController extends SecureController
@@ -73,6 +74,7 @@ class AdminController extends SecureController
         $product->title_tag = trim($_POST['title_tag']);
         $product->description_tag = trim($_POST['description_tag']);
         $product->display_order = Product::select('COUNT(*)+1')->field();
+        $product->slug = Str::slug($product->title);
         $product->insert();
 
         // Return new id
@@ -107,6 +109,7 @@ class AdminController extends SecureController
         $product->description = trim($_POST['description']);
         $product->title_tag = trim($_POST['title_tag']);
         $product->description_tag = trim($_POST['description_tag']);
+        $product->slug = Str::slug($product->title);
         $product->update();
 
         // Update photo order and captions

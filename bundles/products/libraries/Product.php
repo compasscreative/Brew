@@ -14,4 +14,5 @@ class Product extends Table
     protected $title_tag;
     protected $description_tag;
     protected $display_order;
+    protected $slug;
 }

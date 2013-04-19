@@ -5,36 +5,43 @@ namespace Brew\Products;
 use Michelf\Markdown;
 use Reinink\Query\DB;
 use Reinink\Reveal\Response;
-use Reinink\Trailmix\Str;
 
 class API
 {
     public function getAllProducts()
     {
-        // Load products
-        $products = DB::rows('products::public.products.all');
-
-        // Add slug
-        foreach ($products as $product) {
-            $product->slug = Str::slug($product->title);
-        }
-
-        return $products;
+        return DB::rows('products::public.products.all');
     }
 
-    public function getProduct($id)
+    public function getProductById($id)
     {
         // Load product
-        if (!$product = Product::select('id, title, introduction, description, title_tag, description_tag')->where('id', $id)->row()) {
+        if (!$product = Product::select('id, title, introduction, description, title_tag, description_tag, slug')
+                               ->where('id', $id)
+                               ->row()) {
             return false;
         }
-
-        // Add slug
-        $product->slug = Str::slug($product->title);
 
         // Convert markdown description
         $product->description = trim(Markdown::defaultTransform(htmlentities($product->description)));
 
+        // Return product
+        return $product;
+    }
+
+    public function getProductBySlug($slug)
+    {
+        // Load product
+        if (!$product = Product::select('id, title, introduction, description, title_tag, description_tag, slug')
+                               ->where('slug', $slug)
+                               ->row()) {
+            return false;
+        }
+
+        // Convert markdown description
+        $product->description = trim(Markdown::defaultTransform(htmlentities($product->description)));
+
+        // Return product
         return $product;
     }
 

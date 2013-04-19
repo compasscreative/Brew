@@ -1,6 +1,7 @@
 SELECT
     products.id,
     products.title,
+    products.slug,
     product_photos.id AS photo_id,
     product_photos.caption AS photo_caption
 
