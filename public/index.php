@@ -221,8 +221,12 @@ try {
 
 } catch (ResponseException $e) {
 
-    $view = new ViewResponse('error', $e->getCode());
-    $view->title = 'Error ' . $e->getCode();
-    $view->exception = $e;
-    $view->send();
+    if (Config::get('display_errors')) {
+        $whoops->pushHandler(new PrettyPageHandler());
+        $whoops->handleException($e);
+    } else {
+        $view = new ViewResponse('error', $e->getCode());
+        $view->exception = $e;
+        $view->send();
+    }
 }
